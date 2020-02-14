@@ -1,5 +1,7 @@
+# Mac-specific DS_store files
 .DS_Store
 
+# Raisl various ignores
 *.rbc
 capybara-*.html
 .rspec
@@ -24,7 +26,7 @@ config/initializers/secret_token.rb
 config/master.key
 
 # Only include if you have production secrets in this file, which is no longer a Rails default
-# config/secrets.yml
+config/secrets.yml
 
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
