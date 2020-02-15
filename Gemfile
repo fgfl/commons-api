@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'image_processing', '~> 1.2'
 
 # use to convert xml to json for feeding to uClassify
-gem install 'json'
+gem 'json'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -46,6 +46,7 @@ group :development do
   #rspec testing framework
   gem 'rspec-rails', '~> 3.9'
   gem 'pry'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
