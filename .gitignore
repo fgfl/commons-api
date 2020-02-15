@@ -1,7 +1,7 @@
 # Mac-specific DS_store files
 .DS_Store
 
-# Raisl various ignores
+# Rails various ignores
 *.rbc
 capybara-*.html
 .rspec
