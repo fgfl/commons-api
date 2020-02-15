@@ -49,3 +49,4 @@ test:
   username: <%= Rails.application.secrets[:database][:username] %>
   password: <%= Rails.application.secrets[:database][:password] %>
   timeout: 5000
+  # port: 5432
