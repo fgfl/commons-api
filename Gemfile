@@ -37,6 +37,10 @@ group :development, :test do
   # factory bot 
   gem 'factory_bot_rails'
   gem 'faker'
+  #rspec testing framework
+  gem 'rspec-rails', '~> 3.9'
+  gem 'pry'
+  gem 'spring-commands-rspec'
 end
 
 group :development do
@@ -46,10 +50,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  #rspec testing framework
-  gem 'rspec-rails', '~> 3.9'
-  gem 'pry'
-  gem 'spring-commands-rspec'
 end
 
 group :test do
@@ -59,7 +59,6 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   # rspec testing framework
-  gem 'rspec-rails', '~> 3.9'
   gem 'shoulda-matchers'
   # simplecov for test coverage
   gem 'simplecov', require: false
