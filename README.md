@@ -5,8 +5,6 @@ application up and running.
 
 Things you may want to cover:
 
-- Ruby version
-
 - System dependencies
 
 - Configuration
@@ -22,6 +20,11 @@ Things you may want to cover:
 - Deployment instructions
 
 - ...
+
+# Ruby version
+
+Ruby: 2.7.0
+Rails: 6.0.2.1
 
 # SETUP
 
@@ -43,3 +46,9 @@ https://www.daveferrara1.com/ruby-in-rails-switch-from-sqlite3-to-postgres/
 CREATE DATABASE commons_development;
 CREATE DATABASE commons_test;
 ```
+
+### rspec Testing Setup
+
+To setup rspec testing environment, run
+rake db:test:prepare
+rake db:test:load
