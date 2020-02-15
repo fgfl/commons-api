@@ -1,5 +1,16 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe UserCategory, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Validations" do
+    let(:user_category) { build(:user_category) }
+
+    it "is valid with valid attributes" do
+      pp user_category
+      expect(user_category).to be_valid
+    end
+
+    # it "should save successfully" do
+    #   expect(user_category.save).to eq(true)
+    # end
+  end
 end

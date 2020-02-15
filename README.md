@@ -23,8 +23,8 @@ Things you may want to cover:
 
 # Ruby version
 
-Ruby: 2.7.0
-Rails: 6.0.2.1
+- Ruby: 2.7.0
+- Rails: 6.0.2.1
 
 # SETUP
 
@@ -50,5 +50,9 @@ CREATE DATABASE commons_test;
 ### rspec Testing Setup
 
 To setup rspec testing environment, run
+
+```
 rake db:test:prepare
 rake db:test:load
+```
+
