@@ -36,6 +36,7 @@ https://www.daveferrara1.com/ruby-in-rails-switch-from-sqlite3-to-postgres/
 - create a development user
   - create a copy of the `config/secrets.yml.example` and rename it to `config/secrets.yml`.
   - change the username and password to your development user and password
+  - add your uclassify read and write keys
 - log in to the postgres with the dev user and create the dev and test database
 
 ```sql
