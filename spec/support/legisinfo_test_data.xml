@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Custom RSS Feed</title>
+    <language>en</language>
+    <description>
+          Custom RSS Feed/Fil RSS personnalisé
+    </description>
+    <link>https://www.parl.ca/LegisInfo/</link>
+    <atom:link href="https://www.parl.ca/LegisInfo/RSSFeed.aspx?download=rss&amp;Language=E&amp;Mode=1&amp;Source=LegislativeFilteredBills&amp;AllBills=1&amp;HOCEventTypes=60110,60111,60146,60306,60122,60115,60119,60121,60124,60125,60126,60127,60285,60145,60307,60128,60131,60132,60133,60134,60174,60112,60163,60304,60303,60139,60144,60136,60138,60142&amp;SenateEventTypes=60109,60110,60111,60115,60118,60119,60120,60123,60124,60305,60286,60130,60129,60302,60131,60132,60133,60134,60147,60304,60303,60140,60143,60135,60137,60141,60149" rel="self" type="application/rss+xml" 
+      xmlns:atom="http://www.w3.org/2005/Atom" />
+    <item>
+      <title>C-204, Introduction and First Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10626760</link>
+      <description>C-204, An Act to amend the Canadian Environmental Protection Act, 1999 (final disposal of plastic waste)</description>
+      <pubDate>Fri, 07 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-3, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10613928</link>
+      <description>C-3, An Act to amend the Royal Canadian Mounted Police Act and the Canada Border Services Agency Act and to make consequential amendments to other Acts</description>
+      <pubDate>Fri, 07 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-3, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10613928</link>
+      <description>C-3, An Act to amend the Royal Canadian Mounted Police Act and the Canada Border Services Agency Act and to make consequential amendments to other Acts</description>
+      <pubDate>Fri, 07 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-4, Second Reading and Referral to Committee in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10615191</link>
+      <description>C-4, An Act to implement the Agreement between Canada, the United States of America and the United Mexican States</description>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-3, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10613928</link>
+      <description>C-3, An Act to amend the Royal Canadian Mounted Police Act and the Canada Border Services Agency Act and to make consequential amendments to other Acts</description>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-4, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10615191</link>
+      <description>C-4, An Act to implement the Agreement between Canada, the United States of America and the United Mexican States</description>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-4, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10615191</link>
+      <description>C-4, An Act to implement the Agreement between Canada, the United States of America and the United Mexican States</description>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-203, Introduction and First Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604049</link>
+      <description>C-203, An Act to amend the National Defence Act (maiming or injuring self or another)</description>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-207, Debate at Second Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10607221</link>
+      <description>S-207, An Act to amend the Criminal Code (disclosure of information by jurors)</description>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-208, Debate at Second Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10625187</link>
+      <description>S-208, An Act to amend the Criminal Code (independence of the judiciary)</description>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-210, Debate at Second Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10625169</link>
+      <description>S-210, An Act to amend the Parliament of Canada Act (Parliamentary Visual Artist Laureate)</description>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-213, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10629396</link>
+      <description>S-213, An Act to change the name of the electoral district of Châteauguay—Lacolle</description>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-4, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10615191</link>
+      <description>C-4, An Act to implement the Agreement between Canada, the United States of America and the United Mexican States</description>
+      <pubDate>Wed, 05 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-1001, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10627060</link>
+      <description>S-1001, An Act respecting Girl Guides of Canada</description>
+      <pubDate>Wed, 05 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-212, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10627090</link>
+      <description>S-212, An Act to establish International Mother Language Day</description>
+      <pubDate>Wed, 05 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-211, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10627038</link>
+      <description>S-211, An Act to enact the Modern Slavery Act and to amend the Customs Tariff</description>
+      <pubDate>Wed, 05 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-202, Introduction and First Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10618751</link>
+      <description>C-202, An Act to amend the Criminal Code (assault against a health care worker)</description>
+      <pubDate>Tue, 04 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-201, Introduction and First Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10618763</link>
+      <description>C-201, An Act to develop a national school food program for children</description>
+      <pubDate>Tue, 04 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-5, Introduction and First Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10620333</link>
+      <description>C-5, An Act to amend the Judges Act and the Criminal Code</description>
+      <pubDate>Tue, 04 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-208, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10625187</link>
+      <description>S-208, An Act to amend the Criminal Code (independence of the judiciary)</description>
+      <pubDate>Tue, 04 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-210, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10625169</link>
+      <description>S-210, An Act to amend the Parliament of Canada Act (Parliamentary Visual Artist Laureate)</description>
+      <pubDate>Tue, 04 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-209, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10625194</link>
+      <description>S-209, An Act to amend the Department for Women and Gender Equality Act</description>
+      <pubDate>Tue, 04 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-4, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10615191</link>
+      <description>C-4, An Act to implement the Agreement between Canada, the United States of America and the United Mexican States</description>
+      <pubDate>Mon, 03 Feb 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-4, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10615191</link>
+      <description>C-4, An Act to implement the Agreement between Canada, the United States of America and the United Mexican States</description>
+      <pubDate>Fri, 31 Jan 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-4, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10615191</link>
+      <description>C-4, An Act to implement the Agreement between Canada, the United States of America and the United Mexican States</description>
+      <pubDate>Fri, 31 Jan 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-4, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10615191</link>
+      <description>C-4, An Act to implement the Agreement between Canada, the United States of America and the United Mexican States</description>
+      <pubDate>Thu, 30 Jan 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-4, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10615191</link>
+      <description>C-4, An Act to implement the Agreement between Canada, the United States of America and the United Mexican States</description>
+      <pubDate>Thu, 30 Jan 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-4, Introduction and First Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10615191</link>
+      <description>C-4, An Act to implement the Agreement between Canada, the United States of America and the United Mexican States</description>
+      <pubDate>Wed, 29 Jan 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-3, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10613928</link>
+      <description>C-3, An Act to amend the Royal Canadian Mounted Police Act and the Canada Border Services Agency Act and to make consequential amendments to other Acts</description>
+      <pubDate>Wed, 29 Jan 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-3, Introduction and First Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10613928</link>
+      <description>C-3, An Act to amend the Royal Canadian Mounted Police Act and the Canada Border Services Agency Act and to make consequential amendments to other Acts</description>
+      <pubDate>Mon, 27 Jan 2020 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, Royal Assent in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Thu, 12 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-207, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10607221</link>
+      <description>S-207, An Act to amend the Criminal Code (disclosure of information by jurors)</description>
+      <pubDate>Thu, 12 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-202, Debate at Second Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604397</link>
+      <description>S-202, An Act to amend the Criminal Code (conversion therapy)</description>
+      <pubDate>Thu, 12 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-203, Debate at Second Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604419</link>
+      <description>S-203, An Act to amend the National Capital Act (buildings or works of national significance)</description>
+      <pubDate>Thu, 12 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, Third Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, Debate at 3rd Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, Second Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, Debate at Second Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-205, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10605949</link>
+      <description>S-205, An Act to amend the Constitution Act, 1867 and the Parliament of Canada Act (Speaker of the Senate)</description>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-206, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10605962</link>
+      <description>S-206, An Act to amend the Department of Public Works and Government Services Act (use of wood)</description>
+      <pubDate>Wed, 11 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, Third Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, Debate at 3rd Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, Concurrence at Report Stage in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, Debate at Report Stage in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, Committee Reporting the Bill without Amendment in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, Second Reading and Referral to Committee in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, Debate at Second Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-2, First Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604308</link>
+      <description>C-2, An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020</description>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-204, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604425</link>
+      <description>S-204, An Act to amend the Criminal Code and the Immigration and Refugee Protection Act (trafficking in human organs)</description>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-201, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604365</link>
+      <description>S-201, An Act to amend the Borrowing Authority Act</description>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-202, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604397</link>
+      <description>S-202, An Act to amend the Criminal Code (conversion therapy)</description>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-203, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10604419</link>
+      <description>S-203, An Act to amend the National Capital Act (buildings or works of national significance)</description>
+      <pubDate>Tue, 10 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>C-1, Introduction and First Reading in the House of Commons</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10600395</link>
+      <description>C-1, An Act respecting the administration of oaths of office</description>
+      <pubDate>Thu, 05 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+    <item>
+      <title>S-1, Introduction and First Reading in the Senate</title>
+      <link>https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&amp;billId=10601138</link>
+      <description>S-1, An Act relating to railways</description>
+      <pubDate>Thu, 05 Dec 2019 00:00:00 EST</pubDate>
+    </item>
+  </channel>
+</rss>
