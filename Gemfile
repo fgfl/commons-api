@@ -31,9 +31,18 @@ gem 'json'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# Faraday is a wrapper for HTTP client
+gem 'faraday'
+gem 'faraday_middleware'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv'
+  gem 'dotenv-rails'
+  gem 'pry'
+  gem 'spring-commands-rspec'
 end
 
 group :development do
@@ -45,8 +54,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   #rspec testing framework
   gem 'rspec-rails', '~> 3.9'
-  gem 'pry'
-  gem 'spring-commands-rspec'
 end
 
 group :test do
