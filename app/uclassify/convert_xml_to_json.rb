@@ -6,6 +6,7 @@ Dotenv.load
 require "pry"
 require "faraday"
 require "faraday_middleware"
+require "ruby-cheerio"
 
 # Sends read call to uClassify
 # inputs: text {string} - text to classify
@@ -20,7 +21,7 @@ def uclassify_read(text, read_action)
   faraday = Faraday.new(url: uri) do |conn|
     # conn.token_auth("#{ENV["UCLASSIFY_API_READ_KEY"]}") # this doesn't work???? must put in header.
     # conn.request :json, :content_type => /\bjson$/
-    # conn.response :json, :content_type => /\bjson$/
+    conn.response :json, :content_type => /\bjson$/
     conn.adapter :net_http
   end
 
@@ -69,5 +70,33 @@ end
 
 # binding.pry
 
-pp bill_items.first
-pp uclassify_read(bill_items.first, "classify")
+# pp bill_items.first
+
+res = Faraday.get(bill_items.first["description"])
+File.write(__dir__ + "/lop_site.html", res.body)
+jQuery = RubyCheerio.new(res.body)
+legisInfo_link = jQuery.find("a:contains('Status of the bill')")[0].prop("a", "href")
+
+res = Faraday.get(legisInfo_link)
+File.write(__dir__ + "/legisInfo.html", res.body)
+jQuery = RubyCheerio.new(res.body)
+publication_link = jQuery.find("a:contains('Latest Publication')")[0].prop("a", "href")
+# pp publication_link
+
+# res = Faraday.get(publication_link)
+faraday = Faraday.new(url: "http:#{publication_link}") do |f|
+  f.use FaradayMiddleware::FollowRedirects
+  f.adapter :net_http
+end
+res = faraday.get
+File.write(__dir__ + "/bill_publication.html", res.body)
+jQuery = RubyCheerio.new(res.body)
+bill_xml_link = jQuery.find("a.btn-export-xml:contains('XML')")[0].prop("a", "href")
+
+pp bill_xml_link
+
+res = Faraday.get(bill_xml_link)
+File.write(__dir__ + "/bill_publication.xml", res.body)
+pp res.body
+# pp res.body.scan(/href.*Status of the bill/)
+# pp uclassify_read(bill_items.first, "classify")
