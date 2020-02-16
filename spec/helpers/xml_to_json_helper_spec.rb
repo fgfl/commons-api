@@ -1,4 +1,6 @@
-require "rails_helper"
+# frozen_string_literal: true
+
+require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
 # the XmlToJsonHelper. For example:
@@ -11,7 +13,7 @@ require "rails_helper"
 #   end
 # end
 RSpec.describe XmlToJsonHelper, type: :helper do
-  it "returns a JSON object when passed valid XML" do
+  it 'returns a JSON object when passed valid XML' do
     xml = "
         <channel>
             <description>The Parliamentary Information and Research Service prepares publications for general distribution to all Parliamentarians as background material to policy areas and legislation before Parliament.</description>
@@ -20,8 +22,9 @@ RSpec.describe XmlToJsonHelper, type: :helper do
             <category>Research Publications</category>
         </channel>
     "
-    json = "{\"channel\":{\"description\":\"The Parliamentary Information and Research Service prepares publications for general distribution to all Parliamentarians as background material to policy areas and legislation before Parliament.\",\"language\":\"en_CA\",\"managingEditor\":\"Library of Parliament\",\"category\":\"Research Publications\"}}"
+    json = '{"channel":{"description":"The Parliamentary Information and Research Service prepares publications for general distribution to all Parliamentarians as background material to policy areas and legislation before Parliament.","language":"en_CA","managingEditor":"Library of Parliament","category":"Research Publications"}}'
+    method_output = helper.xml_to_json(xml)
 
-    expect(xml_to_json(xml)).to eq(json)
+    expect(method_output.to eq(json)
   end
 end
