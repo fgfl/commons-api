@@ -6,7 +6,9 @@ Dotenv.load
 require "pry"
 require "faraday"
 require "faraday_middleware"
+require "uri"
 require "ruby-cheerio"
+require "nokogiri"
 
 # Sends read call to uClassify
 # inputs: text {string} - text to classify
@@ -26,7 +28,7 @@ def uclassify_read(text, read_action)
   end
 
   body = {
-    texts: [text["title"]],
+    texts: [text],
   }
 
   pp "body"
@@ -68,10 +70,6 @@ end
 #   puts ""
 # end
 
-# binding.pry
-
-# pp bill_items.first
-
 res = Faraday.get(bill_items.first["description"])
 File.write(__dir__ + "/lop_site.html", res.body)
 jQuery = RubyCheerio.new(res.body)
@@ -83,7 +81,6 @@ jQuery = RubyCheerio.new(res.body)
 publication_link = jQuery.find("a:contains('Latest Publication')")[0].prop("a", "href")
 # pp publication_link
 
-# res = Faraday.get(publication_link)
 faraday = Faraday.new(url: "http:#{publication_link}") do |f|
   f.use FaradayMiddleware::FollowRedirects
   f.adapter :net_http
@@ -93,10 +90,18 @@ File.write(__dir__ + "/bill_publication.html", res.body)
 jQuery = RubyCheerio.new(res.body)
 bill_xml_link = jQuery.find("a.btn-export-xml:contains('XML')")[0].prop("a", "href")
 
-pp bill_xml_link
+# pp bill_xml_link
 
-res = Faraday.get(bill_xml_link)
+# need to join the page URL to get the base url
+res = Faraday.get(URI.join("https://www.parl.ca/DocumentViewer/en/42-1/bill/C-101/royal-assent", bill_xml_link).to_s)
 File.write(__dir__ + "/bill_publication.xml", res.body)
-pp res.body
+doc = Nokogiri::XML(res.body)
+# doc = File.open(__dir__ + "/bill_publication.xml") { |f| Nokogiri::XML(f) }
+
+# binding.pry
+
+all_text = doc.search("//text()").map(&:text)
+puts all_text.join("\n")
+File.write(__dir__ + "/bill_xml_parsed.txt", all_text.join("\n"))
 # pp res.body.scan(/href.*Status of the bill/)
-# pp uclassify_read(bill_items.first, "classify")
+pp uclassify_read(all_text.join("\n"), "classify")
