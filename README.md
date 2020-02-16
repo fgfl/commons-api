@@ -55,4 +55,3 @@ To setup rspec testing environment, run
 rake db:test:prepare
 rake db:test:load
 ```
-
