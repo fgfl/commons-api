@@ -2,9 +2,17 @@
 
 require 'json'
 require 'active_support/all'
+require 'rubygems'
+require 'nokogiri'
+require 'open-uri'
 
+# bring in the format_bill_helper
 require_relative './format_bill_helper'
 include FormatBillHelper
+
+# bring in the fetch helpers and insert_columns_into_bills method
+require_relative './fetch_helper'
+include FetchHelper
 
 module WriteHashHelper
   # this helper splits the hash file into two separate arrays, one for events and one for bills
@@ -34,6 +42,7 @@ module WriteHashHelper
     bills = split_hash[1]
     rename_event_titles(events)
     rename_bill_titles(bills)
+    # insert_columns_into_bills(bills)
     File.write(__dir__ + write_path + '/events_hash.rb', events)
     File.write(__dir__ + write_path + '/bills_hash.rb', bills)
   end
