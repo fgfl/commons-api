@@ -31,12 +31,6 @@ def uclassify_read(text, read_action)
     texts: [text],
   }
 
-  pp "body"
-  pp body
-
-  pp "body.to_json"
-  pp "#{body.to_json}"
-
   res = faraday.post do |req|
     req.headers["Content-Type"] = "application/json"
     req.headers["Authorization"] = "Token #{ENV["UCLASSIFY_API_READ_KEY"]}"
@@ -70,18 +64,24 @@ end
 #   puts ""
 # end
 
+# Get status of bill page from the Research Publications page
 res = Faraday.get(bill_items.first["description"])
 File.write(__dir__ + "/lop_site.html", res.body)
 jQuery = RubyCheerio.new(res.body)
 legisInfo_link = jQuery.find("a:contains('Status of the bill')")[0].prop("a", "href")
 
+# get the Latest publication from the LegisInfo page
 res = Faraday.get(legisInfo_link)
 File.write(__dir__ + "/legisInfo.html", res.body)
 jQuery = RubyCheerio.new(res.body)
 publication_link = jQuery.find("a:contains('Latest Publication')")[0].prop("a", "href")
-# pp publication_link
 
-faraday = Faraday.new(url: "http:#{publication_link}") do |f|
+# need this to join the future links. The next links are relative links so we use this to get the base url
+url = URI(legisInfo_link)
+
+# Get the XML document from the bill page
+absolute_publication_link = URI.join(url, publication_link).to_s
+faraday = Faraday.new(url: absolute_publication_link) do |f|
   f.use FaradayMiddleware::FollowRedirects
   f.adapter :net_http
 end
@@ -90,10 +90,9 @@ File.write(__dir__ + "/bill_publication.html", res.body)
 jQuery = RubyCheerio.new(res.body)
 bill_xml_link = jQuery.find("a.btn-export-xml:contains('XML')")[0].prop("a", "href")
 
-# pp bill_xml_link
-
 # need to join the page URL to get the base url
-res = Faraday.get(URI.join("https://www.parl.ca/DocumentViewer/en/42-1/bill/C-101/royal-assent", bill_xml_link).to_s)
+absolute_bill_xml_link = URI.join(url, bill_xml_link).to_s
+res = Faraday.get(absolute_bill_xml_link)
 File.write(__dir__ + "/bill_publication.xml", res.body)
 doc = Nokogiri::XML(res.body)
 # doc = File.open(__dir__ + "/bill_publication.xml") { |f| Nokogiri::XML(f) }
@@ -104,4 +103,4 @@ all_text = doc.search("//text()").map(&:text)
 puts all_text.join("\n")
 File.write(__dir__ + "/bill_xml_parsed.txt", all_text.join("\n"))
 # pp res.body.scan(/href.*Status of the bill/)
-pp uclassify_read(all_text.join("\n"), "classify")
+# pp uclassify_read(all_text.join("\n"), "classify")
