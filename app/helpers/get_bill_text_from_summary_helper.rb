@@ -22,7 +22,7 @@ module GetBillTextFromSummaryHelper
   #   "pubDate": "Wed, 10 Jul 2019 00:00:00 -0400"
   # },
   def self.get_text(bill)
-    res = Faraday.get(bill_items.first["description"])
+    res = Faraday.get(bill["description"])
     # File.write(__dir__ + "/lop_site.html", res.body)
     doc = Nokogiri::HTML(res.body)
     legisInfo_link = doc.at_css("a:contains('Status of the bill')")["href"]
