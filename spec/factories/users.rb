@@ -1,6 +1,7 @@
 FactoryBot.define do
 
   factory :user do
+    sequence(:id) { |number| number }
     username { 'JamesBB' }
     name { 'James Brown' }
     email { 'jamesbrown@dogs.com' }
@@ -8,6 +9,7 @@ FactoryBot.define do
   end
 
   factory :random_user, class: User do
+    sequence(:id) { |number| number }
     username { Faker::Superhero.name }
     name { Faker::Name.name }
     email { Faker::Internet.safe_email }

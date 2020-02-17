@@ -3,7 +3,7 @@
 class Bill < ApplicationRecord
   belongs_to :session
 
-  validates :code, presence: true
+  validates :code, presence: true, uniqueness: true
   validates :title, presence: true
   validates :description, presence: true
   validates :introduced_date, presence: true

@@ -1,10 +1,9 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Category, type: :model do
-
-  describe 'Validations' do
+  describe "Validations" do
     let(:category) { build(:random_category) }
-    
+
     it "is valid with valid attributes" do
       pp category
       expect(category).to be_valid
@@ -15,9 +14,13 @@ RSpec.describe Category, type: :model do
       expect(category).to_not be_valid
     end
 
-    it 'should save successfully' do
+    it "is not valid without a uclassify_class" do
+      category.uclassify_class = nil
+      expect(category).to_not be_valid
+    end
+
+    it "should save successfully" do
       expect(category.save).to eq(true)
     end
-    
   end
 end

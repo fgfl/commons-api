@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_215_000_915) do
+ActiveRecord::Schema.define(version: 20_200_217_210_503) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20_200_215_000_915) do
 
   create_table 'categories', force: :cascade do |t|
     t.string 'name'
+    t.string 'uclassify_class'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
   end

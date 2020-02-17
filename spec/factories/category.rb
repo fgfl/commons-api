@@ -1,11 +1,15 @@
-FactoryBot.define do
+# frozen_string_literal: true
 
+FactoryBot.define do
   factory :category do
-    name { "The Thing that Does Stuff" }
+    sequence(:id) { |number| number }
+    name { 'Business, industry and trade' }
+    uclassify_class { 'business_industry' }
   end
 
   factory :random_category, class: Category do
-    name { Faker::TvShows::RickAndMorty.quote }
+    sequence(:id) { |number| number }
+    name { Faker::Games::Pokemon.name }
+    uclassify_class { Faker::Games::Zelda.game.gsub!(/( )/, '_').downcase! }
   end
-
 end
