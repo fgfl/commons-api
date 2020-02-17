@@ -11,7 +11,7 @@ module WriteHashHelper
   # it also ensures that there are no duplicate instances of bills
   def split_hash(items)
     split_hash = [[], []]
-    hash_keys = %w[title pubDate]
+    hash_keys = %w[bill_code title pubDate]
     items.each do |event|
       event, bill = event.partition { |k, _v| hash_keys.include? k }.map(&:to_h)
       split_hash[0].push(event)

@@ -18,6 +18,7 @@ module FormatBillHelper
       item['title'].slice!(0, 2)
       item['description'].slice!(0, 2)
       item['code'] = bill_code
+      item['bill_code'] = bill_code
     end
     items
   end
@@ -25,6 +26,7 @@ module FormatBillHelper
   # this helper renames the event
   def rename_event_titles(events)
     events.each do |event|
+      event['code'] = event.delete 'bill_code'
       event['publication_date'] = event.delete 'pubDate'
     end
     events

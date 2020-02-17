@@ -11,8 +11,8 @@ RSpec.describe Bill, type: :model do
       expect(bill).to be_valid
     end
 
-    it 'is valid if the tabled_date is a Date object' do
-      bill.tabled_date = Faker::Date.backward(days: 365)
+    it 'is valid if the introduced_date is a Date object' do
+      bill.introduced_date = Faker::Date.backward(days: 365)
       expect(bill).to be_valid
     end
 
@@ -26,8 +26,8 @@ RSpec.describe Bill, type: :model do
       expect(bill).to_not be_valid
     end
 
-    it 'is not valid without a tabled_date' do
-      bill.tabled_date = nil
+    it 'is not valid without a introduced_date' do
+      bill.introduced_date = nil
       expect(bill).to_not be_valid
     end
 
@@ -42,7 +42,7 @@ RSpec.describe Bill, type: :model do
     end
 
     it 'is not valid if tabled date is in the future' do
-      bill.tabled_date = Faker::Date.forward(days: 365)
+      bill.introduced_date = Faker::Date.forward(days: 365)
       expect(bill).to_not be_valid
     end
 
