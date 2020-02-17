@@ -10,7 +10,7 @@ module FormatBillHelper
   end
 
   # this helper moves the bill code to its own hash key and removes it from the title fields
-  def format_code(items)
+  def format_bill_code(items)
     items.each do |item|
       bill_code = item['title'].split(', ').first
       item['title'].sub! /\A.+?(?=, )/mi, ''

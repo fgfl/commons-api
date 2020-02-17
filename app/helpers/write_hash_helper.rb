@@ -28,7 +28,7 @@ module WriteHashHelper
     hash = JSON.parse(Hash.from_xml(file_data).to_json)
     items = hash['rss']['channel']['item']
     format_date(items)
-    format_code(items)
+    format_bill_code(items)
     split_hash = split_hash(items)
     events = split_hash[0]
     bills = split_hash[1]
