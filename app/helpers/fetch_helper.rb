@@ -33,5 +33,7 @@ module FetchHelper
 
   def get_description(full_text_url)
     full_text = Nokogiri::HTML(URI.open(full_text_url))
+    summary_div = full_text.find(:xpath, ".//*[contains(text(), 'This enactment')]").text
+    summary_div
   end
 end

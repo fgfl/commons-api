@@ -32,12 +32,21 @@ RSpec.describe FetchHelper, type: :helper do
     end
   end
 
-  describe 'GetDescription' do
+  describe 'GetIntroducedDate' do
     it 'fetches the introduced_date for a bill' do
       test_url = 'https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10626760'
       test_introduced_date = Date.parse('2020-02-07')
 
       expect(helper.get_introduced_date(test_url)). to eq(test_introduced_date)
+    end
+  end
+
+  describe 'GetDescription' do
+    it 'fetches the description of a bill' do
+      test_url = 'https://parl.ca/DocumentViewer/en/10633126'
+      test_description = 'This enactment amends the Canadian Environmental Protection Act, 1999 to prohibit the export of certain types of plastic waste to foreign countries for final disposal.'
+
+      expect(helper.get_description(test_url)). to eq(test_description)
     end
   end
 end
