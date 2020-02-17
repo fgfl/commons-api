@@ -9,7 +9,7 @@ module FormatBillHelper
     items
   end
 
-  # this helper moves the bill code to its own hash key
+  # this helper moves the bill code to its own hash key and removes it from the title fields
   def format_code(items)
     items.each do |item|
       bill_code = item['title'].split(', ').first
@@ -22,12 +22,20 @@ module FormatBillHelper
     items
   end
 
-  # this helper renames event title and bill titles
-  def rename_titles(items)
-    items.each do |item|
-      item['bill_title'] = item.delete 'description'
-      item['event_title'] = item.delete 'title'
+  # this helper renames the event
+  def rename_event_titles(events)
+    events.each do |event|
+      event['publication_date'] = event.delete 'pubDate'
     end
-    items
+    events
+  end
+
+  # this helper renames the bill title and link fields
+  def rename_bill_titles(bills)
+    bills.each do |bill|
+      bill['title'] = bill.delete 'description'
+      bill['page_url'] = bill.delete 'link'
+    end
+    bills
   end
 end
