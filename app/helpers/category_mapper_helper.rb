@@ -1,4 +1,5 @@
 module CategoryMapperHelper
+  # Map from Canada RSS feed category to uClassify category names
   def self.map(full_category_name)
     map = {
       "Agriculture, environment, fisheries and natural resources": "agriculture_environment",
