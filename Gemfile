@@ -35,8 +35,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'faraday'
 gem 'faraday_middleware'
 
-# jQuery style HTML parse for ruby
-gem 'ruby-cheerio'
+# HTML and XML parser for ruby
 gem 'nokogiri'
 
 group :development, :test do

@@ -1,43 +1,22 @@
 require_relative "../helpers/xml_to_json_helper"
 include XmlToJsonHelper
+require_relative "./uclassify"
+# include Uclassify
 
-require "dotenv"
-Dotenv.load
 require "pry"
 require "faraday"
 require "faraday_middleware"
 require "uri"
-require "ruby-cheerio"
 require "nokogiri"
 
-# Sends read call to uClassify
-# inputs: text {string} - text to classify
-#         read_action {string} - one of the three actions "classify", "keywords", "getInformation"
-def uclassify_read(text, read_action)
-  base_url = "https://api.uclassify.com/v1/"
-  username = "Frederick"
-  classifierName = "LHL_midterm_classifier"
+#=========
 
-  uri = "#{base_url}#{username}/#{classifierName}/#{read_action}"
+# res = Uclassify::train(["this is a dog.", "somewhere a cat goes meow", "nowhere does it say a moon can't moo!"], "json-api-test", "test_class2")
+# res = Uclassify::train(["this is a dog"], "json-api-test", "test_class2")
 
-  faraday = Faraday.new(url: uri) do |conn|
-    # conn.token_auth("#{ENV["UCLASSIFY_API_READ_KEY"]}") # this doesn't work???? must put in header.
-    # conn.request :json, :content_type => /\bjson$/
-    conn.response :json, :content_type => /\bjson$/
-    conn.adapter :net_http
-  end
+# binding.pry
 
-  body = {
-    texts: [text],
-  }
-
-  res = faraday.post do |req|
-    req.headers["Content-Type"] = "application/json"
-    req.headers["Authorization"] = "Token #{ENV["UCLASSIFY_API_READ_KEY"]}"
-    req.body = body.to_json
-    # req.body = "{\"texts\": [\"hello\"]}"
-  end
-end
+# raise  # just to stop execution
 
 file_data = File.read(__dir__ + "/training_data/publications_with_category.xml")
 
@@ -67,14 +46,14 @@ end
 # Get status of bill page from the Research Publications page
 res = Faraday.get(bill_items.first["description"])
 File.write(__dir__ + "/lop_site.html", res.body)
-jQuery = RubyCheerio.new(res.body)
-legisInfo_link = jQuery.find("a:contains('Status of the bill')")[0].prop("a", "href")
+doc = Nokogiri::HTML(res.body)
+legisInfo_link = doc.at_css("a:contains('Status of the bill')")["href"]
 
 # get the Latest publication from the LegisInfo page
 res = Faraday.get(legisInfo_link)
 File.write(__dir__ + "/legisInfo.html", res.body)
-jQuery = RubyCheerio.new(res.body)
-publication_link = jQuery.find("a:contains('Latest Publication')")[0].prop("a", "href")
+doc = Nokogiri::HTML(res.body)
+publication_link = doc.at_css("a:contains('Latest Publication')")["href"]
 
 # need this to join the future links. The next links are relative links so we use this to get the base url
 url = URI(legisInfo_link)
@@ -87,8 +66,8 @@ faraday = Faraday.new(url: absolute_publication_link) do |f|
 end
 res = faraday.get
 File.write(__dir__ + "/bill_publication.html", res.body)
-jQuery = RubyCheerio.new(res.body)
-bill_xml_link = jQuery.find("a.btn-export-xml:contains('XML')")[0].prop("a", "href")
+doc = Nokogiri::HTML(res.body)
+bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")["href"]
 
 # need to join the page URL to get the base url
 absolute_bill_xml_link = URI.join(url, bill_xml_link).to_s
@@ -103,4 +82,4 @@ all_text = doc.search("//text()").map(&:text)
 puts all_text.join("\n")
 File.write(__dir__ + "/bill_xml_parsed.txt", all_text.join("\n"))
 # pp res.body.scan(/href.*Status of the bill/)
-# pp uclassify_read(all_text.join("\n"), "classify")
+pp Uclassify::classify([all_text.join("\n")], "Frederick", "LHL_midterm_classifier")
