@@ -21,7 +21,7 @@ Session.destroy_all
 
 Session.create!(
   number: 1,
-  start_date: Date.new(2019, 12, 0o5),
+  start_date: Date.new(2019, 12, 05),
   end_date: nil
 )
 
