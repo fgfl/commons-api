@@ -2,9 +2,9 @@
 
 require 'json'
 require 'active_support/all'
-require 'rubygems'
-require 'nokogiri'
-require 'open-uri'
+# require 'rubygems'
+# require 'nikkou'
+# require 'open-uri'
 
 # bring in the format_bill_helper
 require_relative './format_bill_helper'
@@ -42,7 +42,7 @@ module WriteHashHelper
     bills = split_hash[1]
     rename_event_titles(events)
     rename_bill_titles(bills)
-    # insert_columns_into_bills(bills)
+    insert_columns_into_bills(bills)
     File.write(__dir__ + write_path + '/events_hash.rb', events)
     File.write(__dir__ + write_path + '/bills_hash.rb', bills)
   end
