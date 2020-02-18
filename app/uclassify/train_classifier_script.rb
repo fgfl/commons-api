@@ -46,8 +46,6 @@ while bills.size > 0
   pp bill["title"]
   text = GetBillTextFromSummaryHelper::get_text(bill)
 
-  raise text.inspect
-
   if text.empty?
     next
   end

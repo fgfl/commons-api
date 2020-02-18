@@ -67,7 +67,7 @@ module GetBillTextFromSummaryHelper
     # File.write(__dir__ + "/bill_publication.html", res.body)
     doc = Nokogiri::HTML(res.body)
     begin
-      bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")["href"] if doc.at_css("a.btn-export-xml:contains('XML')")
+      bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")["href"]
     rescue NoMethodError => exception
       puts exception.full_message()
       puts "Failed on page #{absolute_publication_link}"
