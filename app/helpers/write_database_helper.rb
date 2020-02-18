@@ -18,6 +18,16 @@
 #   File.write(__dir__ + write_path + '/bills_hashes_array.rb', bills)
 # end
 
+# for now method reads from file. need to replace with results of api call
+# def read_file
+#   file_data = File.read(__dir__ + "/../../spec/support/legisinfo_test_data.xml")
+#   hash = JSON.parse(Hash.from_xml(file_data).to_json)
+#   items = hash["rss"]["channel"]["item"]
+#   format_date(items)
+#   format_bill_code(items)
+#   items
+# end
+
 require "json"
 require "active_support/all"
 
@@ -30,10 +40,11 @@ require_relative "./fetch_helper"
 include FetchHelper
 
 module WriteDatabaseHelper
-  # for now method reads from file. need to replace with results of api call
-  def read_file
-    file_data = File.read(__dir__ + "/../../spec/support/legisinfo_test_data.xml")
-    hash = JSON.parse(Hash.from_xml(file_data).to_json)
+
+  #formats XML file data from legisINFO website
+  def format_xml_to_hashes_array
+    legisinfo_xml_feed = get_legisinfo_xml_feed
+    hash = JSON.parse(Hash.from_xml(legisinfo_xml_feed).to_json)
     items = hash["rss"]["channel"]["item"]
     format_date(items)
     format_bill_code(items)
@@ -43,7 +54,7 @@ module WriteDatabaseHelper
   # this helper splits the hash file into two separate arrays, one for events and one for bills
   # it also ensures that there are no duplicate instances of bills
   def split_arrays
-    items = read_file
+    items = format_xml_to_hashes_array
     split_arrays = [[], []]
     hash_keys = %w[bill_code title pubDate]
     items.each do |event|
@@ -58,10 +69,13 @@ module WriteDatabaseHelper
     split_arrays
   end
 
+  # this helper writes events to the database
+  # each event is associated to a specific bill by the bill code (eg. C-204)
   def write_events
     split_arrays = split_arrays()
     events = split_arrays[0]
     events.each do |event|
+      puts event
       puts "Writing Event #{event["code"]} #{event["title"]} to database ..."
       bill = Bill.find_by code: event["code"]
       Event.create(
@@ -74,6 +88,8 @@ module WriteDatabaseHelper
     puts "Finished writing #{events.length} events to the database!"
   end
 
+  # this helper writes bills to the database
+  # each bills is associated to a specific session (currently only one session exists)
   def write_bills
     split_arrays = split_arrays()
     bills = split_arrays[1]

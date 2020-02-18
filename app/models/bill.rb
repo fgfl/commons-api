@@ -12,13 +12,13 @@ class Bill < ApplicationRecord
 
   def introduced_date_is_date_object
     unless introduced_date.is_a?(Date) || !introduced_date.present?
-      errors.add(:introduced_date, 'must be a Date object')
+      errors.add(:introduced_date, "must be a Date object")
     end
   end
 
   def introduced_date_must_not_be_in_the_future
-    if introduced_date.present? && introduced_date >= Date.today
-      errors.add(:introduced_date, 'must not be in the future')
+    if introduced_date.present? && introduced_date > Date.today
+      errors.add(:introduced_date, "must not be in the future")
     end
   end
 end
