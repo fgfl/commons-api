@@ -43,11 +43,16 @@ while bills.size > 0
     next
   end
 
+  pp bill["title"]
   text = GetBillTextFromSummaryHelper::get_text(bill)
+
+  if text.empty?
+    next
+  end
   # text = "tests text"
 
   if bill["category"].kind_of?(String)
-    puts bill["category"] = [bill["category"]]
+    bill["category"] = [bill["category"]]
   end
 
   # binding.pry
@@ -56,8 +61,13 @@ while bills.size > 0
 
   while bill["category"].size > 0
     cat = bill["category"].shift
-    res = Uclassify::train(text, CLASSIFIER_NAME, CategoryMapperHelper::map(cat))
-    error = res.status != 200
+    # res = Uclassify::train(text, CLASSIFIER_NAME, CategoryMapperHelper::map(cat))
+    # error = res.status != 200
+
+    res = {
+      status: 200,
+    }
+    error = res[:status] != 200
 
     if (error)
       bill["category"].unshift(cat)

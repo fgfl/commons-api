@@ -22,17 +22,32 @@ module GetBillTextFromSummaryHelper
   #   "pubDate": "Wed, 10 Jul 2019 00:00:00 -0400"
   # },
   def self.get_text(bill)
-    res = Faraday.get(bill["description"])
+    faraday = Faraday.new(url: bill["description"]) do |f|
+      f.use FaradayMiddleware::FollowRedirects
+      f.adapter :net_http
+    end
+    res = faraday.get
     # File.write(__dir__ + "/lop_site.html", res.body)
     doc = Nokogiri::HTML(res.body)
-    legisInfo_link = doc.at_css("a:contains('Status of the bill')")["href"]
+    legisInfo_link = doc.at_css("a:contains('Status of the bill')")["href"] if doc.at_css("a:contains('Status of the bill')")
+
+    if !legisInfo_link
+      return []
+    end
 
     # get the Latest publication from the LegisInfo page
-    res = Faraday.get(legisInfo_link)
+    faraday = Faraday.new(url: legisInfo_link) do |f|
+      f.use FaradayMiddleware::FollowRedirects
+      f.adapter :net_http
+    end
+    res = faraday.get
     # File.write(__dir__ + "/legisInfo.html", res.body)
     doc = Nokogiri::HTML(res.body)
-    publication_link = doc.at_css("a:contains('Latest Publication')")["href"]
+    publication_link = doc.at_css("a:contains('Latest Publication')")["href"] if doc.at_css("a:contains('Latest Publication')")
 
+    if !publication_link
+      return []
+    end
     # need this to join the future links. The next links are relative links so we use this to get the base url
     url = URI(legisInfo_link)
 
@@ -45,8 +60,11 @@ module GetBillTextFromSummaryHelper
     res = faraday.get
     # File.write(__dir__ + "/bill_publication.html", res.body)
     doc = Nokogiri::HTML(res.body)
-    bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")["href"]
+    bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")["href"] if doc.at_css("a.btn-export-xml:contains('XML')")
 
+    if !bill_xml_link
+      return []
+    end
     # need to join the page URL to get the base url
     absolute_bill_xml_link = URI.join(url, bill_xml_link).to_s
     res = Faraday.get(absolute_bill_xml_link)
