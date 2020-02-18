@@ -3,6 +3,7 @@
 class Event < ApplicationRecord
   belongs_to :bill
 
+  validates :code, presence: true
   validates :title, presence: true
   validates :publication_date, presence: true
 
