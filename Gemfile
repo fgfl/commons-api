@@ -31,9 +31,18 @@ gem 'json'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# Faraday is a wrapper for HTTP client
+gem 'faraday'
+gem 'faraday_middleware'
+
+# HTML and XML parser for ruby
+gem 'nokogiri'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv'
+  gem 'dotenv-rails'
   # factory bot 
   gem 'factory_bot_rails'
   gem 'faker'
