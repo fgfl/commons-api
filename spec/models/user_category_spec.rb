@@ -7,7 +7,6 @@ RSpec.describe UserCategory, type: :model do
     let(:user_category) { build(:user_category) }
 
     it 'is valid with valid attributes' do
-      pp user_category
       expect(user_category).to be_valid
     end
 

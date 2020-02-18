@@ -25,6 +25,6 @@ RSpec.describe XmlToJsonHelper, type: :helper do
     json = '{"channel":{"description":"The Parliamentary Information and Research Service prepares publications for general distribution to all Parliamentarians as background material to policy areas and legislation before Parliament.","language":"en_CA","managingEditor":"Library of Parliament","category":"Research Publications"}}'
     method_output = helper.xml_to_json(xml)
 
-    expect(method_output.to eq(json)
+    expect(method_output).to eq(json)
   end
 end

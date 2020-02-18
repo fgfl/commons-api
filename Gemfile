@@ -27,6 +27,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 # use to convert xml to json for feeding to uClassify
 gem 'json'
+# Adds additional features to nokogiri for web scraping
+gem 'nikkou'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -44,6 +46,7 @@ group :development, :test do
   gem 'dotenv'
   gem 'dotenv-rails'
   # factory bot 
+  gem 'factory_bot'
   gem 'factory_bot_rails'
   gem 'faker'
   #rspec testing framework

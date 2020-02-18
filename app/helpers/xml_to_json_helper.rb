@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "json"
-require "active_support/all"
+require 'json'
+require 'active_support/all'
 
 module XmlToJsonHelper
   # Converts xml string to json
