@@ -4,8 +4,6 @@ require 'rails_helper'
 
 RSpec.describe Bill, type: :model do
   describe 'Validations' do
-    # bill = FactoryBot.build(:random_bill)
-    let(:session) { build(:random_session) }
     let(:bill) { build(:random_bill) }
     let(:bill2) { build(:random_bill) }
 
@@ -48,7 +46,7 @@ RSpec.describe Bill, type: :model do
       expect(bill).to_not be_valid
     end
 
-    it 'is not valid is code is not unique' do
+    it 'is not valid if code is not unique' do
       bill2.code = bill.code
       bill2.save
       expect(bill).to_not be_valid
