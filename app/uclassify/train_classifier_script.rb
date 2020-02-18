@@ -46,10 +46,11 @@ while bills.size > 0
   pp bill["title"]
   text = GetBillTextFromSummaryHelper::get_text(bill)
 
+  raise text.inspect
+
   if text.empty?
     next
   end
-  # text = "tests text"
 
   if bill["category"].kind_of?(String)
     bill["category"] = [bill["category"]]

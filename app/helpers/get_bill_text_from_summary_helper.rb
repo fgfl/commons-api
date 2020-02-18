@@ -29,9 +29,11 @@ module GetBillTextFromSummaryHelper
     res = faraday.get
     # File.write(__dir__ + "/lop_site.html", res.body)
     doc = Nokogiri::HTML(res.body)
-    legisInfo_link = doc.at_css("a:contains('Status of the bill')")["href"] if doc.at_css("a:contains('Status of the bill')")
 
-    if !legisInfo_link
+    begin
+      legisInfo_link = doc.at_css("a:contains('Status of the bill')")["href"]
+    rescue NoMethodError => exception
+      puts exception.full_message()
       return []
     end
 
@@ -43,11 +45,13 @@ module GetBillTextFromSummaryHelper
     res = faraday.get
     # File.write(__dir__ + "/legisInfo.html", res.body)
     doc = Nokogiri::HTML(res.body)
-    publication_link = doc.at_css("a:contains('Latest Publication')")["href"] if doc.at_css("a:contains('Latest Publication')")
-
-    if !publication_link
+    begin
+      publication_link = doc.at_css("a:contains('Latest Publication')")["href"]
+    rescue NoMethodError => exception
+      puts exception.full_message()
       return []
     end
+
     # need this to join the future links. The next links are relative links so we use this to get the base url
     url = URI(legisInfo_link)
 
@@ -60,11 +64,13 @@ module GetBillTextFromSummaryHelper
     res = faraday.get
     # File.write(__dir__ + "/bill_publication.html", res.body)
     doc = Nokogiri::HTML(res.body)
-    bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")["href"] if doc.at_css("a.btn-export-xml:contains('XML')")
-
-    if !bill_xml_link
+    begin
+      bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")["href"] if doc.at_css("a.btn-export-xml:contains('XML')")
+    rescue NoMethodError => exception
+      puts exception.full_message()
       return []
     end
+
     # need to join the page URL to get the base url
     absolute_bill_xml_link = URI.join(url, bill_xml_link).to_s
     res = Faraday.get(absolute_bill_xml_link)
