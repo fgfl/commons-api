@@ -7,7 +7,6 @@ RSpec.describe Session, type: :model do
     let(:session) { build(:random_session) }
 
     it 'is valid with valid attributes' do
-      pp session
       expect(session).to be_valid
     end
 

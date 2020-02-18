@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "json"
-require "active_support/all"
+require 'json'
+require 'active_support/all'
 
 module XmlToJsonHelper
   # Converts xml string to json
@@ -12,6 +12,6 @@ module XmlToJsonHelper
   #   </div>"
   # Returns a JSON string. Call JSON.parse() to get a hash from the string
   def xml_to_json(xml)
-    Hash.from_xml(xml).to_json["rss"]["channel"]["item"]
+    Hash.from_xml(xml).to_json
   end
 end

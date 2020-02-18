@@ -53,7 +53,6 @@ RSpec.describe FetchHelper, type: :helper do
 
   describe 'InsertColumnsIntoBills' do
     helper.insert_columns_into_bills(test_data)
-    pp test_data
 
     it 'inserts columns into the bills hashes' do
       test_data.each do |test_bill|

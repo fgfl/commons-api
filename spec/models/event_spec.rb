@@ -7,7 +7,6 @@ RSpec.describe Event, type: :model do
     let(:event) { build(:random_event) }
 
     it 'is valid with valid attributes' do
-      pp event
       expect(event).to be_valid
     end
 

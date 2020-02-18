@@ -10,6 +10,6 @@ FactoryBot.define do
   factory :random_category, class: Category do
     sequence(:id) { |number| number }
     name { Faker::Games::Pokemon.name }
-    uclassify_class { Faker::Games::Zelda.game.gsub!(/( )/, '_').downcase! }
+    uclassify_class { Faker::Games::Zelda.game.underscore }
   end
 end

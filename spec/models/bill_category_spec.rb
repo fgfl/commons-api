@@ -7,7 +7,6 @@ RSpec.describe BillCategory, type: :model do
     let(:bill_category) { build(:bill_category) }
 
     it 'is valid with valid attributes' do
-      pp bill_category
       expect(bill_category).to be_valid
     end
 
