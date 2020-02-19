@@ -27,8 +27,15 @@ gem 'bcrypt', '~> 3.1.7'
 
 # use to convert xml to json for feeding to uClassify
 gem 'json'
+# HTML and XML parser for ruby
+gem 'nokogiri'
 # Adds additional features to nokogiri for web scraping
 gem 'nikkou'
+
+# Interactor gem for organizing business logic
+gem "interactor", "~> 3.0"
+# Interactor Rails functionality
+gem "interactor-rails", "~> 2.0"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -37,8 +44,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'faraday'
 gem 'faraday_middleware'
 
-# HTML and XML parser for ruby
-gem 'nokogiri'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

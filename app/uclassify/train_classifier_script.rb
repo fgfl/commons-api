@@ -1,11 +1,12 @@
-require_relative "../helpers/xml_to_json_helper"
-include XmlToJsonHelper
-require_relative "./uclassify"
+require "pry"
+
 # include Uclassify
+require_relative "./uclassify"
+
+require_relative "../helpers/xml_to_json_helper"
 require_relative "../helpers/get_bill_text_from_summary_helper"
 require_relative "../helpers/category_mapper_helper"
-
-require "pry"
+include XmlToJsonHelper
 
 #=========
 

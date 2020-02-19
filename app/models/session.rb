@@ -16,7 +16,9 @@ class Session < ApplicationRecord
   end
 
   def end_date_is_date_object
-    errors.add(:end_date, 'must be a Date object') unless end_date.is_a?(Date)
+    unless end_date.is_a?(Date) || !end_date.present?
+      errors.add(:end_date, 'must be a Date object')
+    end
   end
 
   def start_date_must_be_in_the_past
