@@ -44,6 +44,11 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'faraday'
 gem 'faraday_middleware'
 
+# Whenver for scheduling cron jobs 
+gem 'whenever', require: false
+
+
+# DEVELOPMENT BELOW
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -7,8 +7,7 @@ class SaveEvents
   def call
     events = context.events
     events.each do |event|
-      puts event
-      puts "Writing Event #{event["code"]} #{event["title"]} to database ..."
+      p "Writing Event #{event["code"]} #{event["title"]} to database ...\n"
       bill = Bill.find_by code: event["code"]
       Event.create(
         bill: bill,
@@ -17,6 +16,6 @@ class SaveEvents
         publication_date: Date.parse(event["publication_date"]),
       )
     end
-    puts "Finished writing #{events.length} events to the database!"
+    p "Finished writing #{events.length} events to the database!"
   end
 end
