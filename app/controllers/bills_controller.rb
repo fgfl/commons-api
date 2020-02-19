@@ -8,6 +8,7 @@ class BillsController < ApplicationController
 
   def create
     write_bills
+    head :ok, content_type: "text/html"
   end
 
   private

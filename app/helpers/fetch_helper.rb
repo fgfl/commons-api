@@ -6,10 +6,10 @@ require "open-uri"
 
 module FetchHelper
   # this helper pulls the XML feed from legisINFO that contains all of the bill and event data
-  def get_legisinfo_xml_feed
-    legisinfo_xml_feed = Nokogiri::XML(URI.open("https://www.parl.ca/LegisInfo/RSSFeed.aspx?download=rss&Language=E&Mode=1&Source=LegislativeFilteredBills&AllBills=1&HOCEventTypes=60110,60111,60146,60306,60122,60115,60119,60121,60124,60125,60126,60127,60285,60145,60307,60128,60131,60132,60133,60134,60174,60112,60163,60304,60303,60139,60144,60136,60138,60142&SenateEventTypes=60109,60110,60111,60115,60118,60119,60120,60123,60124,60305,60286,60130,60129,60302,60131,60132,60133,60134,60147,60304,60303,60140,60143,60135,60137,60141,60149")).to_xml
-    legisinfo_xml_feed
-  end
+  # def get_legisinfo_xml_feed
+  #   legisinfo_xml_feed = Nokogiri::XML(URI.open("https://www.parl.ca/LegisInfo/RSSFeed.aspx?download=rss&Language=E&Mode=1&Source=LegislativeFilteredBills&AllBills=1&HOCEventTypes=60110,60111,60146,60306,60122,60115,60119,60121,60124,60125,60126,60127,60285,60145,60307,60128,60131,60132,60133,60134,60174,60112,60163,60304,60303,60139,60144,60136,60138,60142&SenateEventTypes=60109,60110,60111,60115,60118,60119,60120,60123,60124,60305,60286,60130,60129,60302,60131,60132,60133,60134,60147,60304,60303,60140,60143,60135,60137,60141,60149")).to_xml
+  #   legisinfo_xml_feed
+  # end
 
   def get_page_url(bill)
     begin
@@ -70,7 +70,7 @@ module FetchHelper
         full_text_url = get_full_text_url(page_url)
         introduced_date = get_introduced_date(page_url)
         description = get_description(full_text_url) if full_text_url
-      rescue => exception
+      rescue => e
         puts "Rescued: #{e.inspect} on bill: #{bill["code"]} at url: #{bill["page_url"]} running method #{__method__}"
       end
       bill["full_text_url"] = full_text_url

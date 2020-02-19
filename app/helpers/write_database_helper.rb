@@ -42,38 +42,39 @@ include FetchHelper
 module WriteDatabaseHelper
 
   #formats XML file data from legisINFO website
-  def format_xml_to_hashes_array
-    legisinfo_xml_feed = get_legisinfo_xml_feed
-    hash = JSON.parse(Hash.from_xml(legisinfo_xml_feed).to_json)
-    items = hash["rss"]["channel"]["item"]
-    format_date(items)
-    format_bill_code(items)
-    items
-  end
+  # def format_xml
+  #   # format_date(items.data)
+  #   # format_bill_code(items)
+  #   items = WriteToDb.call
+  #   raise items.data.inspect
+  #   items
+  # end
 
   # this helper splits the hash file into two separate arrays, one for events and one for bills
   # it also ensures that there are no duplicate instances of bills
-  def split_arrays
-    items = format_xml_to_hashes_array
-    split_arrays = [[], []]
-    hash_keys = %w[bill_code title pubDate]
-    items.each do |event|
-      event, bill = event.partition { |k, _v| hash_keys.include? k }.map(&:to_h)
-      split_arrays[0].push(event)
-      split_arrays[1].push(bill)
-    end
-    rename_event_titles(split_arrays[0])
-    rename_bill_titles(split_arrays[1])
-    split_arrays[0] = split_arrays[0].uniq
-    split_arrays[1] = split_arrays[1].uniq
-    split_arrays
-  end
+  # def split_arrays
+  #   split_arrays = [[], []]
+  #   hash_keys = %w[bill_code title pubDate]
+  #   items.each do |event|
+  #     event, bill = event.partition { |k, _v| hash_keys.include? k }.map(&:to_h)
+  #     split_arrays[0].push(event)
+  #     split_arrays[1].push(bill)
+  #   end
+  #   split_arrays = WriteToDb.call
+  #   events = split_arrays.events
+  #   bills = split_arrays.bills
+  #   rename_event_titles(events)
+  #   rename_bill_titles(bills)
+  #   events = events.uniq
+  #   bills = bills.uniq
+  #   split_arrays
+  # end
 
   # this helper writes events to the database
   # each event is associated to a specific bill by the bill code (eg. C-204)
   def write_events
-    split_arrays = split_arrays()
-    events = split_arrays[0]
+    # split_arrays = split_arrays()
+    events = WriteToDb.call.events
     events.each do |event|
       puts event
       puts "Writing Event #{event["code"]} #{event["title"]} to database ..."
@@ -91,8 +92,8 @@ module WriteDatabaseHelper
   # this helper writes bills to the database
   # each bills is associated to a specific session (currently only one session exists)
   def write_bills
-    split_arrays = split_arrays()
-    bills = split_arrays[1]
+    # split_arrays = split_arrays()
+    bills = WriteToDb.call.bills
     insert_columns_into_bills(bills)
     session = Session.first
     bills.each do |bill|

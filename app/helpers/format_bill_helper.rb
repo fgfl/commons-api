@@ -2,27 +2,27 @@
 
 module FormatBillHelper
   # this helper removes the redundant timestamp from the date as it is always the same
-  def format_date(items)
-    items.each do |item|
-      item["pubDate"].slice! " 00:00:00 EST"
-    end
-    items
-  end
+  # def format_date(items)
+  #   items.each do |item|
+  #     item["pubDate"].slice! " 00:00:00 EST"
+  #   end
+  #   items
+  # end
 
   # this helper moves the bill code to its own hash key and removes it from the title fields
   # NOTE: 'title' refers to title of bill event, 'description' becomes the title of the bill itself
-  def format_bill_code(items)
-    items.each do |item|
-      bill_code = item["title"].split(", ").first
-      item["title"].sub! /\A.+?(?=, )/mi, ""
-      item["description"].sub! /\A.+?(?=, )/mi, ""
-      item["title"].slice!(0, 2)
-      item["description"].slice!(0, 2)
-      item["code"] = bill_code
-      item["bill_code"] = bill_code
-    end
-    items
-  end
+  # def format_bill_code(items)
+  #   items.each do |item|
+  #     bill_code = item["title"].split(", ").first
+  #     item["title"].sub! /\A.+?(?=, )/mi, ""
+  #     item["description"].sub! /\A.+?(?=, )/mi, ""
+  #     item["title"].slice!(0, 2)
+  #     item["description"].slice!(0, 2)
+  #     item["code"] = bill_code
+  #     item["bill_code"] = bill_code
+  #   end
+  #   items
+  # end
 
   # this helper renames the event
   def rename_event_titles(events)
