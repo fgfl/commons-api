@@ -15,7 +15,7 @@ every 1.day, at: '12:30 am' do
 end
 
 # TEST UPDATER
-every 1.day, at: '11:15 pm' do
+every 1.day, at: '2:04 am' do
   p "Started updating Database at #{DateTime.now()}"
   rake "db:update_database", :environment => "development"
   p "Finished Updating Database at: #{Time.now} - Success!"

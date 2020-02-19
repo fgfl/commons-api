@@ -7,9 +7,9 @@ class SaveEvents
   def call
     events = context.events
     events.each do |event|
-      p "Writing Event #{event["code"]} #{event["title"]} to database ...\n"
+      p "Writing Event #{event["code"]} #{event["title"]} to database ..."
       bill = Bill.find_by code: event["code"]
-      Event.create(
+      Event.find_or_create_by(
         bill: bill,
         code: event["code"],
         title: event["title"],
