@@ -1,5 +1,8 @@
 class FetchIntroducedDate
   include Interactor
+  # Called by insert_columns organizer
+  # This interactor fetches the date of the Introduction and First Reading of a given bill
+  # This field will (rarely) be unavailable, in which case this value is nil
 
   def call
     bills = context.bills

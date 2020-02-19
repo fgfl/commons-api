@@ -1,5 +1,9 @@
 class RemoveDuplicates
   include Interactor
+  # Called by write_to_db organizer
+
+  # This interactor renames certain fields, as seen below
+  # It also ensures each hash value is unique
 
   def call
     events = context.events

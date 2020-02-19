@@ -1,5 +1,8 @@
 class FetchDescription
   include Interactor
+  # Called by insert_columns organizer
+  # This interactor fetches the description from the Summary field of the a bill publication
+  # If the bill has no text available it will not run and 'description' will be nil
 
   def call
     bills = context.bills

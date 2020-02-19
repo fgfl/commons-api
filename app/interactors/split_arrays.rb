@@ -1,5 +1,9 @@
 class SplitArrays
   include Interactor
+  # Called by write_to_db organizer
+  # Splits the array of hashes into two separate arrays, one for Events and one for Bills
+
+  # Note: From here on in the organizer sequence there are two contexts: Events and Bills
 
   def call
     items = context.data
@@ -10,6 +14,7 @@ class SplitArrays
       split_arrays[0].push(event)
       split_arrays[1].push(bill)
     end
+
     context.events = split_arrays[0]
     context.bills = split_arrays[1]
   end

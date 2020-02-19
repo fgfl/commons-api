@@ -1,5 +1,7 @@
 class FormatToHashes
   include Interactor
+  # Called by write_to_db organizer
+  # Parses the XML file into an array of hashes
 
   def call
     legisinfo_xml = context.data

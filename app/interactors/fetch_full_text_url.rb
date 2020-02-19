@@ -1,5 +1,9 @@
 class FetchFullTextUrl
   include Interactor
+  # Called by insert_columns organizer
+
+  # This interactor fetches the url for latest published version of the full text of a bill
+  # This url will sometimes not be available, in which case full_text_url will be nil
 
   def call
     bills = context.bills

@@ -1,5 +1,8 @@
 class SaveBills
   include Interactor
+  # Called by write_to_db organizer
+  # This interactor saves the Bills to the database
+  # Bills are associated to the current (most recent) Session of Parliament
 
   def call
     bills = context.bills
