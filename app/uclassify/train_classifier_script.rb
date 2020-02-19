@@ -60,19 +60,29 @@ while bills.size > 0
 
   while bill["category"].size > 0
     cat = bill["category"].shift
-    res = Uclassify::train(text, CLASSIFIER_NAME, CategoryMapperHelper::map(cat))
-    error = res.status != 200
+    pp "-- #{cat}"
+
+    begin
+      res = Uclassify::train(text, CLASSIFIER_NAME, CategoryMapperHelper::map(cat))
+      error = res.status != 200
+    rescue Net::ReadTimeout, Faraday::TimeoutError => exception
+      error = true
+      puts "error: #{exception.full_message()}"
+      puts exception.backtrace.join('\n')
+      puts "response = #{res}"
+    ensure
+      if (error)
+        bill["category"].unshift(cat)
+        pp res
+        break
+      end
+    end
 
     # res = {
     #   status: 200,
     # }
     # error = res[:status] != 200
 
-    if (error)
-      bill["category"].unshift(cat)
-      pp res
-      break
-    end
   end
 
   if (error)
@@ -82,7 +92,7 @@ while bills.size > 0
 end
 
 File.write(continue_file, bills.to_json)
-binding.pry
+puts "Done."
 
 # pp bill_items[0..4]
 
