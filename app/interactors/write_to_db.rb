@@ -1,6 +1,7 @@
 require "rubygems"
 require "nikkou"
 require "open-uri"
+require "faraday"
 
 class WriteToDb
   include Interactor::Organizer

@@ -5,8 +5,8 @@ class FormatToHashes
 
   def call
     legisinfo_xml = context.data
-    hash = JSON.parse(Hash.from_xml(legisinfo_xml).to_json)
-    items = hash["rss"]["channel"]["item"]
+    hashes = JSON.parse(Hash.from_xml(legisinfo_xml).to_json)
+    items = hashes["rss"]["channel"]["item"]
     if items.present?
       context.data = items
     else

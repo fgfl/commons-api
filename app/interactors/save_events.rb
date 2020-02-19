@@ -10,7 +10,7 @@ class SaveEvents
       p "Writing Event #{event["code"]} #{event["title"]} to database ..."
       bill = Bill.find_by code: event["code"]
       Event.find_or_create_by(
-        bill: bill,
+        bill_id: bill,
         code: event["code"],
         title: event["title"],
         publication_date: Date.parse(event["publication_date"]),

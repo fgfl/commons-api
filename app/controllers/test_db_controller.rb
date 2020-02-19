@@ -1,7 +1,8 @@
 class TestDbController < ApplicationController
 
   def create
-    WriteToDb.call
+    url = ENV["legisinfo_url"]
+    WriteToDb.call({url: url})
     head :ok, content_type: "text/html"
   end
 

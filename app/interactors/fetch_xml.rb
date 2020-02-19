@@ -4,9 +4,13 @@ class FetchXml
   # Fetches the XML file from the LegisINFO site
 
   def call
-    url = ENV["legisinfo_url"]
+    url = context.url
+
     xml_feed = Nokogiri::XML(URI.open(url)).to_xml
-    if xml_feed.present?
+    url_exists = Faraday.head(url).status == 200
+    valid_xml = Nokogiri::XML(xml_feed).errors.empty?
+
+    if url_exists && valid_xml
       context.data = xml_feed
     else
       context.fail!(message: "Fetch XML failed.")
