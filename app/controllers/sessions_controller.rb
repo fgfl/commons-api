@@ -1,17 +1,22 @@
 class SessionsController < ApplicationController
   def create
     @user = User.find_by(email: session_params[:email])
-  
+
     if @user && @user.authenticate(session_params[:password])
       login!
+      puts @user.inspect
+      puts "session"
+      puts session[:user_id]
+      # session[:user_id] = @user.id
+      puts session[:user_id]
       render json: {
         logged_in: true,
-        user: @user
+        user: @user,
       }
     else
-      render json: { 
+      render json: {
         status: 401,
-        errors: ['Invalid username or password.']
+        errors: ["Invalid username or password."],
       }
     end
   end
@@ -20,12 +25,12 @@ class SessionsController < ApplicationController
     if logged_in? && current_user
       render json: {
         logged_in: true,
-        user: current_user
+        user: current_user,
       }
     else
       render json: {
         logged_in: false,
-        message: 'no such user'
+        message: "no such user",
       }
     end
   end
@@ -34,13 +39,13 @@ class SessionsController < ApplicationController
     logout!
     render json: {
       status: 200,
-      logged_out: true
+      logged_out: true,
     }
   end
 
   private
 
   def session_params
-      params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password)
   end
 end
