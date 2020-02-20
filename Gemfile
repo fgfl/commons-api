@@ -47,6 +47,9 @@ gem 'faraday_middleware'
 # Whenver for scheduling cron jobs 
 gem 'whenever', require: false
 
+# Twilio Ruby for sending out SMSes
+gem 'twilio-ruby'
+
 
 # DEVELOPMENT BELOW
 

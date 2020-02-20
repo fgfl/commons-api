@@ -4,7 +4,7 @@ require "nikkou"
 require "open-uri"
 
 RSpec.describe FetchXml, type: :interactor do
-  subject(:context) { FetchXml.call(url: ENV["legisinfo_url"]) }
+  subject(:context) { FetchXml.call(url: ENV["LEGISINFO_URL"]) }
 
   describe ".call" do
     context "when given valid url" do

@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :user_category do
     sequence(:id) { |number| number }
-    association :user
-    association :category
+    user
+    category
   end
 end

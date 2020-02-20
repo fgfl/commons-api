@@ -1,7 +1,7 @@
 class TestDbController < ApplicationController
 
   def create
-    url = ENV["legisinfo_url"]
+    url = Rails.application.secrets.LEGISINFO_URL
     WriteToDb.call({url: url})
     head :ok, content_type: "text/html"
   end

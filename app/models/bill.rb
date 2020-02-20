@@ -3,6 +3,10 @@
 class Bill < ApplicationRecord
   belongs_to :session
 
+  has_many :events
+  has_many :categories, through: :user_categories
+  has_many :users, through: :user_bills
+
   validates :code, presence: true, uniqueness: true
   validates :title, presence: true
   validates :page_url, presence: true
