@@ -9,9 +9,9 @@ class SaveBills
 
     session = Session.find_by_id (Session.maximum(:id))
     bills.each do |bill|
-      puts "Writing Bill #{bill["code"]} to database ..."
-      date = Date.parse(bill["introduced_date"]) if bill["introduced_date"] 
-      Bill.create(
+      p "Writing Bill #{bill["code"]} to database ... "
+      date = Date.parse(bill["introduced_date"]) if bill["introduced_date"]
+      Bill.find_or_create_by(
         session: session,
         code: bill["code"],
         title: bill["title"],
@@ -21,6 +21,6 @@ class SaveBills
         description: bill["description"],
       )
     end
-    puts "Finished writing #{bills.length} bills to the database!"
+    p "Finished writing #{bills.length} bills to the database!"
   end
 end

@@ -28,8 +28,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
+    # raise user_params.inspect
+    result = SaveUserAndCategories.call(user_params)
+    @user = result.user
+
+    if result.success?
       login!
       render json: {
                status: :created,
@@ -38,7 +41,7 @@ class UsersController < ApplicationController
     else
       render json: {
         status: 500,
-        errors: @user.errors.full_messages,
+        errors: result.message  
       }
     end
   end
@@ -69,6 +72,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation, :sms_notification, :email_notification, :phone_number)
+    params.require(:user).permit(:name, :username, :email, :password, :password_confirmation, :sms_notification, :email_notification, :phone_number, :categories => [])
   end
 end
