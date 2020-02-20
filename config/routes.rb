@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  get '/logged_in', to: 'sessions#is_logged_in?'
   
-  get 'test_write_db' => 'test_db#create'
-
-  post '/users' => 'users#create'
-
+  resources :users, only: [:create, :show, :index]
+  
 end
