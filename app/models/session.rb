@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Session < ApplicationRecord
+  has_many :bills
+
   validates :number, presence: true
   validates :start_date, presence: true
 

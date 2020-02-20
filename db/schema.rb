@@ -9,7 +9,8 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 2020_02_18_025916) do
+
+ActiveRecord::Schema.define(version: 2020_02_20_183928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +22,15 @@ ActiveRecord::Schema.define(version: 2020_02_18_025916) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bill_id"], name: "index_bill_categories_on_bill_id"
     t.index ["category_id"], name: "index_bill_categories_on_category_id"
+  end
+
+  create_table "bill_users", force: :cascade do |t|
+    t.bigint "bill_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bill_id"], name: "index_bill_users_on_bill_id"
+    t.index ["user_id"], name: "index_bill_users_on_user_id"
   end
 
   create_table "bills", force: :cascade do |t|
@@ -45,6 +55,15 @@ ActiveRecord::Schema.define(version: 2020_02_18_025916) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "category_users", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_category_users_on_category_id"
+    t.index ["user_id"], name: "index_category_users_on_user_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.bigint "bill_id", null: false
     t.string "code"
@@ -63,24 +82,6 @@ ActiveRecord::Schema.define(version: 2020_02_18_025916) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "user_bills", force: :cascade do |t|
-    t.bigint "bill_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["bill_id"], name: "index_user_bills_on_bill_id"
-    t.index ["user_id"], name: "index_user_bills_on_user_id"
-  end
-
-  create_table "user_categories", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "category_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_user_categories_on_category_id"
-    t.index ["user_id"], name: "index_user_categories_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "username"
@@ -96,10 +97,10 @@ ActiveRecord::Schema.define(version: 2020_02_18_025916) do
 
   add_foreign_key "bill_categories", "bills"
   add_foreign_key "bill_categories", "categories"
+  add_foreign_key "bill_users", "bills"
+  add_foreign_key "bill_users", "users"
   add_foreign_key "bills", "sessions"
+  add_foreign_key "category_users", "categories"
+  add_foreign_key "category_users", "users"
   add_foreign_key "events", "bills"
-  add_foreign_key "user_bills", "bills"
-  add_foreign_key "user_bills", "users"
-  add_foreign_key "user_categories", "categories"
-  add_foreign_key "user_categories", "users"
 end

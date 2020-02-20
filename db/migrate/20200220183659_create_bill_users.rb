@@ -1,6 +1,6 @@
-class CreateUserBills < ActiveRecord::Migration[6.0]
+class CreateBillUsers < ActiveRecord::Migration[6.0]
   def change
-    create_table :user_bills do |t|
+    create_table :bill_users do |t|
       t.references :bill, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
 
