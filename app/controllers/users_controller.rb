@@ -45,9 +45,12 @@ class UsersController < ApplicationController
 
   def update
     user = User.find_by_id(params[:id])
+    puts "user:"
     pp user
+    puts "current_user"
+    pp current_user
     pp params.inspect
-    if user[:id] == current_user[:id]
+    if user == current_user
       user.update(user_params)
       render json: {
         status: 200,
