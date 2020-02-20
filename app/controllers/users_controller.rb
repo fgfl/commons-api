@@ -44,22 +44,24 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find_by_id(params[:id])
+    @user = User.find_by_id(params[:id])
     puts "user:"
-    pp user
+    pp @user
     puts "current_user"
     pp current_user
+    puts "session:"
+    pp session[params[:id]]
     pp params.inspect
-    if user == current_user
-      user.update(user_params)
+    if @user == current_user
+      @user.update(user_params)
       render json: {
         status: 200,
-        user: user,
+        user: @user,
       }
     else
       render json: {
         status: 500,
-        errors: user.errors.full_messages,
+        errors: @user.errors.full_messages,
       }
     end
   end
