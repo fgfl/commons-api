@@ -9,6 +9,7 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
+
 ActiveRecord::Schema.define(version: 2020_02_18_025916) do
 
   # These are extensions that must be enabled in order to support this database
@@ -40,18 +41,18 @@ ActiveRecord::Schema.define(version: 2020_02_18_025916) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.string "uclassify_class"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "uclassify_class"
   end
 
   create_table "events", force: :cascade do |t|
     t.bigint "bill_id", null: false
-    t.string "code"
     t.string "title"
     t.date "publication_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "code"
     t.index ["bill_id"], name: "index_events_on_bill_id"
   end
 
