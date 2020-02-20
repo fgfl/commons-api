@@ -4,7 +4,7 @@ class SaveUser
   # This organizer runs through the process of creating a new user
 
   def call
-    if user = User.create(
+    if user = User.create!(
       name: context.name, 
       username: context.username, 
       email: context.email, 
@@ -13,8 +13,8 @@ class SaveUser
       sms_notification: context.sms_notification, 
       email_notification: context.email_notification, 
       phone_number: context.phone_number)
+      user.save
       context.user = user
-      # user.save
     else
       context.fail!(message: "create_user.failure")
     end

@@ -5,11 +5,11 @@ class Bill < ApplicationRecord
 
   has_many :events
 
-  has_many :bills_categories
-  has_many :users_bills
+  has_many :bill_categories
+  has_many :bill_users
   
-  has_many :categories, :through => :bills_categories
-  has_many :users, :through => :users_bills
+  has_many :categories, through: :bill_categories
+  has_many :users, through: :bill_users
 
   validates :code, presence: true, uniqueness: true
   validates :title, presence: true

@@ -10,18 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_20_063937) do
+ActiveRecord::Schema.define(version: 2020_02_20_183928) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bill_categories", id: false, force: :cascade do |t|
-    t.bigint "bill_id"
-    t.bigint "category_id"
+  create_table "bill_categories", force: :cascade do |t|
+    t.bigint "bill_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bill_id"], name: "index_bill_categories_on_bill_id"
     t.index ["category_id"], name: "index_bill_categories_on_category_id"
+  end
+
+  create_table "bill_users", force: :cascade do |t|
+    t.bigint "bill_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bill_id"], name: "index_bill_users_on_bill_id"
+    t.index ["user_id"], name: "index_bill_users_on_user_id"
   end
 
   create_table "bills", force: :cascade do |t|
@@ -41,18 +50,27 @@ ActiveRecord::Schema.define(version: 2020_02_20_063937) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.string "uclassify_class"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "uclassify_class"
+  end
+
+  create_table "category_users", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_category_users_on_category_id"
+    t.index ["user_id"], name: "index_category_users_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
     t.bigint "bill_id", null: false
+    t.string "code"
     t.string "title"
     t.date "publication_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "code"
     t.index ["bill_id"], name: "index_events_on_bill_id"
   end
 
@@ -62,24 +80,6 @@ ActiveRecord::Schema.define(version: 2020_02_20_063937) do
     t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "user_bills", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "bill_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["bill_id"], name: "index_user_bills_on_bill_id"
-    t.index ["user_id"], name: "index_user_bills_on_user_id"
-  end
-
-  create_table "user_categories", id: false, force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "category_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_user_categories_on_category_id"
-    t.index ["user_id"], name: "index_user_categories_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -95,12 +95,12 @@ ActiveRecord::Schema.define(version: 2020_02_20_063937) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "bill_categories", "bills", column: "bill_id"
-  add_foreign_key "bill_categories", "categories", column: "category_id"
+  add_foreign_key "bill_categories", "bills"
+  add_foreign_key "bill_categories", "categories"
+  add_foreign_key "bill_users", "bills"
+  add_foreign_key "bill_users", "users"
   add_foreign_key "bills", "sessions"
+  add_foreign_key "category_users", "categories"
+  add_foreign_key "category_users", "users"
   add_foreign_key "events", "bills"
-  add_foreign_key "user_bills", "bills", column: "bill_id"
-  add_foreign_key "user_bills", "users", column: "user_id"
-  add_foreign_key "user_categories", "categories", column: "category_id"
-  add_foreign_key "user_categories", "users", column: "user_id"
 end

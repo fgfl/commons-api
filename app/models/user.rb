@@ -2,11 +2,11 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  has_many :users_bills
-  has_many :users_categories
+  has_many :bill_users
+  has_many :category_users
 
-  has_many :bills, :through => :users_bills
-  has_many :categories, :through => :users_categories
+  has_many :bills, through: :bill_users
+  has_many :categories, through: :category_users
 
   validates :name, presence: true
   validates :username, uniqueness: true, length: { minimum: 4 }, presence: true, allow_blank: false, format: { with: /\A[a-zA-Z0-9]+\z/ }
