@@ -9,18 +9,6 @@ require "pry"
 
 #=========
 
-# set up bills in rb file for saving which needs to be sent to uclassify
-
-# file_data = File.read(__dir__ + "/training_data/publications_with_category.xml")
-
-# # File.write(__dir__ + "/test.json", (xml_to_json(file_data)))
-# items = JSON.parse(xml_to_json(file_data))["rss"]["channel"]["item"]
-# bill_items = items.select do |item|
-#   item["title"].include? "Legislative Summary"
-# end
-
-# File.write(__dir__ + "/legislative_summary_bills.json", bill_items.to_json)
-
 #======
 
 CLASSIFIER_NAME = "Commons_api"
@@ -43,18 +31,21 @@ while bills.size > 0
     next
   end
 
-  pp bill["title"]
-  text = GetBillTextFromSummaryHelper::get_text(bill)
-
-  if text.empty?
-    next
-  end
-
   if bill["category"].kind_of?(String)
     bill["category"] = [bill["category"]]
   end
 
+  unless bill["category"].include?("Science and technology")
+    next
+  end
+
+  pp bill["title"]
+  text = GetBillTextFromSummaryHelper::get_text(bill)
+
   # binding.pry
+  if text.empty?
+    next
+  end
 
   error = false
 
