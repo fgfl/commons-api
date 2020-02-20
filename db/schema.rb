@@ -9,8 +9,7 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 2020_02_17_210503) do
+ActiveRecord::Schema.define(version: 2020_02_18_025916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_210503) do
     t.string "code"
     t.string "title"
     t.string "description"
-    t.date "tabled_date"
+    t.date "introduced_date"
     t.string "summary_url"
     t.string "page_url"
     t.string "full_text_url"
@@ -41,13 +40,14 @@ ActiveRecord::Schema.define(version: 2020_02_17_210503) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.string "uclassify_class"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "uclassify_class"
   end
 
   create_table "events", force: :cascade do |t|
     t.bigint "bill_id", null: false
+    t.string "code"
     t.string "title"
     t.date "publication_date"
     t.datetime "created_at", precision: 6, null: false

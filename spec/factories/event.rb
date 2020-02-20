@@ -4,6 +4,7 @@ FactoryBot.define do
   factory :event do
     sequence(:id) { |number| number }
     association :bill
+    code { 'C-204' }
     title { 'C-204, Introduction and First Reading in the House of Commons' }
     publication_date { 'Fri, 07 Feb 2020' }
   end
@@ -11,6 +12,7 @@ FactoryBot.define do
   factory :random_event, class: Event do
     sequence(:id) { |number| number }
     association :bill
+    code { "C-#{Faker::Number.number(digits: 2)}" }
     title { "C #{Faker::Number.number(digits: 2)} #{Faker::Nation.nationality} #{Faker::IndustrySegments.sector}" }
     publication_date { Faker::Date.backward(days: 365) }
   end
