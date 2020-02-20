@@ -50,9 +50,9 @@ ActiveRecord::Schema.define(version: 2020_02_20_183928) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.string "uclassify_class"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "uclassify_class"
   end
 
   create_table "category_users", force: :cascade do |t|
@@ -66,11 +66,11 @@ ActiveRecord::Schema.define(version: 2020_02_20_183928) do
 
   create_table "events", force: :cascade do |t|
     t.bigint "bill_id", null: false
+    t.string "code"
     t.string "title"
     t.date "publication_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "code"
     t.index ["bill_id"], name: "index_events_on_bill_id"
   end
 

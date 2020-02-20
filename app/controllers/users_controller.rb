@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     else
       render json: {
         status: 500,
-        errors: result.message  
+        errors: result.message,
       }
     end
   end
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
     puts "current_user"
     pp current_user
     puts "session:"
-    pp session[params[:id]]
+    pp session[:user_id]
     pp params.inspect
     if @user == current_user
       @user.update(user_params)
