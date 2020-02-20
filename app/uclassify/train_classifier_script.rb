@@ -36,6 +36,7 @@ while bills.size > 0
   end
 
   unless bill["category"].include?("Economics and finance")
+    puts "no category for econ: #{bill["category"]}"
     next
   end
 
