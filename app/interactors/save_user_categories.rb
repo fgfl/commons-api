@@ -1,5 +1,6 @@
 class SaveUserCategories
   include Interactor
+  # Saves user categories to the database, associated through the category_users model
 
   def call
     user = context.user

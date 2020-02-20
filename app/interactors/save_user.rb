@@ -1,7 +1,6 @@
 class SaveUser
   include Interactor
-  # Called by Users controller
-  # This organizer runs through the process of creating a new user
+  # Saves user to the database
 
   def call
     if user = User.create!(

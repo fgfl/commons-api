@@ -4,6 +4,9 @@ class SessionsController < ApplicationController
   
     if @user && @user.authenticate(session_params[:password])
       login!
+      # Remove after development
+      puts "Session User ID: #{session[:user_id]}"
+      puts "Session User: #{@user.email}"
       render json: {
         logged_in: true,
         user: @user
@@ -31,7 +34,11 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    # Remove after development
+    puts current_user.inspect
     logout!
+    # Remove after development
+    puts current_user.inspect
     render json: {
       status: 200,
       logged_out: true

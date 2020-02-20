@@ -47,6 +47,28 @@ CREATE DATABASE commons_development;
 CREATE DATABASE commons_test;
 ```
 
+### Database Reset
+
+During development it may be necessary to reset the database. If so, do the following actions:
+
+```
+rake db: drop
+# drops database
+
+in PSQL:
+CREATE database commons_development;
+CREATE database commons_test;
+# creates database again
+
+rake db:reset
+# seeds database with categories and session
+
+rake db:update_database
+
+# populates database with bills from legisINFO (takes about a minute and a half)
+# if you see Rescue exceptions in the console it means it's working as it should
+```
+
 ### rspec Testing Setup
 
 To setup rspec testing environment, run
