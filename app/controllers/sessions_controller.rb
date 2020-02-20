@@ -4,11 +4,6 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(session_params[:password])
       login!
-      puts @user.inspect
-      puts "session"
-      puts session[:user_id]
-      # session[:user_id] = @user.id
-      puts session[:user_id]
       render json: {
         logged_in: true,
         user: @user,
