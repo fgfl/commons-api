@@ -35,7 +35,7 @@ while bills.size > 0
     bill["category"] = [bill["category"]]
   end
 
-  unless bill["category"].include?("Science and technology")
+  unless bill["category"].include?("Economics and finance")
     next
   end
 
