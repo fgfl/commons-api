@@ -1,22 +1,19 @@
 # frozen_string_literal: true
 
 class BillsController < ApplicationController
+  def index
+    @bills = ReturnBillsWithCategories.call
 
-  def index 
-    @bills = Bill.all
-    @categories = Category.all
-    
     if @bills
       render json: {
-        bills: @bills,
-        categories: @categories
+        bills: @bills.bills,
+        categories: @bills.categories,
       }
     else
       render json: {
         status: 500,
-        errors: ['no users found']
+        errors: ["no users found"],
       }
     end
   end
-
 end

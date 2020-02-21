@@ -1,6 +1,10 @@
 class FormatUclassifyData
   include Interactor
-  # Formats the data received by uClassify
+  # Formats the data received by uClassify for a single bill
+
+  # The call function sorts the JSON returned by uClassify by probability
+  # It then selects categories until a given threshold is exceed by the sum of the probailities
+  # DEV NOTE: 'threshold' may need to be tweaked
 
   def call
     test_data = File.read(__dir__ + "/../../spec/support/test_uclassify_data.json")
@@ -15,6 +19,6 @@ class FormatUclassifyData
         break
       end
     end
-    raise categories.inspect
+    context.categories = categories
   end
 end

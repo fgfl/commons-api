@@ -2,7 +2,7 @@ class SaveBillCategories
   include Interactor
 
   def call
-    bill = Bill.find_by(code: context.code)
+    bill = Bill.find_by(code: "C-212")
     user_categories = context.categories
     user_categories.each do |category|
       category = Category.find_by(uclassify_class: category)
