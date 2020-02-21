@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
-  get "/logged_in", to: "sessions#is_logged_in?"
-
   # Login related routes
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -15,4 +11,8 @@ Rails.application.routes.draw do
   
   # User related routes
   resources :users, only: [:create, :show, :index, :update]
+  # User Watchlists
+  resources :bill_users, only: [:create, :update]
+  # User Categories
+  resources :category_users, only: [:create, :update]
 end
