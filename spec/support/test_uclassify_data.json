@@ -4,55 +4,55 @@
 		"classification": [
 			{
 				"className": "agriculture_environment",
-				"p": 0.756372
+				"p": 0.002
 			},
 			{
 				"className": "arts_culture",
-				"p": 0.746372
+				"p": 0.123
 			},
 			{
 				"className": "business_industry",
-				"p": 0.234543
+				"p": 0.197
 			},
 			{
 				"className": "economics_finance",
-				"p": 0.876543
+				"p": 0.111
 			},
 			{
 				"className": "education_language",
-				"p": 0.345742
+				"p": 0.016
 			},
 			{
 				"className": "employment_labour",
-				"p": 0.133089
+				"p": 0.023
 			},
 			{
 				"className": "government_politics",
-				"p": 0.453216
+				"p": 0.234
 			},
 			{
 				"className": "information_communications",
-				"p": 0.874531
+				"p": 0.008
 			},
 			{
 				"className": "indigenous_affairs",
-				"p": 0.653265
+				"p": 0.245
 			},
 			{
 				"className": "international_affairs",
-				"p": 0.643275
+				"p": 0.003
 			},
 			{
 				"className": "law_justice",
-				"p": 0.746372
+				"p": 0.259
 			},
 			{
 				"className": "science_technology",
-				"p": 0.837462
+				"p": 0.002
 			},
 			{
 				"className": "social_affairs",
-				"p": 0.999999
+				"p": 0.002
 			}
 		]
 	}

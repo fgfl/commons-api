@@ -1,6 +1,9 @@
 class FetchUclassifyData
   include Interactor
 
+  require "faraday"
+  require "faraday_middleware"
+
   def call(text, username, classifierName)
     base_url = "https://api.uclassify.com/v1/"
     # username = "Frederick"
