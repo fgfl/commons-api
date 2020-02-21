@@ -1,0 +1,59 @@
+[
+	{
+		"textCoverage": 1.0,
+		"classification": [
+			{
+				"className": "agriculture_environment",
+				"p": 0.756372
+			},
+			{
+				"className": "arts_culture",
+				"p": 0.746372
+			},
+			{
+				"className": "business_industry",
+				"p": 0.234543
+			},
+			{
+				"className": "economics_finance",
+				"p": 0.876543
+			},
+			{
+				"className": "education_language",
+				"p": 0.345742
+			},
+			{
+				"className": "employment_labour",
+				"p": 0.133089
+			},
+			{
+				"className": "government_politics",
+				"p": 0.453216
+			},
+			{
+				"className": "information_communications",
+				"p": 0.874531
+			},
+			{
+				"className": "indigenous_affairs",
+				"p": 0.653265
+			},
+			{
+				"className": "international_affairs",
+				"p": 0.643275
+			},
+			{
+				"className": "law_justice",
+				"p": 0.746372
+			},
+			{
+				"className": "science_technology",
+				"p": 0.837462
+			},
+			{
+				"className": "social_affairs",
+				"p": 0.999999
+			}
+		]
+	}
+]

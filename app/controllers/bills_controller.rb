@@ -4,10 +4,12 @@ class BillsController < ApplicationController
 
   def index 
     @bills = Bill.all
+    @categories = Category.all
     
     if @bills
       render json: {
-        bills: @bills
+        bills: @bills,
+        categories: @categories
       }
     else
       render json: {
