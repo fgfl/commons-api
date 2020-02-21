@@ -54,14 +54,7 @@ class UsersController < ApplicationController
       params[:user].delete(:password_confirmation)
     end
 
-    params[:user].delete(:postal_code) if params[:user][:postal_code].blank?
-    params[:user].delete(:sms_notification) if params[:user][:sms_notification].blank?
-    params[:user].delete(:email_notification) if params[:user][:email_notification].blank?
-    params[:user].delete(:phone_number) if params[:user][:phone_number].blank?
-
     if @user == current_user
-      pp @user
-      pp user_params
       @user.update!(user_params)
       render json: {
         status: 200,
