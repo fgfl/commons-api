@@ -1,11 +1,11 @@
 class FormatUclassifyData
   include Interactor
-  # Formats the data deceived by uClassify
+  # Formats the data received by uClassify
 
   def call
-    test_data = File.read(__dir__ + '/../../spec/support/test_uclassify_data.json')
+    test_data = File.read(__dir__ + "/../../spec/support/test_uclassify_data.json")
     unsorted_array = JSON.parse(test_data)[0]["classification"]
-    classification_array = unsorted_array.sort_by!{ |k| k["p"]}.reverse
+    classification_array = unsorted_array.sort_by! { |k| k["p"] }.reverse
     threshold = 0
     categories = []
     classification_array.each do |category|
