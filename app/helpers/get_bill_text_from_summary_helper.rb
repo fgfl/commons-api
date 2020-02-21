@@ -76,7 +76,11 @@ module GetBillTextFromSummaryHelper
 
     # need to join the page URL to get the base url
     absolute_bill_xml_link = URI.join(url, bill_xml_link).to_s
-    res = Faraday.get(absolute_bill_xml_link)
+    faraday = Faraday.new(url: absolute_bill_xml_link) do |f|
+      f.use FaradayMiddleware::FollowRedirects
+      f.adapter :net_http
+    end
+    res = faraday.get
     # File.write(__dir__ + "/bill_publication.xml", res.body)
     doc = Nokogiri::XML(res.body)
     # doc = File.open(__dir__ + "/bill_publication.xml") { |f| Nokogiri::XML(f) }
