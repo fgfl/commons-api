@@ -2,6 +2,7 @@
 
 class BillsController < ApplicationController
   def index
+    # Adds ategories to bills by category_id as array
     @bills = ReturnBillsWithCategories.call
 
     if @bills
