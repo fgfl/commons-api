@@ -11,4 +11,8 @@ Rails.application.routes.draw do
   
   # User related routes
   resources :users, only: [:create, :show, :index, :update]
+  # User Watchlists
+  resources :bill_users, only: [:create, :update]
+  # User Categories
+  resources :category_users, only: [:create, :update]
 end

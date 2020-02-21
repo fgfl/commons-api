@@ -3,13 +3,13 @@ class UsersController < ApplicationController
     @users = User.all
     if @users
       render json: {
-               users: @users,
-             }
+                users: @users,
+              }
     else
       render json: {
-               status: 500,
-               errors: ["no users found"],
-             }
+                status: 500,
+                errors: ["no users found"],
+              }
     end
   end
 
@@ -35,9 +35,9 @@ class UsersController < ApplicationController
     if result.success?
       login!
       render json: {
-               status: :created,
-               user: @user,
-             }
+                status: :created,
+                user: @user,
+              }
     else
       render json: {
         status: 500,
