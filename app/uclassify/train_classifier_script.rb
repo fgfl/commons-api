@@ -27,6 +27,8 @@ bills = JSON.parse(File.read(input_file))
 while bills.size > 0
   bill = bills.shift
 
+  pp bill["title"]
+
   if bill["category"].nil?
     next
   end
@@ -35,12 +37,13 @@ while bills.size > 0
     bill["category"] = [bill["category"]]
   end
 
-  unless bill["category"].include?("Economics and finance")
-    puts "no category for econ: #{bill["category"]}"
+  unless bill["category"].include?("Education, language and training")
+    # puts "- no category for arts: #{bill["category"]}"
     next
   end
 
-  pp bill["title"]
+  # binding.pry
+
   text = GetBillTextFromSummaryHelper::get_text(bill)
 
   # binding.pry
