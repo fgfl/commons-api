@@ -1,27 +1,15 @@
 class FetchUclassifyData
   include Interactor
 
+  require_relative "../uclassify/uclassify.rb"
+
   require "faraday"
   require "faraday_middleware"
 
-  def call(text, username, classifierName)
-    base_url = "https://api.uclassify.com/v1/"
+  def call
+    bills_for_day = context.bills_for_day
+    raise bills_for_day.inspect
 
-    uri = "#{base_url}#{username}/#{classifierName}/classify"
-
-    body = {
-      texts: text,
-    }
-
-    faraday = Faraday.new(url: uri) do |conn|
-      conn.request :json
-      conn.response :json, :content_type => /\bjson$/
-      conn.adapter :net_http
-    end
-    res = faraday.post do |req|
-      req.headers["Content-Type"] = "application/json"
-      req.headers["Authorization"] = "Token #{Rails.application.secrets.api_read_key}"
-      req.body = body
-    end
+    Uclassify.classify()
   end
 end

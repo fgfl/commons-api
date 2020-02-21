@@ -1,5 +1,5 @@
 class SaveCategoriesFromUclassify
   include Interactor::Organizer
 
-  organize FormatUclassifyData, SaveBillCategories
+  organize GetBillsForTheDay, FetchUclassifyData, FormatUclassifyData, SaveBillCategories
 end
