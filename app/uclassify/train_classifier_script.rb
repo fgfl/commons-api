@@ -10,18 +10,6 @@ include XmlToJsonHelper
 
 #=========
 
-# set up bills in rb file for saving which needs to be sent to uclassify
-
-# file_data = File.read(__dir__ + "/training_data/publications_with_category.xml")
-
-# # File.write(__dir__ + "/test.json", (xml_to_json(file_data)))
-# items = JSON.parse(xml_to_json(file_data))["rss"]["channel"]["item"]
-# bill_items = items.select do |item|
-#   item["title"].include? "Legislative Summary"
-# end
-
-# File.write(__dir__ + "/legislative_summary_bills.json", bill_items.to_json)
-
 #======
 
 CLASSIFIER_NAME = "Commons_api"
@@ -40,14 +28,9 @@ bills = JSON.parse(File.read(input_file))
 while bills.size > 0
   bill = bills.shift
 
-  if bill["category"].nil?
-    next
-  end
-
   pp bill["title"]
-  text = GetBillTextFromSummaryHelper::get_text(bill)
 
-  if text.empty?
+  if bill["category"].nil?
     next
   end
 
@@ -55,25 +38,47 @@ while bills.size > 0
     bill["category"] = [bill["category"]]
   end
 
+  unless bill["category"].include?("Education, language and training")
+    # puts "- no category for arts: #{bill["category"]}"
+    next
+  end
+
   # binding.pry
+
+  text = GetBillTextFromSummaryHelper::get_text(bill)
+
+  # binding.pry
+  if text.empty?
+    next
+  end
 
   error = false
 
   while bill["category"].size > 0
     cat = bill["category"].shift
-    # res = Uclassify::train(text, CLASSIFIER_NAME, CategoryMapperHelper::map(cat))
-    # error = res.status != 200
+    pp "-- #{cat}"
 
-    res = {
-      status: 200,
-    }
-    error = res[:status] != 200
-
-    if (error)
-      bill["category"].unshift(cat)
-      pp res
-      break
+    begin
+      res = Uclassify::train(text, CLASSIFIER_NAME, CategoryMapperHelper::map(cat))
+      error = res.status != 200
+    rescue Net::ReadTimeout, Faraday::TimeoutError => exception
+      error = true
+      puts "error: #{exception.full_message()}"
+      puts exception.backtrace.join('\n')
+      puts "response = #{res}"
+    ensure
+      if (error)
+        bill["category"].unshift(cat)
+        pp res
+        break
+      end
     end
+
+    # res = {
+    #   status: 200,
+    # }
+    # error = res[:status] != 200
+
   end
 
   if (error)
@@ -83,7 +88,7 @@ while bills.size > 0
 end
 
 File.write(continue_file, bills.to_json)
-binding.pry
+puts "Done."
 
 # pp bill_items[0..4]
 
