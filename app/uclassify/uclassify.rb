@@ -49,6 +49,7 @@ module Uclassify
       conn.response :json, :content_type => /\bjson$/
       conn.adapter :net_http
     end
+    faraday.options.timeout = 180 #seconds
 
     res = faraday.post do |req|
       req.headers["Content-Type"] = "application/json"
