@@ -86,7 +86,7 @@ module GetBillTextFromSummaryHelper
     # doc = File.open(__dir__ + "/bill_publication.xml") { |f| Nokogiri::XML(f) }
 
     all_text = doc.search("//text()").map(&:text)
-    # puts all_text.join("\n")
+    [all_text.join(" ")]
     # File.write(__dir__ + "/bill_xml_parsed.txt", all_text.join("\n"))
   end
 
@@ -112,10 +112,8 @@ module GetBillTextFromSummaryHelper
       res = faraday.get
 
       if next_url.host.include? ("hillnotes.ca")
-        File.write(__dir__ + "/../uclassify/website_html/hillnotes.html", res.body)
         parse_hill_notes_site(res.body)
       elsif next_url.host.include? ("lop.parl.ca")
-        File.write(__dir__ + "/../uclassify/website_html/lop_parse_example.html", res.body)
         parse_lop_parl_site(res.body)
       else
         raise StandardError "Not configured to parse url: #{next_url.to_s}"
@@ -123,10 +121,14 @@ module GetBillTextFromSummaryHelper
     rescue Net::ReadTimeout, Faraday::TimeoutError => exception
       puts "error: #{exception.full_message()}"
       puts "response = #{res}"
+      return []
     rescue StandardError => exception
       puts "error: #{exception.full_message()}"
+      return []
     end
   end
+
+  private
 
   def self.parse_hill_notes_site(html_string)
     doc = Nokogiri::HTML(html_string)
@@ -134,8 +136,16 @@ module GetBillTextFromSummaryHelper
       article_elm = doc.at_css("#content.site-content > article")
     rescue NoMethodError => exception
       puts exception.full_message()
+      return []
     else
-      text = article_elm.search(".//text()").map(&:text).join().split(" ").join(" ")
+      text = article_elm
+        .search(".//text()")
+        .map(&:text)
+        .join()
+        .split(" ")
+        .join(" ")
+
+      [text]
     end
   end
 
@@ -145,12 +155,16 @@ module GetBillTextFromSummaryHelper
       # article_elm = doc.at_css("#content.site-content > article")
     rescue NoMethodError => exception
       puts exception.full_message()
+      return []
     else
       text = doc.search("//text()")
         .select { |t| !t.cdata? }
         .map(&:text)
         .join()
         .split(" ")
+        .join(" ")
+
+      [text]
     end
   end
 end

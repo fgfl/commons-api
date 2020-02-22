@@ -26,10 +26,10 @@ def train(type)
   bills = JSON.parse(File.read(input_file))
 
   result = catch(:uClassify_error) {
-    # while bills.size > 0
+    while bills.size > 0
 
-    # just run 4 bills to test
-    (0..3).each do |n|
+      # just run 4 bills to test
+      # (0..3).each do |n|
       bill = bills.shift
 
       pp bill["title"]
@@ -68,8 +68,8 @@ def train(type)
         pp "-- #{cat}"
 
         begin
-          # res = Uclassify::train(text, CLASSIFIER_NAME, CategoryMapperHelper::map(cat))
-          res = Struct::Response.new(200)
+          res = Uclassify::train(text, CLASSIFIER_NAME, CategoryMapperHelper::map(cat))
+          # res = Struct::Response.new(200)
           unless res.status == 200
             raise StandardError.new "Failed uClassify train."
           end
