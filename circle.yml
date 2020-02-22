@@ -1,7 +1,0 @@
-machine:
-  ruby:
-    version: 2.7.0
-
-dependencies:
-  override:
-    - mv config/secrets.ci.yml config/secrets.yml

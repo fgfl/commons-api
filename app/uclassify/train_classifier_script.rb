@@ -1,5 +1,3 @@
-require "pry"
-
 # include Uclassify
 require_relative "./uclassify"
 
@@ -10,7 +8,7 @@ include XmlToJsonHelper
 
 #=========
 
-#======
+#=========
 
 CLASSIFIER_NAME = ENV["CLASSIFIER_NAME"]
 
@@ -43,11 +41,8 @@ while bills.size > 0
     next
   end
 
-  # binding.pry
-
   text = GetBillTextFromSummaryHelper::get_text(bill)
 
-  # binding.pry
   if text.empty?
     next
   end
