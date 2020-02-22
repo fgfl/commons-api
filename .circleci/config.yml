@@ -11,9 +11,9 @@ jobs:
           RAILS_ENV: test
       - image: postgres:9.5
         environment:
-          POSTGRES_USER: wzlkhiza
-          POSTGRES_DB: wzlkhiza
-          POSTGRES_PASSWORD: ClW_BOa_QWKKAJonHmdCBzx962LxCVsO
+          POSTGRES_USER: <%= Rails.application.secrets[:database][:psql_username] %>
+          POSTGRES_DB: <%= Rails.application.secrets[:database][:psql_db] %>
+          POSTGRES_PASSWORD: <%= Rails.application.secrets[:database][:psql_password] %>
     steps:
       - checkout
 
@@ -36,7 +36,8 @@ jobs:
       - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       # Setup the database
-      - run: rake db:setup
+      - run: bundle exec rake db:migrate
+      - run: bundle exec rake db:setup
 
       # Run the tests
       - run: rspec

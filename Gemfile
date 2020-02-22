@@ -48,8 +48,6 @@ gem 'whenever', require: false
 # Twilio Ruby for sending out SMSes
 gem 'twilio-ruby'
 
-gem 'minitest', '~> 5.1'
-
 
 # DEVELOPMENT BELOW
 
@@ -78,6 +76,8 @@ group :development do
 end
 
 group :test do
+  gem 'minitest', '5.14.0'
+  gem 'minitest-rails'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
