@@ -38,8 +38,8 @@ jobs:
           command: |
             bundle exec rake db:create db:schema:load --trace
             bundle exec rake db:migrate
-        environment:
-          DATABASE_URL: 'postgres://wzlkhiza:ClW_BOa_QWKKAJonHmdCBzx962LxCVsO@otto.db.elephantsql.com:5432/wzlkhiza'
+          environment:
+            DATABASE_URL: 'postgres://wzlkhiza:ClW_BOa_QWKKAJonHmdCBzx962LxCVsO@otto.db.elephantsql.com:5432/wzlkhiza'
 
       # Setup the database
       - run: bundle exec rake db:setup
