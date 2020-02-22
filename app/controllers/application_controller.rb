@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::API
-  protect_from_forgery unless: -> { request.format.json? }
-
   helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!
 
   def login!
