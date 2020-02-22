@@ -103,20 +103,54 @@ module GetBillTextFromSummaryHelper
   # },
   def self.get_publication_text(bill)
     begin
-      next_url = bill["description"]
+      next_url = URI(bill["description"])
 
-      binding.pry
-
-      faraday = Faraday.new(url: next_url) do |f|
+      faraday = Faraday.new(url: next_url.to_s) do |f|
         f.use FaradayMiddleware::FollowRedirects
         f.adapter :net_http
       end
       res = faraday.get
-      File.write(__dir__ + "/website_html/hillnotes.html", res.body)
-      doc = Nokogiri::HTML(res.body)
+
+      if next_url.host.include? ("hillnotes.ca")
+        File.write(__dir__ + "/../uclassify/website_html/hillnotes.html", res.body)
+        parse_hill_notes_site(res.body)
+      elsif next_url.host.include? ("lop.parl.ca")
+        File.write(__dir__ + "/../uclassify/website_html/lop_parse_example.html", res.body)
+        parse_lop_parl_site(res.body)
+      else
+        raise StandardError "Not configured to parse url: #{next_url.to_s}"
+      end
     rescue Net::ReadTimeout, Faraday::TimeoutError => exception
       puts "error: #{exception.full_message()}"
       puts "response = #{res}"
+    rescue StandardError => exception
+      puts "error: #{exception.full_message()}"
+    end
+  end
+
+  def self.parse_hill_notes_site(html_string)
+    doc = Nokogiri::HTML(html_string)
+    begin
+      article_elm = doc.at_css("#content.site-content > article")
+    rescue NoMethodError => exception
+      puts exception.full_message()
+    else
+      text = article_elm.search(".//text()").map(&:text).join().split(" ").join(" ")
+    end
+  end
+
+  def self.parse_lop_parl_site(html_string)
+    doc = Nokogiri::HTML(html_string)
+    begin
+      # article_elm = doc.at_css("#content.site-content > article")
+    rescue NoMethodError => exception
+      puts exception.full_message()
+    else
+      text = doc.search("//text()")
+        .select { |t| !t.cdata? }
+        .map(&:text)
+        .join()
+        .split(" ")
     end
   end
 end
