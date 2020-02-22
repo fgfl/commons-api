@@ -1,5 +1,8 @@
 class SaveCategoriesFromUclassify
   include Interactor::Organizer
+  require "dotenv"
+  require "faraday"
+
   # PART ONE OF SAVING CATEGORIES
   # Called by the Scheduled Task Runner
   # Gets the text from every bill daved to the database that day

@@ -1,6 +1,9 @@
 # Mac-specific DS_store files
 .DS_Store
 
+# Ignore uClassify folder
+uclassify/
+
 # Rails various ignores
 *.rbc
 capybara-*.html
