@@ -10,9 +10,9 @@ class FetchUclassifyData
     full_text = context.full_text
 
     full_text = [full_text.join(" ")]
-    username = Rails.application.secrets.username
-    classifier_name = Rails.application.secrets.classifier_name
-    token = Rails.application.secrets.api_read_key
+    username = ENV["UCLASSIFY_USERNAME"]
+    classifier_name = ENV["CLASSIFIER_NAME"]
+    token = ENV["API_READ_KEY"]
 
     # Calls uClassify method from uClassify folder to get probabilities back
     # DEV NOTE: If uClassify calls are used up, switch 'api_read_key' in secrets.yml file

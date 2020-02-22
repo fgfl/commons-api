@@ -12,7 +12,7 @@ include XmlToJsonHelper
 
 #======
 
-CLASSIFIER_NAME = "Commons_api"
+CLASSIFIER_NAME = ENV["CLASSIFIER_NAME"]
 
 continue_file = __dir__ + "/continue_training_summary_bills.json"
 

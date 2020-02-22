@@ -11,14 +11,14 @@ development:
   port: 5432
   timeout: 5000
   pool: 5
-#
-#HEROKU DB
+
+# HEROKU DB
 # production:
 #   adapter: postgresql
-#   host: <%= Rails.application.secrets[:database][:psql_hostname] %>
-#   username: <%= Rails.application.secrets[:database][:username] %>
-#   password: <%= Rails.application.secrets[:database][:password] %>
-#   database: commons_development
+#   host: <%= ENV['PSQL_HOSTNAME'] %>
+#   username: <%= ENV['PSQL_USERNAME'] %>
+#   password: <%= ENV['PSQL_PASSWORD'] %>
+#   database: <%= ENV['PSQL_DB']
 #   encoding: unicode
 #   port: 5432
 #   timeout: 5000
