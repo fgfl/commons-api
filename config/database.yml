@@ -1,18 +1,18 @@
 # PostgreSQL. Versions 8.2 and up are supported.
 #
 # LOCAL DB
-# development:
-#   adapter: postgresql
-#   host: localhost
-#   username: commons_dev
-#   password: development
-#   database: commons_development
-#   encoding: unicode
-#   port: 5432
-#   timeout: 5000
-#   pool: 5
+development:
+  adapter: postgresql
+  host: localhost
+  username: commons_dev
+  password: development
+  database: commons_development
+  encoding: unicode
+  port: 5432
+  timeout: 5000
+  pool: 5
 
-HEROKU DB
+# HEROKU DB
 production:
   adapter: postgresql
   host: <%= ENV['PSQL_HOSTNAME'] %>
