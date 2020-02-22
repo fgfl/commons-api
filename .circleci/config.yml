@@ -7,7 +7,7 @@ jobs:
       - image: circleci/ruby:2.7.0
         environment:
           PGHOST: otto.db.elephantsql.com
-          PGUSER: wzlkhiza
+          PGUSER: commons_dev
           RAILS_ENV: test
       - image: postgres:9.5
         environment:
@@ -33,7 +33,13 @@ jobs:
           - vendor/bundle
 
       # Wait for DB
-      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Set up DB
+          command: |
+            bundle exec rake db:create db:schema:load --trace
+            bundle exec rake db:migrate
+        environment:
+          DATABASE_URL: 'postgres://wzlkhiza:ClW_BOa_QWKKAJonHmdCBzx962LxCVsO@otto.db.elephantsql.com:5432/wzlkhiza'
 
       # Setup the database
       - run: bundle exec rake db:setup
