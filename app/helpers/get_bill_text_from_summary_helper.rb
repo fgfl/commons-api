@@ -21,7 +21,7 @@ module GetBillTextFromSummaryHelper
   #   "description": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/LegislativeSummaries/421C101E",
   #   "pubDate": "Wed, 10 Jul 2019 00:00:00 -0400"
   # },
-  def self.get_text(bill)
+  def self.get_bill_text(bill)
     faraday = Faraday.new(url: bill["description"]) do |f|
       f.use FaradayMiddleware::FollowRedirects
       f.adapter :net_http
@@ -88,5 +88,35 @@ module GetBillTextFromSummaryHelper
     all_text = doc.search("//text()").map(&:text)
     # puts all_text.join("\n")
     # File.write(__dir__ + "/bill_xml_parsed.txt", all_text.join("\n"))
+  end
+
+  # Gets the text on the research publication page given the bill object parsed from the RSS feed
+  # {{}}: bill hash
+  # Example:
+  # {
+  #   "xml:base": "https://hillnotes.ca/2020/02/13/5g-technology-opportunities-challenges-and-risks/",
+  #   "author": { "name": "Sarah Lemelin-Bellerose" },
+  #   "category": ["Information and communications", "Science and technology"],
+  #   "title": "5G Technology: Opportunities, Challenges and Risks",
+  #   "description": "https://hillnotes.ca/2020/02/13/5g-technology-opportunities-challenges-and-risks/",
+  #   "pubDate": "Thu, 13 Feb 2020 00:00:00 -0500"
+  # },
+  def self.get_publication_text(bill)
+    begin
+      next_url = bill["description"]
+
+      binding.pry
+
+      faraday = Faraday.new(url: next_url) do |f|
+        f.use FaradayMiddleware::FollowRedirects
+        f.adapter :net_http
+      end
+      res = faraday.get
+      File.write(__dir__ + "/website_html/hillnotes.html", res.body)
+      doc = Nokogiri::HTML(res.body)
+    rescue Net::ReadTimeout, Faraday::TimeoutError => exception
+      puts "error: #{exception.full_message()}"
+      puts "response = #{res}"
+    end
   end
 end
