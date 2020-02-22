@@ -1,6 +1,8 @@
 class FetchUclassifyData
   include Interactor
 
+  require "dotenv"
+
   require_relative "../uclassify/uclassify.rb"
 
   # Called as part of the SaveCategoriesFromUclassify organizer chain
