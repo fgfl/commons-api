@@ -1,7 +1,6 @@
 class FormatUclassifyData
   include Interactor
 
-  require 'pry'
   # Formats the data received by uClassify for a single bill
 
   # The call function sorts the JSON returned by uClassify by probability
@@ -25,6 +24,5 @@ class FormatUclassifyData
       end
     end
     context.categories = categories
-    binding.pry
   end
 end

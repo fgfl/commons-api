@@ -14,5 +14,3 @@ bill = {
 }
 
 text = GetBillTextFromSummaryHelper::get_text(bill)
-
-binding.pry

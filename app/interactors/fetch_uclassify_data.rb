@@ -1,6 +1,6 @@
 class FetchUclassifyData
   include Interactor
-  
+
   require_relative "../uclassify/uclassify.rb"
 
   # Called as part of the SaveCategoriesFromUclassify organizer chain
@@ -8,7 +8,7 @@ class FetchUclassifyData
 
   def call
     full_text = context.full_text
-    
+
     full_text = [full_text.join(" ")]
     username = Rails.application.secrets.username
     classifier_name = Rails.application.secrets.classifier_name
