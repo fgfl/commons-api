@@ -9,7 +9,7 @@ module Uclassify
   def self.classify(text, username, classifierName, token)
     base_url = "https://api.uclassify.com/v1/"
     # username = "Frederick"
-    # classifierName = "LHL_midterm_classifier"
+    # classifierName = "Commons_api"
 
     uri = "#{base_url}#{username}/#{classifierName}/classify"
 
