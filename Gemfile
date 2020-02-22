@@ -48,7 +48,6 @@ gem 'whenever', require: false
 # Twilio Ruby for sending out SMSes
 gem 'twilio-ruby'
 
-
 # DEVELOPMENT BELOW
 
 group :development, :test do

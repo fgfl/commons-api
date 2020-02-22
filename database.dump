@@ -1,0 +1,944 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.2
+-- Dumped by pg_dump version 12.2
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: bill_categories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.bill_categories (
+    id bigint NOT NULL,
+    bill_id bigint NOT NULL,
+    category_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: bill_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.bill_categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: bill_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.bill_categories_id_seq OWNED BY public.bill_categories.id;
+
+
+--
+-- Name: bill_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.bill_users (
+    id bigint NOT NULL,
+    bill_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: bill_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.bill_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: bill_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.bill_users_id_seq OWNED BY public.bill_users.id;
+
+
+--
+-- Name: bills; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.bills (
+    id bigint NOT NULL,
+    session_id bigint NOT NULL,
+    code character varying,
+    title character varying,
+    description character varying,
+    introduced_date date,
+    summary_url character varying,
+    page_url character varying,
+    full_text_url character varying,
+    passed boolean,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: bills_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.bills_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: bills_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.bills_id_seq OWNED BY public.bills.id;
+
+
+--
+-- Name: categories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.categories (
+    id bigint NOT NULL,
+    name character varying,
+    uclassify_class character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.categories_id_seq OWNED BY public.categories.id;
+
+
+--
+-- Name: category_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.category_users (
+    id bigint NOT NULL,
+    category_id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: category_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.category_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: category_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.category_users_id_seq OWNED BY public.category_users.id;
+
+
+--
+-- Name: events; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.events (
+    id bigint NOT NULL,
+    bill_id bigint NOT NULL,
+    code character varying,
+    title character varying,
+    publication_date date,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.events_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.events_id_seq OWNED BY public.events.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.schema_migrations (
+    version character varying NOT NULL
+);
+
+
+--
+-- Name: sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.sessions (
+    id bigint NOT NULL,
+    number integer,
+    start_date date,
+    end_date date,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.sessions_id_seq OWNED BY public.sessions.id;
+
+
+--
+-- Name: users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    name character varying,
+    username character varying,
+    password_digest character varying,
+    email character varying,
+    phone_number character varying,
+    postal_code character varying,
+    email_notification boolean,
+    sms_notification boolean,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: bill_categories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bill_categories ALTER COLUMN id SET DEFAULT nextval('public.bill_categories_id_seq'::regclass);
+
+
+--
+-- Name: bill_users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bill_users ALTER COLUMN id SET DEFAULT nextval('public.bill_users_id_seq'::regclass);
+
+
+--
+-- Name: bills id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bills ALTER COLUMN id SET DEFAULT nextval('public.bills_id_seq'::regclass);
+
+
+--
+-- Name: categories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.categories ALTER COLUMN id SET DEFAULT nextval('public.categories_id_seq'::regclass);
+
+
+--
+-- Name: category_users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.category_users ALTER COLUMN id SET DEFAULT nextval('public.category_users_id_seq'::regclass);
+
+
+--
+-- Name: events id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.events ALTER COLUMN id SET DEFAULT nextval('public.events_id_seq'::regclass);
+
+
+--
+-- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions ALTER COLUMN id SET DEFAULT nextval('public.sessions_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
+environment	development	2020-02-22 02:52:41.805243	2020-02-22 02:52:41.805243
+schema_sha1	079ab5de869639758f1e45d6bc6f902d60e4d572	2020-02-22 02:52:41.814146	2020-02-22 02:52:41.814146
+\.
+
+
+--
+-- Data for Name: bill_categories; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.bill_categories (id, bill_id, category_id, created_at, updated_at) FROM stdin;
+1	1	4	2020-02-22 02:55:52.3452	2020-02-22 02:55:52.3452
+2	1	7	2020-02-22 02:55:52.357882	2020-02-22 02:55:52.357882
+3	1	14	2020-02-22 02:55:52.365645	2020-02-22 02:55:52.365645
+4	2	4	2020-02-22 02:55:57.154577	2020-02-22 02:55:57.154577
+5	2	7	2020-02-22 02:55:57.168594	2020-02-22 02:55:57.168594
+6	2	14	2020-02-22 02:55:57.174274	2020-02-22 02:55:57.174274
+7	3	7	2020-02-22 02:56:00.102314	2020-02-22 02:56:00.102314
+8	3	4	2020-02-22 02:56:00.108277	2020-02-22 02:56:00.108277
+9	3	14	2020-02-22 02:56:00.1143	2020-02-22 02:56:00.1143
+10	3	9	2020-02-22 02:56:00.122727	2020-02-22 02:56:00.122727
+11	3	12	2020-02-22 02:56:00.130692	2020-02-22 02:56:00.130692
+12	4	14	2020-02-22 02:56:03.138273	2020-02-22 02:56:03.138273
+13	4	7	2020-02-22 02:56:03.147411	2020-02-22 02:56:03.147411
+14	4	5	2020-02-22 02:56:03.155131	2020-02-22 02:56:03.155131
+15	5	14	2020-02-22 02:56:06.150798	2020-02-22 02:56:06.150798
+16	5	7	2020-02-22 02:56:06.167894	2020-02-22 02:56:06.167894
+17	5	4	2020-02-22 02:56:06.181589	2020-02-22 02:56:06.181589
+18	6	14	2020-02-22 02:56:09.92649	2020-02-22 02:56:09.92649
+19	6	7	2020-02-22 02:56:09.946488	2020-02-22 02:56:09.946488
+20	7	5	2020-02-22 02:56:12.987227	2020-02-22 02:56:12.987227
+21	7	14	2020-02-22 02:56:13.00246	2020-02-22 02:56:13.00246
+22	8	7	2020-02-22 02:56:15.980262	2020-02-22 02:56:15.980262
+23	8	4	2020-02-22 02:56:15.995912	2020-02-22 02:56:15.995912
+24	8	14	2020-02-22 02:56:16.002304	2020-02-22 02:56:16.002304
+25	8	3	2020-02-22 02:56:16.010182	2020-02-22 02:56:16.010182
+26	9	4	2020-02-22 02:56:19.074733	2020-02-22 02:56:19.074733
+27	9	9	2020-02-22 02:56:19.089019	2020-02-22 02:56:19.089019
+28	10	12	2020-02-22 02:56:22.270983	2020-02-22 02:56:22.270983
+29	10	4	2020-02-22 02:56:22.287522	2020-02-22 02:56:22.287522
+30	11	14	2020-02-22 02:56:25.253494	2020-02-22 02:56:25.253494
+31	11	7	2020-02-22 02:56:25.266947	2020-02-22 02:56:25.266947
+32	11	1	2020-02-22 02:56:25.272685	2020-02-22 02:56:25.272685
+33	11	9	2020-02-22 02:56:25.278359	2020-02-22 02:56:25.278359
+34	12	14	2020-02-22 02:56:28.500753	2020-02-22 02:56:28.500753
+35	13	12	2020-02-22 02:56:31.528105	2020-02-22 02:56:31.528105
+36	13	7	2020-02-22 02:56:31.55858	2020-02-22 02:56:31.55858
+37	14	7	2020-02-22 02:56:35.142579	2020-02-22 02:56:35.142579
+38	14	14	2020-02-22 02:56:35.155813	2020-02-22 02:56:35.155813
+39	15	9	2020-02-22 02:56:39.744638	2020-02-22 02:56:39.744638
+40	15	14	2020-02-22 02:56:39.760966	2020-02-22 02:56:39.760966
+41	16	7	2020-02-22 02:56:42.723638	2020-02-22 02:56:42.723638
+42	16	2	2020-02-22 02:56:42.737455	2020-02-22 02:56:42.737455
+43	16	1	2020-02-22 02:56:42.746285	2020-02-22 02:56:42.746285
+44	16	8	2020-02-22 02:56:42.761029	2020-02-22 02:56:42.761029
+45	16	9	2020-02-22 02:56:42.770748	2020-02-22 02:56:42.770748
+46	17	4	2020-02-22 02:56:46.032584	2020-02-22 02:56:46.032584
+47	17	7	2020-02-22 02:56:46.047933	2020-02-22 02:56:46.047933
+48	17	14	2020-02-22 02:56:46.053981	2020-02-22 02:56:46.053981
+49	18	12	2020-02-22 02:56:49.112483	2020-02-22 02:56:49.112483
+50	19	4	2020-02-22 02:56:52.079642	2020-02-22 02:56:52.079642
+51	19	12	2020-02-22 02:56:52.101862	2020-02-22 02:56:52.101862
+52	19	9	2020-02-22 02:56:52.118181	2020-02-22 02:56:52.118181
+53	19	8	2020-02-22 02:56:52.134731	2020-02-22 02:56:52.134731
+54	19	1	2020-02-22 02:56:52.147307	2020-02-22 02:56:52.147307
+55	20	7	2020-02-22 02:56:55.201622	2020-02-22 02:56:55.201622
+56	20	14	2020-02-22 02:56:55.229104	2020-02-22 02:56:55.229104
+57	20	4	2020-02-22 02:56:55.251851	2020-02-22 02:56:55.251851
+58	20	12	2020-02-22 02:56:55.264693	2020-02-22 02:56:55.264693
+59	20	8	2020-02-22 02:56:55.27108	2020-02-22 02:56:55.27108
+60	20	11	2020-02-22 02:56:55.282609	2020-02-22 02:56:55.282609
+61	21	7	2020-02-22 02:56:58.34481	2020-02-22 02:56:58.34481
+62	21	14	2020-02-22 02:56:58.362434	2020-02-22 02:56:58.362434
+63	21	8	2020-02-22 02:56:58.371501	2020-02-22 02:56:58.371501
+64	22	7	2020-02-22 02:57:01.398849	2020-02-22 02:57:01.398849
+65	22	4	2020-02-22 02:57:01.405396	2020-02-22 02:57:01.405396
+66	23	14	2020-02-22 02:57:04.501538	2020-02-22 02:57:04.501538
+67	23	7	2020-02-22 02:57:04.517049	2020-02-22 02:57:04.517049
+68	24	7	2020-02-22 02:57:07.540239	2020-02-22 02:57:07.540239
+69	24	14	2020-02-22 02:57:07.550954	2020-02-22 02:57:07.550954
+70	24	4	2020-02-22 02:57:07.563275	2020-02-22 02:57:07.563275
+71	24	5	2020-02-22 02:57:07.572515	2020-02-22 02:57:07.572515
+72	24	9	2020-02-22 02:57:07.579759	2020-02-22 02:57:07.579759
+73	25	14	2020-02-22 02:57:10.551844	2020-02-22 02:57:10.551844
+74	25	5	2020-02-22 02:57:10.564042	2020-02-22 02:57:10.564042
+75	25	7	2020-02-22 02:57:10.570055	2020-02-22 02:57:10.570055
+76	26	4	2020-02-22 02:57:14.118933	2020-02-22 02:57:14.118933
+77	26	7	2020-02-22 02:57:14.130666	2020-02-22 02:57:14.130666
+78	26	12	2020-02-22 02:57:14.136137	2020-02-22 02:57:14.136137
+79	27	14	2020-02-22 02:57:17.098076	2020-02-22 02:57:17.098076
+80	27	7	2020-02-22 02:57:17.11347	2020-02-22 02:57:17.11347
+81	28	5	2020-02-22 02:57:20.294366	2020-02-22 02:57:20.294366
+82	28	9	2020-02-22 02:57:20.313646	2020-02-22 02:57:20.313646
+83	30	14	2020-02-22 02:57:23.596739	2020-02-22 02:57:23.596739
+84	31	7	2020-02-22 02:57:27.424108	2020-02-22 02:57:27.424108
+85	31	1	2020-02-22 02:57:27.436987	2020-02-22 02:57:27.436987
+86	31	2	2020-02-22 02:57:27.446473	2020-02-22 02:57:27.446473
+87	31	9	2020-02-22 02:57:27.457317	2020-02-22 02:57:27.457317
+88	31	3	2020-02-22 02:57:27.468248	2020-02-22 02:57:27.468248
+89	32	7	2020-02-22 02:57:31.486433	2020-02-22 02:57:31.486433
+90	32	4	2020-02-22 02:57:31.496075	2020-02-22 02:57:31.496075
+91	33	14	2020-02-22 02:57:34.942327	2020-02-22 02:57:34.942327
+92	33	7	2020-02-22 02:57:34.957902	2020-02-22 02:57:34.957902
+93	34	7	2020-02-22 02:57:38.614132	2020-02-22 02:57:38.614132
+94	34	4	2020-02-22 02:57:38.639516	2020-02-22 02:57:38.639516
+95	34	9	2020-02-22 02:57:38.66006	2020-02-22 02:57:38.66006
+96	34	14	2020-02-22 02:57:38.671357	2020-02-22 02:57:38.671357
+97	34	5	2020-02-22 02:57:38.685151	2020-02-22 02:57:38.685151
+98	29	4	2020-02-22 02:57:42.998255	2020-02-22 02:57:42.998255
+99	29	7	2020-02-22 02:57:43.019613	2020-02-22 02:57:43.019613
+\.
+
+
+--
+-- Data for Name: bill_users; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.bill_users (id, bill_id, user_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: bills; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.bills (id, session_id, code, title, description, introduced_date, summary_url, page_url, full_text_url, passed, created_at, updated_at) FROM stdin;
+1	1	C-3	An Act to amend the Royal Canadian Mounted Police Act and the Canada Border Services Agency Act and to make consequential amendments to other Acts	This enactment amends the Royal Canadian Mounted Police Act to, among other things, rename the Civilian Review and Complaints Commission for the Royal Canadian Mounted Police as the Public Complaints and Review Commission. It also amends the Canada Border Services Agency Act to, among other things, grant to that Commission powers, duties and functions in relation to the Canada Border Services Agency, including the power to conduct a review of the activities of that Agency and to investigate complaints concerning the conduct of any of that Agency’s officers or employees. It also makes consequential amendments to other Acts.	2020-01-27	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10613928	https://parl.ca/DocumentViewer/en/10615687	\N	2020-02-22 02:55:18.685382	2020-02-22 02:55:18.685382
+2	1	C-4	An Act to implement the Agreement between Canada, the United States of America and the United Mexican States	This enactment implements the Agreement between Canada, the United States of America and the United Mexican States, done at Buenos Aires on November 30, 2018, as amended by the Protocol of Amendment to that Agreement, done at Mexico City on December 10, 2019.	2020-01-29	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10615191	https://parl.ca/DocumentViewer/en/10617993	\N	2020-02-22 02:55:18.701847	2020-02-22 02:55:18.701847
+3	1	C-212	An Act to amend the Employment Insurance Act (special benefits)	This enactment amends the Employment Insurance Act to extend the maximum period for which benefits for illness, injury or quarantine may be paid from 15 weeks to 50.	2020-02-20	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10638140	https://parl.ca/DocumentViewer/en/10642700	\N	2020-02-22 02:55:18.714177	2020-02-22 02:55:18.714177
+4	1	C-211	An Act to amend the Criminal Code (assaults against health care professionals and first responders)	This enactment amends the Criminal Code to require a court to consider the fact that the victim of an assault is a health care professional or a first responder to be an aggravating circumstance for the purposes of sentencing.	2020-02-20	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10636919	https://parl.ca/DocumentViewer/en/10642965	\N	2020-02-22 02:55:18.72097	2020-02-22 02:55:18.72097
+5	1	S-216	An Act to amend the Assisted Human Reproduction Act	This enactment amends the Assisted Human Reproduction Act to decriminalize payment for sperm or ovum donation and for surrogacy in certain circumstances.	2020-02-20	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10644036	https://parl.ca/DocumentViewer/en/10644072	\N	2020-02-22 02:55:18.727464	2020-02-22 02:55:18.727464
+6	1	S-214	An Act to amend the Criminal Records Act, to make consequential amendments to other Acts and to repeal a regulation	This enactment amends the Criminal Records Act to provide for the expiry of criminal records.	2020-02-18	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10637473	https://parl.ca/DocumentViewer/en/10637493	\N	2020-02-22 02:55:18.734865	2020-02-22 02:55:18.734865
+7	1	C-5	An Act to amend the Judges Act and the Criminal Code	This enactment amends the Judges Act to restrict eligibility for judicial appointment to persons who undertake to participate in continuing education on matters related to sexual assault law and social context. It also amends the Judges Act to require that the Canadian Judicial Council report on seminars offered for the continuing education of judges on matters related to sexual assault law. Finally, it amends the Criminal Code to require that judges provide reasons for decisions in sexual assault proceedings.	2020-02-04	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10620333	https://parl.ca/DocumentViewer/en/10623769	\N	2020-02-22 02:55:18.743174	2020-02-22 02:55:18.743174
+8	1	C-210	An Act to amend the Canada Revenue Agency Act (organ and tissue donors)	This enactment amends the Canada Revenue Agency Act to authorize the Canada Revenue Agency to enter into an agreement with a province or a territory regarding the collection and disclosure of information required for establishing or maintaining an organ and tissue donor registry in the province or territory.	2020-02-19	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10613677	https://parl.ca/DocumentViewer/en/10640476	\N	2020-02-22 02:55:18.749391	2020-02-22 02:55:18.749391
+9	1	C-209	An Act to amend the Copyright Act (Crown copyright)	This enactment amends the Copyright Act to specify that, without prejudice to any rights or privileges of the Crown, no copyright subsists in any work that is, or has been, prepared or published by or under the direction or control of Her Majesty or any government department.	2020-02-19	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10614052	https://parl.ca/DocumentViewer/en/10641140	\N	2020-02-22 02:55:18.755401	2020-02-22 02:55:18.755401
+10	1	C-208	An Act to amend the Income Tax Act (transfer of small business or family farm or fishing corporation)	This enactment amends the Income Tax Act in order to provide that, in the case of qualified small business corporation shares and shares of the capital stock of a family farm or fishing corporation, siblings are deemed not to be dealing at arm’s length and to be related, and that, under certain conditions, the transfer of those shares by a taxpayer to the taxpayer’s child or grandchild who is 18 years of age or older is to be excluded from the anti-avoidance rule of section 84.‍1.	2020-02-19	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10629636	https://parl.ca/DocumentViewer/en/10641046	\N	2020-02-22 02:55:18.761958	2020-02-22 02:55:18.761958
+11	1	C-207	An Act to amend the Criminal Code (presentence report)	This enactment amends the Criminal Code to require that a presentence report contain information on any aspect of the offender’s mental condition that is relevant for sentencing purposes.	2020-02-19	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10616863	https://parl.ca/DocumentViewer/en/10641078	\N	2020-02-22 02:55:18.767996	2020-02-22 02:55:18.767996
+12	1	S-208	An Act to amend the Criminal Code (independence of the judiciary)	This enactment amends the Criminal Code to give a court the discretion to vary the punishment to be imposed in respect of an offence for which the punishment or different degrees or kinds of punishment is prescribed in an enactment.	2020-02-04	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10625187	https://parl.ca/DocumentViewer/en/10625190	\N	2020-02-22 02:55:18.774456	2020-02-22 02:55:18.774456
+13	1	C-206	An Act to amend the Greenhouse Gas Pollution Pricing Act (qualifying farming fuel)	This enactment amends the Greenhouse Gas Pollution Pricing Act to extend the exemption for qualifying farming fuel to marketable natural gas and propane.	2020-02-18	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10635301	https://parl.ca/DocumentViewer/en/10637202	\N	2020-02-22 02:55:18.780736	2020-02-22 02:55:18.780736
+14	1	C-205	An Act to amend the Health of Animals Act	This enactment amends the Health of Animals Act to make it an offence to enter, without lawful authority or excuse, a place in which animals are kept if doing so could result in the exposure of the animals to a disease or toxic substance that is capable of affecting or contaminating them.	2020-02-18	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10630862	https://parl.ca/DocumentViewer/en/10637353	\N	2020-02-22 02:55:18.786628	2020-02-22 02:55:18.786628
+15	1	C-6	An Act to amend the Citizenship Act (Truth and Reconciliation Commission of Canada's call to action number 94)	This enactment amends the Citizenship Act to include, in the Oath or Affirmation of Citizenship, a solemn promise to respect the Aboriginal and treaty rights of First Nations, Inuit and Métis peoples, in order to respond to the Truth and Reconciliation Commission of Canada’s call to action number 94.	2020-02-18	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10635353	https://parl.ca/DocumentViewer/en/10637729	\N	2020-02-22 02:55:18.793511	2020-02-22 02:55:18.793511
+16	1	S-206	An Act to amend the Department of Public Works and Government Services Act (use of wood)	This enactment amends the Department of Public Works and Government Services Act to require that the Minister may, in developing requirements for public works, allow the use of wood or any other thing that achieves environmental benefits.	2019-12-11	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10605962	https://parl.ca/DocumentViewer/en/10605976	\N	2020-02-22 02:55:18.800545	2020-02-22 02:55:18.800545
+17	1	S-211	An Act to enact the Modern Slavery Act and to amend the Customs Tariff	This enactment enacts the Modern Slavery Act, which imposes an obligation on certain entities to report on the measures taken to prevent and reduce the risk that forced labour or child labour is used at any step in the production of goods in Canada or elsewhere by the entity or in the production of goods imported into Canada. The Act provides for an inspection regime and gives the Minister the power to require an entity to provide certain information.	2020-02-05	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10627038	https://parl.ca/DocumentViewer/en/10627049	\N	2020-02-22 02:55:18.810789	2020-02-22 02:55:18.810789
+18	1	S-215	An Act to amend the Greenhouse Gas Pollution Pricing Act (farming exemptions)	This enactment amends the Greenhouse Gas Pollution Pricing Act to modify the definitions of eligible farming machinery and qualifying farming fuel.	2020-02-18	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10637436	https://parl.ca/DocumentViewer/en/10637457	\N	2020-02-22 02:55:18.81966	2020-02-22 02:55:18.81966
+19	1	S-209	An Act to amend the Department for Women and Gender Equality Act	This enactment amends the Department for Women and Gender Equality Act to require the Minister for Women and Gender Equality to examine the potential effects of certain bills and amendments on women and to report to Parliament accordingly.	2020-02-04	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10625194	https://parl.ca/DocumentViewer/en/10625197	\N	2020-02-22 02:55:18.83025	2020-02-22 02:55:18.83025
+20	1	C-204	An Act to amend the Canadian Environmental Protection Act, 1999 (final disposal of plastic waste)	This enactment amends the Canadian Environmental Protection Act, 1999 to prohibit the export of certain types of plastic waste to foreign countries for final disposal.	2020-02-07	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10626760	https://parl.ca/DocumentViewer/en/10633126	\N	2020-02-22 02:55:18.839511	2020-02-22 02:55:18.839511
+21	1	C-203	An Act to amend the National Defence Act (maiming or injuring self or another)	This enactment amends the National Defence Act to repeal the offence of maiming or injuring oneself or another person to render oneself or that other person unfit for service.	2020-02-06	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10604049	https://parl.ca/DocumentViewer/en/10628940	\N	2020-02-22 02:55:18.84914	2020-02-22 02:55:18.84914
+22	1	S-213	An Act to change the name of the electoral district of Châteauguay—Lacolle	This enactment changes the name of the electoral district of Châteauguay—Lacolle to “Châteauguay—Les Jardins-de-Napierville”.	2020-02-06	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10629396	https://parl.ca/DocumentViewer/en/10629408	\N	2020-02-22 02:55:18.858845	2020-02-22 02:55:18.858845
+23	1	S-207	An Act to amend the Criminal Code (disclosure of information by jurors)	This enactment amends the Criminal Code to provide that the prohibition against the disclosure of information relating to jury proceedings does not, in certain circumstances, apply in respect of disclosure by jurors to health care professionals.	2019-12-12	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10607221	https://parl.ca/DocumentViewer/en/10607236	\N	2020-02-22 02:55:18.867791	2020-02-22 02:55:18.867791
+24	1	S-210	An Act to amend the Parliament of Canada Act (Parliamentary Visual Artist Laureate)	This enactment creates the position of Parliamentary Visual Artist Laureate. It also corrects a reference to the Canada Council for the Arts in the English version of the Parliament of Canada Act.	2020-02-04	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10625169	https://parl.ca/DocumentViewer/en/10625253	\N	2020-02-22 02:55:18.877164	2020-02-22 02:55:18.877164
+25	1	S-212	An Act to establish International Mother Language Day	This enactment designates the 21st day of February in each and every year as “International Mother Language Day”.	2020-02-05	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10627090	https://parl.ca/DocumentViewer/en/10627117	\N	2020-02-22 02:55:18.885465	2020-02-22 02:55:18.885465
+26	1	S-1001	An Act respecting Girl Guides of Canada	This enactment replaces An Act to Incorporate The Canadian Council of The Girl Guides Association, chapter 77 of the Statutes of Canada, 1917, with a new Act that continues the corporation known as “Girl Guides of Canada” and makes changes relating to its administration.	2020-02-05	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10627060	https://parl.ca/DocumentViewer/en/10627064	\N	2020-02-22 02:55:18.893933	2020-02-22 02:55:18.893933
+27	1	C-202	An Act to amend the Criminal Code (assault against a health care worker)	This enactment amends the Criminal Code to require a court to consider the fact that the victim of an assault is a health care worker to be an aggravating circumstance for the purposes of sentencing.	2020-02-04	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10618751	https://parl.ca/DocumentViewer/en/10624971	\N	2020-02-22 02:55:18.90144	2020-02-22 02:55:18.90144
+28	1	C-201	An Act to develop a national school food program for children	This enactment provides for the development of a national school food program to ensure that all children in Canada have access to healthy food.	2020-02-04	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10618763	https://parl.ca/DocumentViewer/en/10624785	\N	2020-02-22 02:55:18.909488	2020-02-22 02:55:18.909488
+30	1	S-202	An Act to amend the Criminal Code (conversion therapy)	This enactment amends the Criminal Code to make it an offence to advertise conversion therapy services for consideration and to obtain a financial or other material benefit for the provision of conversion therapy to a person under the age of eighteen.	2019-12-10	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10604397	https://parl.ca/DocumentViewer/en/10604403	\N	2020-02-22 02:55:18.926741	2020-02-22 02:55:18.926741
+31	1	S-203	An Act to amend the National Capital Act (buildings or works of national significance)	This enactment amends the National Capital Act to establish certain requirements related to the erection, alteration, extension or demolition of certain buildings or other works within the National Capital Region.	2019-12-10	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10604419	https://parl.ca/DocumentViewer/en/10604421	\N	2020-02-22 02:55:18.935213	2020-02-22 02:55:18.935213
+32	1	S-205	An Act to amend the Constitution Act, 1867 and the Parliament of Canada Act (Speaker of the Senate)	This enactment amends the Constitution Act, 1867 to provide for the election of the Speaker and the Deputy Speaker of the Senate and their participation in votes.	2019-12-11	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10605949	https://parl.ca/DocumentViewer/en/10605951	\N	2020-02-22 02:55:18.944318	2020-02-22 02:55:18.944318
+33	1	S-204	An Act to amend the Criminal Code and the Immigration and Refugee Protection Act (trafficking in human organs)	This enactment amends the Criminal Code to create new offences in relation to trafficking in human organs. It also amends the Immigratiand Refugee Protection Act to provide that a permanent resident or foreign national is inadmissible to Canada if the Minister of Citizenship and Immigration is of the opinion that they have engaged in any activities relating to trafficking in human organs.	2019-12-10	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10604425	https://parl.ca/DocumentViewer/en/10604427	\N	2020-02-22 02:55:18.952507	2020-02-22 02:55:18.952507
+34	1	S-201	An Act to amend the Borrowing Authority Act	This enactment amends the Borrowing Authority Act to limit the circumstances in which the Governor in Council may authorize the borrowing of money without legislative approval.	2019-12-10	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10604365	https://parl.ca/DocumentViewer/en/10604382	\N	2020-02-22 02:55:18.961873	2020-02-22 02:55:18.961873
+35	1	C-1	An Act respecting the administration of oaths of office	\N	2019-12-05	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10600395	\N	\N	2020-02-22 02:55:18.970639	2020-02-22 02:55:18.970639
+36	1	S-1	An Act relating to railways	\N	2019-12-05	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10601138	\N	\N	2020-02-22 02:55:19.00097	2020-02-22 02:55:19.00097
+29	1	C-2	An Act for granting to Her Majesty certain sums of money for the federal public administration for the fiscal year ending March 31, 2020	This enactment grants the sum of $4,855,257,827 towards defraying charges and expenses of the federal public administration for the fiscal year ending March 31, 2020 that are not otherwise provided for.	\N	\N	https://www.parl.ca/LegisInfo/BillDetails.aspx?Language=E&billId=10604308	https://parl.ca/DocumentViewer/en/10608070	t	2020-02-22 02:55:18.917657	2020-02-22 02:55:19.510356
+\.
+
+
+--
+-- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.categories (id, name, uclassify_class, created_at, updated_at) FROM stdin;
+1	Agriculture, environment, fisheries and natural resources	agriculture_environment	2020-02-22 02:52:42.293775	2020-02-22 02:52:42.293775
+2	Arts, culture and entertainment	arts_culture	2020-02-22 02:52:42.301422	2020-02-22 02:52:42.301422
+3	Business, industry and trade	business_industry	2020-02-22 02:52:42.307648	2020-02-22 02:52:42.307648
+4	Economics and finance	economics_finance	2020-02-22 02:52:42.313738	2020-02-22 02:52:42.313738
+5	Education, language and training	education_language	2020-02-22 02:52:42.319664	2020-02-22 02:52:42.319664
+6	Employment and labour	employment_labour	2020-02-22 02:52:42.325525	2020-02-22 02:52:42.325525
+7	Government, Parliament and politics	government_politics	2020-02-22 02:52:42.331749	2020-02-22 02:52:42.331749
+8	Health and safety	health_safety	2020-02-22 02:52:42.338258	2020-02-22 02:52:42.338258
+9	Indigenous affairs	indigenous_affairs	2020-02-22 02:52:42.34507	2020-02-22 02:52:42.34507
+10	Information and communications	information_communications	2020-02-22 02:52:42.353572	2020-02-22 02:52:42.353572
+11	International affairs and defence	international_affairs	2020-02-22 02:52:42.360897	2020-02-22 02:52:42.360897
+12	Law, justice and rights	law_justice	2020-02-22 02:52:42.369893	2020-02-22 02:52:42.369893
+13	Science and technology	science_technology	2020-02-22 02:52:42.378317	2020-02-22 02:52:42.378317
+14	Social affairs and population	social_affairs	2020-02-22 02:52:42.387731	2020-02-22 02:52:42.387731
+\.
+
+
+--
+-- Data for Name: category_users; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.category_users (id, category_id, user_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: events; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.events (id, bill_id, code, title, publication_date, created_at, updated_at) FROM stdin;
+1	1	C-3	Debate at Second Reading in the House of Commons	2020-02-21	2020-02-22 02:55:19.017933	2020-02-22 02:55:19.017933
+2	2	C-4	Pre-Study of Commons Bill in the Senate	2020-02-21	2020-02-22 02:55:19.024425	2020-02-22 02:55:19.024425
+3	3	C-212	Introduction and First Reading in the House of Commons	2020-02-20	2020-02-22 02:55:19.030545	2020-02-22 02:55:19.030545
+4	4	C-211	Introduction and First Reading in the House of Commons	2020-02-20	2020-02-22 02:55:19.036286	2020-02-22 02:55:19.036286
+5	5	S-216	Introduction and First Reading in the Senate	2020-02-20	2020-02-22 02:55:19.042729	2020-02-22 02:55:19.042729
+6	6	S-214	Debate at Second Reading in the Senate	2020-02-20	2020-02-22 02:55:19.04873	2020-02-22 02:55:19.04873
+7	7	C-5	Second Reading and Referral to Committee in the House of Commons	2020-02-19	2020-02-22 02:55:19.055645	2020-02-22 02:55:19.055645
+8	8	C-210	Introduction and First Reading in the House of Commons	2020-02-19	2020-02-22 02:55:19.061671	2020-02-22 02:55:19.061671
+9	9	C-209	Introduction and First Reading in the House of Commons	2020-02-19	2020-02-22 02:55:19.067537	2020-02-22 02:55:19.067537
+10	10	C-208	Introduction and First Reading in the House of Commons	2020-02-19	2020-02-22 02:55:19.073223	2020-02-22 02:55:19.073223
+11	11	C-207	Introduction and First Reading in the House of Commons	2020-02-19	2020-02-22 02:55:19.079511	2020-02-22 02:55:19.079511
+12	7	C-5	Debate at Second Reading in the House of Commons	2020-02-19	2020-02-22 02:55:19.085814	2020-02-22 02:55:19.085814
+13	12	S-208	Debate at Second Reading in the Senate	2020-02-19	2020-02-22 02:55:19.092624	2020-02-22 02:55:19.092624
+14	13	C-206	Introduction and First Reading in the House of Commons	2020-02-18	2020-02-22 02:55:19.098601	2020-02-22 02:55:19.098601
+15	14	C-205	Introduction and First Reading in the House of Commons	2020-02-18	2020-02-22 02:55:19.104252	2020-02-22 02:55:19.104252
+16	15	C-6	Introduction and First Reading in the House of Commons	2020-02-18	2020-02-22 02:55:19.111005	2020-02-22 02:55:19.111005
+17	16	S-206	Debate at Second Reading in the Senate	2020-02-18	2020-02-22 02:55:19.116524	2020-02-22 02:55:19.116524
+18	17	S-211	Debate at Second Reading in the Senate	2020-02-18	2020-02-22 02:55:19.122425	2020-02-22 02:55:19.122425
+19	18	S-215	Introduction and First Reading in the Senate	2020-02-18	2020-02-22 02:55:19.128345	2020-02-22 02:55:19.128345
+20	6	S-214	Introduction and First Reading in the Senate	2020-02-18	2020-02-22 02:55:19.134445	2020-02-22 02:55:19.134445
+21	19	S-209	Debate at Second Reading in the Senate	2020-02-18	2020-02-22 02:55:19.140345	2020-02-22 02:55:19.140345
+22	12	S-208	Debate at Second Reading in the Senate	2020-02-18	2020-02-22 02:55:19.146504	2020-02-22 02:55:19.146504
+23	20	C-204	Introduction and First Reading in the House of Commons	2020-02-07	2020-02-22 02:55:19.151599	2020-02-22 02:55:19.151599
+24	1	C-3	Debate at Second Reading in the House of Commons	2020-02-07	2020-02-22 02:55:19.156875	2020-02-22 02:55:19.156875
+25	2	C-4	Second Reading and Referral to Committee in the House of Commons	2020-02-06	2020-02-22 02:55:19.162357	2020-02-22 02:55:19.162357
+26	1	C-3	Debate at Second Reading in the House of Commons	2020-02-06	2020-02-22 02:55:19.167853	2020-02-22 02:55:19.167853
+27	2	C-4	Debate at Second Reading in the House of Commons	2020-02-06	2020-02-22 02:55:19.172765	2020-02-22 02:55:19.172765
+28	21	C-203	Introduction and First Reading in the House of Commons	2020-02-06	2020-02-22 02:55:19.177952	2020-02-22 02:55:19.177952
+29	22	S-213	Introduction and First Reading in the Senate	2020-02-06	2020-02-22 02:55:19.183348	2020-02-22 02:55:19.183348
+30	23	S-207	Debate at Second Reading in the Senate	2020-02-06	2020-02-22 02:55:19.189792	2020-02-22 02:55:19.189792
+31	12	S-208	Debate at Second Reading in the Senate	2020-02-06	2020-02-22 02:55:19.196051	2020-02-22 02:55:19.196051
+32	24	S-210	Debate at Second Reading in the Senate	2020-02-06	2020-02-22 02:55:19.201618	2020-02-22 02:55:19.201618
+33	2	C-4	Debate at Second Reading in the House of Commons	2020-02-05	2020-02-22 02:55:19.206893	2020-02-22 02:55:19.206893
+34	17	S-211	Introduction and First Reading in the Senate	2020-02-05	2020-02-22 02:55:19.212656	2020-02-22 02:55:19.212656
+35	25	S-212	Introduction and First Reading in the Senate	2020-02-05	2020-02-22 02:55:19.218422	2020-02-22 02:55:19.218422
+36	26	S-1001	Introduction and First Reading in the Senate	2020-02-05	2020-02-22 02:55:19.223973	2020-02-22 02:55:19.223973
+37	27	C-202	Introduction and First Reading in the House of Commons	2020-02-04	2020-02-22 02:55:19.230006	2020-02-22 02:55:19.230006
+38	28	C-201	Introduction and First Reading in the House of Commons	2020-02-04	2020-02-22 02:55:19.235698	2020-02-22 02:55:19.235698
+39	7	C-5	Introduction and First Reading in the House of Commons	2020-02-04	2020-02-22 02:55:19.241659	2020-02-22 02:55:19.241659
+40	12	S-208	Introduction and First Reading in the Senate	2020-02-04	2020-02-22 02:55:19.247754	2020-02-22 02:55:19.247754
+41	24	S-210	Introduction and First Reading in the Senate	2020-02-04	2020-02-22 02:55:19.253757	2020-02-22 02:55:19.253757
+42	19	S-209	Introduction and First Reading in the Senate	2020-02-04	2020-02-22 02:55:19.260447	2020-02-22 02:55:19.260447
+43	2	C-4	Debate at Second Reading in the House of Commons	2020-02-03	2020-02-22 02:55:19.266802	2020-02-22 02:55:19.266802
+44	2	C-4	Debate at Second Reading in the House of Commons	2020-01-31	2020-02-22 02:55:19.273066	2020-02-22 02:55:19.273066
+45	2	C-4	Debate at Second Reading in the House of Commons	2020-01-30	2020-02-22 02:55:19.285422	2020-02-22 02:55:19.285422
+46	2	C-4	Introduction and First Reading in the House of Commons	2020-01-29	2020-02-22 02:55:19.291422	2020-02-22 02:55:19.291422
+47	1	C-3	Debate at Second Reading in the House of Commons	2020-01-29	2020-02-22 02:55:19.297173	2020-02-22 02:55:19.297173
+48	1	C-3	Introduction and First Reading in the House of Commons	2020-01-27	2020-02-22 02:55:19.302888	2020-02-22 02:55:19.302888
+49	29	C-2	Royal Assent in the Senate	2019-12-12	2020-02-22 02:55:19.308916	2020-02-22 02:55:19.308916
+50	30	S-202	Debate at Second Reading in the Senate	2019-12-12	2020-02-22 02:55:19.314892	2020-02-22 02:55:19.314892
+51	23	S-207	Introduction and First Reading in the Senate	2019-12-12	2020-02-22 02:55:19.319998	2020-02-22 02:55:19.319998
+52	31	S-203	Debate at Second Reading in the Senate	2019-12-12	2020-02-22 02:55:19.326141	2020-02-22 02:55:19.326141
+53	29	C-2	Third Reading in the Senate	2019-12-11	2020-02-22 02:55:19.33181	2020-02-22 02:55:19.33181
+54	29	C-2	Debate at 3rd Reading in the Senate	2019-12-11	2020-02-22 02:55:19.337065	2020-02-22 02:55:19.337065
+55	29	C-2	Second Reading in the Senate	2019-12-11	2020-02-22 02:55:19.343425	2020-02-22 02:55:19.343425
+56	29	C-2	Debate at Second Reading in the Senate	2019-12-11	2020-02-22 02:55:19.349205	2020-02-22 02:55:19.349205
+57	16	S-206	Introduction and First Reading in the Senate	2019-12-11	2020-02-22 02:55:19.355831	2020-02-22 02:55:19.355831
+58	32	S-205	Introduction and First Reading in the Senate	2019-12-11	2020-02-22 02:55:19.362691	2020-02-22 02:55:19.362691
+59	29	C-2	First Reading in the Senate	2019-12-11	2020-02-22 02:55:19.369092	2020-02-22 02:55:19.369092
+60	29	C-2	Third Reading in the House of Commons	2019-12-10	2020-02-22 02:55:19.37491	2020-02-22 02:55:19.37491
+61	29	C-2	Debate at 3rd Reading in the House of Commons	2019-12-10	2020-02-22 02:55:19.381074	2020-02-22 02:55:19.381074
+62	29	C-2	Concurrence at Report Stage in the House of Commons	2019-12-10	2020-02-22 02:55:19.386993	2020-02-22 02:55:19.386993
+63	29	C-2	Debate at Report Stage in the House of Commons	2019-12-10	2020-02-22 02:55:19.394044	2020-02-22 02:55:19.394044
+64	29	C-2	Committee Reporting the Bill without Amendment in the House of Commons	2019-12-10	2020-02-22 02:55:19.400519	2020-02-22 02:55:19.400519
+65	29	C-2	Second Reading and Referral to Committee in the House of Commons	2019-12-10	2020-02-22 02:55:19.407644	2020-02-22 02:55:19.407644
+66	29	C-2	Debate at Second Reading in the House of Commons	2019-12-10	2020-02-22 02:55:19.41423	2020-02-22 02:55:19.41423
+67	29	C-2	First Reading in the House of Commons	2019-12-10	2020-02-22 02:55:19.421101	2020-02-22 02:55:19.421101
+68	33	S-204	Introduction and First Reading in the Senate	2019-12-10	2020-02-22 02:55:19.427392	2020-02-22 02:55:19.427392
+69	34	S-201	Introduction and First Reading in the Senate	2019-12-10	2020-02-22 02:55:19.433635	2020-02-22 02:55:19.433635
+70	30	S-202	Introduction and First Reading in the Senate	2019-12-10	2020-02-22 02:55:19.439624	2020-02-22 02:55:19.439624
+71	31	S-203	Introduction and First Reading in the Senate	2019-12-10	2020-02-22 02:55:19.446217	2020-02-22 02:55:19.446217
+72	35	C-1	Introduction and First Reading in the House of Commons	2019-12-05	2020-02-22 02:55:19.451802	2020-02-22 02:55:19.451802
+73	36	S-1	Introduction and First Reading in the Senate	2019-12-05	2020-02-22 02:55:19.457246	2020-02-22 02:55:19.457246
+\.
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.schema_migrations (version) FROM stdin;
+20200220183928
+20200214204511
+20200214234405
+20200214234638
+20200214234737
+20200214235816
+20200220183543
+20200220183659
+\.
+
+
+--
+-- Data for Name: sessions; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.sessions (id, number, start_date, end_date, created_at, updated_at) FROM stdin;
+1	1	2019-12-05	\N	2020-02-22 02:52:42.270807	2020-02-22 02:52:42.270807
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: -
+--
+
+COPY public.users (id, name, username, password_digest, email, phone_number, postal_code, email_notification, sms_notification, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: bill_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.bill_categories_id_seq', 99, true);
+
+
+--
+-- Name: bill_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.bill_users_id_seq', 1, false);
+
+
+--
+-- Name: bills_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.bills_id_seq', 36, true);
+
+
+--
+-- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.categories_id_seq', 1, false);
+
+
+--
+-- Name: category_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.category_users_id_seq', 1, false);
+
+
+--
+-- Name: events_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.events_id_seq', 73, true);
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.sessions_id_seq', 1, true);
+
+
+--
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 1, false);
+
+
+--
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: bill_categories bill_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bill_categories
+    ADD CONSTRAINT bill_categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: bill_users bill_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bill_users
+    ADD CONSTRAINT bill_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: bills bills_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bills
+    ADD CONSTRAINT bills_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: categories categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: category_users category_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.category_users
+    ADD CONSTRAINT category_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: events events_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.events
+    ADD CONSTRAINT events_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_bill_categories_on_bill_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_bill_categories_on_bill_id ON public.bill_categories USING btree (bill_id);
+
+
+--
+-- Name: index_bill_categories_on_category_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_bill_categories_on_category_id ON public.bill_categories USING btree (category_id);
+
+
+--
+-- Name: index_bill_users_on_bill_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_bill_users_on_bill_id ON public.bill_users USING btree (bill_id);
+
+
+--
+-- Name: index_bill_users_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_bill_users_on_user_id ON public.bill_users USING btree (user_id);
+
+
+--
+-- Name: index_bills_on_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_bills_on_session_id ON public.bills USING btree (session_id);
+
+
+--
+-- Name: index_category_users_on_category_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_category_users_on_category_id ON public.category_users USING btree (category_id);
+
+
+--
+-- Name: index_category_users_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_category_users_on_user_id ON public.category_users USING btree (user_id);
+
+
+--
+-- Name: index_events_on_bill_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_events_on_bill_id ON public.events USING btree (bill_id);
+
+
+--
+-- Name: bill_categories fk_rails_24f4453d74; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bill_categories
+    ADD CONSTRAINT fk_rails_24f4453d74 FOREIGN KEY (category_id) REFERENCES public.categories(id);
+
+
+--
+-- Name: category_users fk_rails_7a83022a53; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.category_users
+    ADD CONSTRAINT fk_rails_7a83022a53 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- Name: bill_users fk_rails_7e2824c500; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bill_users
+    ADD CONSTRAINT fk_rails_7e2824c500 FOREIGN KEY (bill_id) REFERENCES public.bills(id);
+
+
+--
+-- Name: category_users fk_rails_7ff4e8abc3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.category_users
+    ADD CONSTRAINT fk_rails_7ff4e8abc3 FOREIGN KEY (category_id) REFERENCES public.categories(id);
+
+
+--
+-- Name: bill_categories fk_rails_82bf41c426; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bill_categories
+    ADD CONSTRAINT fk_rails_82bf41c426 FOREIGN KEY (bill_id) REFERENCES public.bills(id);
+
+
+--
+-- Name: events fk_rails_8b9a75b260; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.events
+    ADD CONSTRAINT fk_rails_8b9a75b260 FOREIGN KEY (bill_id) REFERENCES public.bills(id);
+
+
+--
+-- Name: bills fk_rails_a02d82e6a6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bills
+    ADD CONSTRAINT fk_rails_a02d82e6a6 FOREIGN KEY (session_id) REFERENCES public.sessions(id);
+
+
+--
+-- Name: bill_users fk_rails_dd5f4bae79; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.bill_users
+    ADD CONSTRAINT fk_rails_dd5f4bae79 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

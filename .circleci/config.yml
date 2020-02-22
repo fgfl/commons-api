@@ -1,5 +1,8 @@
 ---
-version: 2
+version: 2.1
+orbs:
+  heroku: circleci/heroku@1.0.1
+
 jobs:
   build:
     working_directory: ~/commons-api
@@ -8,7 +11,7 @@ jobs:
         environment:
           PGHOST: otto.db.elephantsql.com
           PGUSER: commons_dev
-          RAILS_ENV: test
+          RAILS_ENV: development
       - image: postgres:9.5
         environment:
           POSTGRES_USER: <%= Rails.application.secrets[:database][:psql_username] %>
