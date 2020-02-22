@@ -23,7 +23,7 @@ jobs:
         key: commons-api{{ checksum "Gemfile.lock" }}
 
       # Bundle install dependencies
-      - run: bundle _2.0.1_ install --full-index
+      - run: bundle _2.1.4_ install --full-index
 
       # Cache Dependencies
       - type: cache-save
