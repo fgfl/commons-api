@@ -18,16 +18,16 @@ module CommonsApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    #Rack-CORS Setup
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins "http://localhost:3000"
-        resource "*",
-          headers: :any,
-          methods: [:get, :post, :put, :patch, :delete, :options, :head],
-          credentials: true
-      end
-    end
+    # #Rack-CORS Setup
+    # config.middleware.insert_before 0, Rack::Cors do
+    #   allow do
+    #     origins "http://localhost:3000"
+    #     resource "*",
+    #       headers: :any,
+    #       methods: [:get, :post, :put, :patch, :delete, :options, :head],
+    #       credentials: true
+    #   end
+    # end
 
     # Set Time Zone to Local Time: Pacific Time (PT)
     config.time_zone = "Eastern Time (US & Canada)"
