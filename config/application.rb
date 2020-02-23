@@ -18,7 +18,9 @@ module CommonsApi
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins 'http://localhost:3000'
-        resource '*', headers: :any, methods: %i[get post options]
+        resource '*', headers: :any, methods: :any
+        # DEV NOTE: previous methods settings below, had to change for profile update page. revise on production
+        # %i[get post options]
       end
     end
 

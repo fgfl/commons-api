@@ -50,6 +50,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by_id(params[:id])
+    puts 'TESTING THE ROUTE'
 
     if params[:user][:password].blank?
       params[:user].delete(:password)

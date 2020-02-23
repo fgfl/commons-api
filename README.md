@@ -69,6 +69,13 @@ rake db:update_database
 # if you see Rescue exceptions in the console it means it's working as it should
 ```
 
+# Heroku Hosting
+
+The API server is hosted on Heroku at https://commons-app-api.herokuapp.com/
+
+It uses the following add-ons:
+0
+
 ### rspec Testing Setup
 
 To setup rspec testing environment, run

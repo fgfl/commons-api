@@ -8,7 +8,7 @@ class FormatUclassifyData
   # DEV NOTE: 'threshold' may need to be tweaked
 
   def call
-    threshold = 0.8
+    threshold = 0.6
     total_probability = 0
     categories = []
     
