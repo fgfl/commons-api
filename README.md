@@ -1,3 +1,5 @@
+# See new repo for up to date code: https://github.com/Commoddity/commons-api
+
 # README
 
 This README would normally document whatever steps are necessary to get the
