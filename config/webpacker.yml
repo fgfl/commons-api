@@ -72,11 +72,6 @@ development:
     pretty: false
     watch_options:
       ignored: '**/node_modules/**'
-    headers:
-      Access-Control-Allow-Credentials: true
-      Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
-      Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
-      Access-Control-Allow-Origin: http://localhost:3000
 
 test:
   <<: *default

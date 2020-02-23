@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  match "*path", via: [:options], to: lambda { |_| [204, { "Content-Type" => "text/plain" }] }
+  # match "*path", via: [:options], to: lambda { |_| [204, { "Content-Type" => "text/plain" }] }
   # Login related routes
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

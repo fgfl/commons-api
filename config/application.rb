@@ -1,6 +1,8 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -13,22 +15,15 @@ module CommonsApi
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
-    # Only loads a smaller set of middleware suitable for API only apps.
-    # Middleware like session, flash, cookies can be added back manually.
-    # Skip views, helpers and assets when generating a new resource.
-    # config.api_only = true
-
-    #Rack-CORS Setup
-    # see gem page for more examples
-    # config.middleware.insert_before 0, Rack::Cors do
-    #   allow do
-    #     origins /\Ahttp:\/\/localhost:\d+\z/
-    #     resource "*", headers: :any, methods: :any
-    #   end
-    # end
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'http://localhost:3000'
+        resource '*', headers: :any, methods: %i[get post options]
+      end
+    end
 
     # Set Time Zone to Local Time: Pacific Time (PT)
-    config.time_zone = "Eastern Time (US & Canada)"
+    config.time_zone = 'Eastern Time (US & Canada)'
     config.active_record.default_timezone = :local
 
     # Settings in config/environments/* take precedence over those specified here.
