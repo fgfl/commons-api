@@ -1,19 +1,20 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
   def create
-    @user = User.find_by(email: session_params[:email])
+    user = User.find_by(email: session_params[:email])
 
-    if @user && @user.authenticate(session_params[:password])
-      login!
-      puts "Session User ID: #{session[:user_id]}"
-      puts "Session User: #{@user.email}"
+    if user
+      user_with_bills = LoginUser.call(user: user, password: session_params[:password])
+      session[:user_id] = user.id
       render json: {
-        logged_in: true,
-        user: @user,
+        status: :created,
+        user: user_with_bills.user
       }
     else
       render json: {
         status: 401,
-        errors: ["Invalid username or password."],
+        errors: ['Invalid username or password.']
       }
     end
   end
@@ -22,12 +23,12 @@ class SessionsController < ApplicationController
     if logged_in? && current_user
       render json: {
         logged_in: true,
-        user: current_user,
+        user: current_user
       }
     else
       render json: {
         logged_in: false,
-        message: "no such user",
+        message: 'no such user'
       }
     end
   end
@@ -40,7 +41,7 @@ class SessionsController < ApplicationController
     puts current_user.inspect
     render json: {
       status: 200,
-      logged_out: true,
+      logged_out: true
     }
   end
 
