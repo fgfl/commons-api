@@ -6,3 +6,4 @@ bill = JSON.parse('[{"xml:base":"https://hillnotes.ca/2020/02/13/5g-technology-o
 p text = GetBillTextFromSummaryHelper::get_publication_text(bill[1])
 
 binding.pry
+

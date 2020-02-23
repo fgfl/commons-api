@@ -1,27 +1,22 @@
 class FetchUclassifyData
   include Interactor
 
-  require "faraday"
-  require "faraday_middleware"
+  require_relative "../uclassify/uclassify.rb"
 
-  def call(text, username, classifierName)
-    base_url = "https://api.uclassify.com/v1/"
+  # Called as part of the SaveCategoriesFromUclassify organizer chain
+  # Makes call to uClassify API to get category probabilities back
 
-    uri = "#{base_url}#{username}/#{classifierName}/classify"
+  def call
+    full_text = context.full_text
 
-    body = {
-      texts: text,
-    }
+    full_text = [full_text.join(" ")]
+    username = Rails.application.secrets.username
+    classifier_name = Rails.application.secrets.classifier_name
+    token = Rails.application.secrets.api_read_key
 
-    faraday = Faraday.new(url: uri) do |conn|
-      conn.request :json
-      conn.response :json, :content_type => /\bjson$/
-      conn.adapter :net_http
-    end
-    res = faraday.post do |req|
-      req.headers["Content-Type"] = "application/json"
-      req.headers["Authorization"] = "Token #{Rails.application.secrets.api_read_key}"
-      req.body = body
-    end
+    # Calls uClassify method from uClassify folder to get probabilities back
+    # DEV NOTE: If uClassify calls are used up, switch 'api_read_key' in secrets.yml file
+    response = Uclassify.classify(full_text, username, classifier_name, token)
+    context.response = response.body
   end
 end

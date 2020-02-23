@@ -6,10 +6,10 @@ require "faraday_middleware"
 module Uclassify
   # Sends read call to uClassify
   # inputs: text {[string]} - array of text to classify
-  def self.classify(text, username, classifierName)
+  def self.classify(text, username, classifierName, token)
     base_url = "https://api.uclassify.com/v1/"
     # username = "Frederick"
-    # classifierName = "LHL_midterm_classifier"
+    # classifierName = "Commons_api"
 
     uri = "#{base_url}#{username}/#{classifierName}/classify"
 
@@ -25,7 +25,7 @@ module Uclassify
     end
     res = faraday.post do |req|
       req.headers["Content-Type"] = "application/json"
-      req.headers["Authorization"] = "Token #{ENV["UCLASSIFY_API_READ_KEY"]}"
+      req.headers["Authorization"] = "Token #{token}"
       req.body = body
       # req.body = "{\"texts\": [\"hello\"]}"
     end

@@ -27,7 +27,6 @@ module GetBillTextFromSummaryHelper
       f.adapter :net_http
     end
     res = faraday.get
-    # File.write(__dir__ + "/lop_site.html", res.body)
     doc = Nokogiri::HTML(res.body)
 
     begin
@@ -44,7 +43,6 @@ module GetBillTextFromSummaryHelper
       f.adapter :net_http
     end
     res = faraday.get
-    # File.write(__dir__ + "/legisInfo.html", res.body)
     doc = Nokogiri::HTML(res.body)
     begin
       publication_link = doc.at_css("a:contains('Latest Publication')")["href"]
@@ -64,7 +62,6 @@ module GetBillTextFromSummaryHelper
       f.adapter :net_http
     end
     res = faraday.get
-    # File.write(__dir__ + "/bill_publication.html", res.body)
     doc = Nokogiri::HTML(res.body)
     begin
       bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")["href"]
@@ -81,13 +78,12 @@ module GetBillTextFromSummaryHelper
       f.adapter :net_http
     end
     res = faraday.get
-    # File.write(__dir__ + "/bill_publication.xml", res.body)
     doc = Nokogiri::XML(res.body)
-    # doc = File.open(__dir__ + "/bill_publication.xml") { |f| Nokogiri::XML(f) }
 
     all_text = doc.search("//text()").map(&:text)
     [all_text.join(" ")]
     # File.write(__dir__ + "/bill_xml_parsed.txt", all_text.join("\n"))
+
   end
 
   # Gets the text on the research publication page given the bill object parsed from the RSS feed
