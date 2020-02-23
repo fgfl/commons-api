@@ -3,13 +3,13 @@ class UsersController < ApplicationController
     @users = User.all
     if @users
       render json: {
-                users: @users,
-              }
+              users: @users,
+            }
     else
       render json: {
-                status: 500,
-                errors: ["no users found"],
-              }
+              status: 500,
+              errors: ["no users found"],
+            }x
     end
   end
 
@@ -28,16 +28,15 @@ class UsersController < ApplicationController
   end
 
   def create
-    # raise user_params.inspect
     result = SaveUserAndCategories.call(user_params)
     @user = result.user
 
-    if result.success?
+    if @user
       login!
       render json: {
-                status: :created,
-                user: @user,
-              }
+              status: :created,
+              user: @user,
+            }
     else
       render json: {
         status: 500,
