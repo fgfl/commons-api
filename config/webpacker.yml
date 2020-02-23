@@ -70,9 +70,6 @@ development:
     use_local_ip: false
     quiet: false
     pretty: false
-    headers:
-      'Access-Control-Allow-Origin': 'https://localhost:3000'
-      'Access-Control-Allow-Credentials': 'true'
     watch_options:
       ignored: '**/node_modules/**'
 
