@@ -12,6 +12,8 @@ gem 'dotenv-rails', :require => 'dotenv/rails-now'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
+# Use Rack-Cors for CORS handling
+gem 'rack-cors'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker

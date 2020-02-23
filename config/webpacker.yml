@@ -71,10 +71,10 @@ development:
     quiet: false
     pretty: false
     headers:
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': 'https://localhost:3000'
+      'Access-Control-Allow-Credentials': 'true'
     watch_options:
       ignored: '**/node_modules/**'
-
 
 test:
   <<: *default

@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
 
     if @user && @user.authenticate(session_params[:password])
       login!
-      # Remove after development
       puts "Session User ID: #{session[:user_id]}"
       puts "Session User: #{@user.email}"
       render json: {
