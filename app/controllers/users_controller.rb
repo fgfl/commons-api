@@ -31,13 +31,14 @@ class UsersController < ApplicationController
 
   def create
     result = SaveUserAndCategories.call(user_params)
-    @user = result.user
+    user = result.user
 
-    if @user
-      login!
+    if user
+      user_with_bills = LoginUser.call(user: user, password: user_params[:password])
+      session[:user_id] = user.id
       render json: {
         status: :created,
-        user: @user
+        user: user_with_bills.user
       }
     else
       render json: {

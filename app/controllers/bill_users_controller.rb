@@ -1,12 +1,12 @@
 class BillUsersController < ApplicationController
 
+  def show
+    
+  end
+
   def create
     SaveBillUser.call(bill_user_params)
   end
-
-  # def update
-  #   DestroyBillUser.call(bill_user_params)
-  # end
 
   private
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::API
   helper_method :login!, :logged_in?, :current_user, :authorized_user?, :logout!
 
