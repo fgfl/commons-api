@@ -16,16 +16,16 @@ module CommonsApi
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
-    config.api_only = true
+    # config.api_only = true
 
     #Rack-CORS Setup
     # see gem page for more examples
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins /\Ahttp:\/\/localhost:\d+\z/
-        resource "*", headers: :any, methods: :any
-      end
-    end
+    # config.middleware.insert_before 0, Rack::Cors do
+    #   allow do
+    #     origins /\Ahttp:\/\/localhost:\d+\z/
+    #     resource "*", headers: :any, methods: :any
+    #   end
+    # end
 
     # Set Time Zone to Local Time: Pacific Time (PT)
     config.time_zone = "Eastern Time (US & Canada)"
