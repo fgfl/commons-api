@@ -70,13 +70,14 @@ development:
     use_local_ip: false
     quiet: false
     pretty: false
-    headers: 
+    headers:
       'Access-Control-Request-Method' => '*',
       'Access-Control-Allow-Origin' => '*',
       'Access-Control-Allow-Methods' => 'POST, PUT, DELETE, GET, OPTIONS',
       'Access-Control-Allow-Headers' => 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     watch_options:
       ignored: '**/node_modules/**'
+
 
 test:
   <<: *default
