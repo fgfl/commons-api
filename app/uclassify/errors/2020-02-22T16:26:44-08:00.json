@@ -1,0 +1,82 @@
+[
+  {
+    "exception": "Nil category",
+    "bill": {
+      "xml:base": "https://hillnotes.ca/2017/10/11/girls-and-women-in-science-technology-engineering-and-mathematics/",
+      "author": { "name": null },
+      "category": null,
+      "title": "Girls and Women in Science, Technology, Engineering and Mathematics",
+      "description": "https://hillnotes.ca/2017/10/11/girls-and-women-in-science-technology-engineering-and-mathematics/",
+      "pubDate": "Wed, 11 Oct 2017 00:00:00 -0400"
+    }
+  },
+  {
+    "exception": "Nil category",
+    "bill": {
+      "xml:base": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/TradeAndInvestment/201660E",
+      "author": { "name": "Dylan Gowans" },
+      "category": null,
+      "title": "Canadian Trade and Investment Activity: Canada–Colombia",
+      "description": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/TradeAndInvestment/201660E",
+      "pubDate": "Fri, 29 Jul 2016 00:00:00 -0400"
+    }
+  },
+  {
+    "exception": "Nil category",
+    "bill": {
+      "xml:base": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/TradeAndInvestment/201579E",
+      "author": { "name": "Pascal Tremblay" },
+      "category": null,
+      "title": "Canadian Trade and Investment Activity: Canada–Brazil",
+      "description": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/TradeAndInvestment/201579E",
+      "pubDate": "Mon, 16 Nov 2015 00:00:00 -0500"
+    }
+  },
+  {
+    "exception": "Nil category",
+    "bill": {
+      "xml:base": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/2014101E",
+      "author": [
+        { "name": "Alexandre Lavoie" },
+        { "name": "Khamla Heminthavong" }
+      ],
+      "category": null,
+      "title": "Farmland Grabbing in Canada",
+      "description": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/2014101E",
+      "pubDate": "Mon, 01 Jun 2015 00:00:00 -0400"
+    }
+  },
+  {
+    "exception": "Nil category",
+    "bill": {
+      "xml:base": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/201484E",
+      "author": { "name": "André Léonard" },
+      "category": null,
+      "title": "Productivity in Canada: Concepts and Issues",
+      "description": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/201484E",
+      "pubDate": "Tue, 16 Sep 2014 00:00:00 -0400"
+    }
+  },
+  {
+    "exception": "Nil category",
+    "bill": {
+      "xml:base": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/TradeAndInvestment/201452E",
+      "author": { "name": "Michaël Lambert-Racine" },
+      "category": null,
+      "title": "Canadian Trade and Investment Activity: Canada–Japan",
+      "description": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/TradeAndInvestment/201452E",
+      "pubDate": "Mon, 16 Jun 2014 00:00:00 -0400"
+    }
+  },
+  {
+    "exception": "Nil category",
+    "bill": {
+      "xml:base": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/TradeAndInvestment/201358E",
+      "author": { "name": "Michaël Lambert-Racine" },
+      "category": null,
+      "title": "Canadian Trade and Investment Activity: Canada–India",
+      "description": "https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/TradeAndInvestment/201358E",
+      "pubDate": "Tue, 11 Jun 2013 00:00:00 -0400"
+    }
+  }
+]
