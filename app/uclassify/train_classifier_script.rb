@@ -16,6 +16,10 @@ def train(type)
   error_file = __dir__ + "/errors/#{DateTime.now}.json"
   errors = []
   continue_file = __dir__ + "/training_data/continue_training_data.json"
+  files = {
+    "publications": __dir__ + "/training_data/research_publications.json",
+    "legis_info": __dir__ + "/training_data/legislative_summary_bills.json",
+  }
 
   if (File.exists?(continue_file))
     input_file = continue_file
@@ -27,9 +31,6 @@ def train(type)
 
   result = catch(:uClassify_error) {
     while bills.size > 0
-
-      # just run 4 bills to test
-      # (0..3).each do |n|
       bill = bills.shift
 
       pp bill["title"]
@@ -67,6 +68,10 @@ def train(type)
         cat = bill["category"].shift
         pp "-- #{cat}"
 
+        unless CategoryMapperHelper::map(cat)
+          next
+        end
+
         begin
           res = Uclassify::train(text, CLASSIFIER_NAME, CategoryMapperHelper::map(cat))
           # res = Struct::Response.new(200)
@@ -75,7 +80,7 @@ def train(type)
           end
         rescue Net::ReadTimeout, Faraday::TimeoutError, StandardError => exception
           puts "error: #{exception.full_message()}"
-          puts "response = #{res}"
+          puts "response = #{res.inspect}"
 
           bill["category"].unshift(cat)
           bills.unshift(bill)
@@ -84,16 +89,15 @@ def train(type)
           result = { exception: exception, response: res, bill: bill }
           errors.push(result)
 
-          throw :uClassify_error, result
+          throw :uClassify_error, erorrs
         end
       end
     end
   }
 
   unless errors.empty?
-    File.open(error_file, "w") { |f|
-      f.write(errors.to_json)
-    }
+    pp errors
+    File.write(error_file, errors.to_json)
   end
 
   puts "Done. #{result}"

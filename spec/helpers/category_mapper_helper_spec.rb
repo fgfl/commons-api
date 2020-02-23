@@ -67,4 +67,8 @@ RSpec.describe CategoryMapperHelper, type: :helper do
     cat_name = "Social affairs and population"
     expect(CategoryMapperHelper::map(cat_name)).to eq("social_affairs")
   end
+  it "should return nil for invalid category" do
+    cat_name = "Places"
+    expect(CategoryMapperHelper::map(cat_name)).to eq(nil)
+  end
 end

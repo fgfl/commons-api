@@ -152,11 +152,6 @@ module GetBillTextFromSummaryHelper
   def self.parse_lop_parl_site(html_string)
     doc = Nokogiri::HTML(html_string)
     begin
-      # article_elm = doc.at_css("#content.site-content > article")
-    rescue NoMethodError => exception
-      puts exception.full_message()
-      return []
-    else
       text = doc.search("//text()")
         .select { |t| !t.cdata? }
         .map(&:text)
@@ -165,6 +160,9 @@ module GetBillTextFromSummaryHelper
         .join(" ")
 
       [text]
+    rescue NoMethodError => exception
+      puts exception.full_message()
+      return []
     end
   end
 end
