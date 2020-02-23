@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 # Cross Origin Resource Sharing
-gem 'rack-cors'
+gem 'rack-cors', :require => 'rack/cors'
 
 # use to convert xml to json for feeding to uClassify
 gem 'json'
