@@ -18,11 +18,8 @@ module CommonsApi
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins 'http://localhost:3000'
-        resource '*',
-        headers: :any,
-        methods: [:get, :post, :delete, :put, :patch, :options, :head],
-        max_age: 0,
-        expose: :location
+        resource '*', headers: :any, methods: :any
+      end
     end
 
     # Set Time Zone to Local Time: Pacific Time (PT)
