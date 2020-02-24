@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FetchXml
   include Interactor
   # Called by write_to_db organizer
@@ -13,7 +15,7 @@ class FetchXml
     if url_exists && valid_xml
       context.data = xml_feed
     else
-      context.fail!(message: "Fetch XML failed.")
+      context.fail!(message: 'Fetch XML failed.')
     end
   end
 end

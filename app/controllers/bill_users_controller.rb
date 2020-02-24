@@ -1,8 +1,7 @@
-class BillUsersController < ApplicationController
+# frozen_string_literal: true
 
-  def show
-    
-  end
+class BillUsersController < ApplicationController
+  def show; end
 
   def create
     SaveBillUser.call(bill_user_params)

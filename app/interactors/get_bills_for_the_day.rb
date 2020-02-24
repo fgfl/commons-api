@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GetBillsForTheDay
   include Interactor
   # Called as part of the SaveCategoriesFromUclassify organizer chain

@@ -18,7 +18,7 @@ module CommonsApi
     config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
       allow do
         origins 'http://localhost:3000'
-        resource '*', headers: :any, methods: :any
+        resource '*',
         headers: :any,
         methods: [:get, :post, :delete, :put, :patch, :options, :head],
         max_age: 0,

@@ -1,9 +1,9 @@
-class TestDbController < ApplicationController
+# frozen_string_literal: true
 
+class TestDbController < ApplicationController
   def create
     url = Rails.application.secrets.LEGISINFO_URL
-    WriteToDb.call({url: url})
-    head :ok, content_type: "text/html"
+    WriteToDb.call({ url: url })
+    head :ok, content_type: 'text/html'
   end
-
 end

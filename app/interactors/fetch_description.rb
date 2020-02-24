@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FetchDescription
   include Interactor
   # Called by insert_columns organizer
@@ -7,7 +9,7 @@ class FetchDescription
   def call
     bills = context.bills
     bills.each do |bill|
-      full_text_url = bill["full_text_url"]
+      full_text_url = bill['full_text_url']
       if full_text_url
         begin
           full_text = Nokogiri::HTML(URI.open(full_text_url))
@@ -18,7 +20,7 @@ class FetchDescription
           description = summary_div.text.squish!
         end
       end
-      bill["description"] = description
+      bill['description'] = description
     end
     context.bills = bills
   end

@@ -21,7 +21,7 @@ Session.destroy_all
 
 Session.create!(
   number: 1,
-  start_date: Date.new(2019, 12, 05),
+  start_date: Date.new(2019, 12, 0o5),
   end_date: nil
 )
 
@@ -72,9 +72,8 @@ Category.create!(
 )
 
 Category.create!(id: 8,
-  name: 'Health and safety',
-  uclassify_class: 'health_safety'
-)
+                 name: 'Health and safety',
+                 uclassify_class: 'health_safety')
 
 Category.create!(
   id: 9,

@@ -1,10 +1,11 @@
-require "faraday"
-require "faraday_middleware"
-require "uri"
-require "nokogiri"
+# frozen_string_literal: true
+
+require 'faraday'
+require 'faraday_middleware'
+require 'uri'
+require 'nokogiri'
 
 module GetBillTextFromSummaryHelper
-
   # Gets the text of a bill given the bill object parsed from the RSS feed
   # {{}}: bill hash
   # Example:
@@ -22,7 +23,7 @@ module GetBillTextFromSummaryHelper
   #   "pubDate": "Wed, 10 Jul 2019 00:00:00 -0400"
   # },
   def self.get_text(bill)
-    faraday = Faraday.new(url: bill["description"]) do |f|
+    faraday = Faraday.new(url: bill['description']) do |f|
       f.use FaradayMiddleware::FollowRedirects
       f.adapter :net_http
     end
@@ -30,10 +31,10 @@ module GetBillTextFromSummaryHelper
     doc = Nokogiri::HTML(res.body)
 
     begin
-      legisInfo_link = doc.at_css("a:contains('Status of the bill')")["href"]
-    rescue NoMethodError => exception
-      puts exception.full_message()
-      puts "Failed on page #{bill["description"]}"
+      legisInfo_link = doc.at_css("a:contains('Status of the bill')")['href']
+    rescue NoMethodError => e
+      puts e.full_message
+      puts "Failed on page #{bill['description']}"
       return []
     end
 
@@ -45,9 +46,9 @@ module GetBillTextFromSummaryHelper
     res = faraday.get
     doc = Nokogiri::HTML(res.body)
     begin
-      publication_link = doc.at_css("a:contains('Latest Publication')")["href"]
-    rescue NoMethodError => exception
-      puts exception.full_message()
+      publication_link = doc.at_css("a:contains('Latest Publication')")['href']
+    rescue NoMethodError => e
+      puts e.full_message
       puts "Failed on page #{legisInfo_link}"
       return []
     end
@@ -64,9 +65,9 @@ module GetBillTextFromSummaryHelper
     res = faraday.get
     doc = Nokogiri::HTML(res.body)
     begin
-      bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")["href"]
-    rescue NoMethodError => exception
-      puts exception.full_message()
+      bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")['href']
+    rescue NoMethodError => e
+      puts e.full_message
       puts "Failed on page #{absolute_publication_link}"
       return []
     end
@@ -80,6 +81,6 @@ module GetBillTextFromSummaryHelper
     res = faraday.get
     doc = Nokogiri::XML(res.body)
 
-    all_text = doc.search("//text()").map(&:text)
+    all_text = doc.search('//text()').map(&:text)
   end
 end

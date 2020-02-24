@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FormatDate
   include Interactor
   # Called by write_to_db organizer
@@ -6,7 +8,7 @@ class FormatDate
   def call
     items = context.data
     items.each do |item|
-      item["pubDate"].slice! " 00:00:00 EST"
+      item['pubDate'].slice! ' 00:00:00 EST'
     end
 
     context.data = items

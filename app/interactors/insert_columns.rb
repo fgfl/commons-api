@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InsertColumns
   include Interactor::Organizer
   # Called by write_to_db organizer

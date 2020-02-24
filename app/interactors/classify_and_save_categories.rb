@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ClassifyAndSaveCategories
   include Interactor::Organizer
   # PART TWO OF SAVING CATEGORIES

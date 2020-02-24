@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SaveUserAndCategories
   include Interactor::Organizer
   # Called by Users controller

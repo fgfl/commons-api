@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Category < ApplicationRecord
-
   has_many :bill_categories
   has_many :category_users
 

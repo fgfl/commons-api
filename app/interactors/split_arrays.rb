@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SplitArrays
   include Interactor
   # Called by write_to_db organizer

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateBillsPassed
   include Interactor
   # Called by save_events
@@ -7,15 +9,15 @@ class UpdateBillsPassed
     events = context.events
 
     events.each do |event|
-      bill = Bill.find_by code: event["code"]
-      if event["title"].include? "Royal Assent"
+      bill = Bill.find_by code: event['code']
+      if event['title'].include? 'Royal Assent'
         bill.update("passed": true)
-        p "#{bill["code"]} #{bill["title"]} Passed on #{event["publication_date"]}"
-      elsif event["title"].include? "Defeated"
+        p "#{bill['code']} #{bill['title']} Passed on #{event['publication_date']}"
+      elsif event['title'].include? 'Defeated'
         bill.update("passed": false)
-        p "#{bill["code"]} #{bill["title"]} Defeated on #{event["publication_date"]}"
+        p "#{bill['code']} #{bill['title']} Defeated on #{event['publication_date']}"
       end
     end
-    p "Finished updating bills ..."
+    p 'Finished updating bills ...'
   end
 end
