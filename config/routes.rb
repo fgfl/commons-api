@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "/logged_in", to: "sessions#is_logged_in?"
 
   # Bill related routes
-  resources :bills, only: [:index]
+  resources :bills, only: %i[index show]
   # Get events for a bill
   resources :events, only: [:show]
 
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post "/email_exists", to: "users#email_exists"
 
   # User Watchlists
-  resources :bill_users, only: %i[create index]
+  resources :bill_users, only: %i[create show]
   # User Categories
   resources :category_users, only: %i[create update]
 end

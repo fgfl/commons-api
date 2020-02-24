@@ -17,4 +17,25 @@ class BillsController < ApplicationController
       }
     end
   end
+
+  def show
+    @user_bills = User.find_by_id(bill_params.to_i).bills.all.pluck(:id)
+
+    if @user_bills
+      render json: {
+        user_bills: @user_bills
+      }
+    else
+      render json: {
+        status: 500,
+        errors: ['no user_bills found']
+      }
+    end
+  end
+
+  private
+
+  def bill_params
+    params.require(:id)
+  end
 end
