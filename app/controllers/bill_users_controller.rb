@@ -4,7 +4,7 @@ class BillUsersController < ApplicationController
   def index
     @user_bills = User.find_by_id(bill_user_params[:user_id]).bills.all.pluck(:id)
 
-    if @events
+    if @user_bills
       render json: {
         user_bills: @user_bills
       }
