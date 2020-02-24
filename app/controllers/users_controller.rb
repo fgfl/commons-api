@@ -50,14 +50,13 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by_id(params[:id])
-    puts 'TESTING THE ROUTE'
 
     if params[:user][:password].blank?
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
     end
 
-    if @user == current_user
+    if @user == @current_user
       @user.update!(user_params)
       render json: {
         status: 200,
