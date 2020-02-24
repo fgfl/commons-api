@@ -15,17 +15,6 @@ module CommonsApi
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
-    config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
-      allow do
-        origins 'http://localhost:3000'
-        resource '*',
-        headers: :any,
-        methods: [:get, :post, :delete, :put, :patch, :options, :head],
-        max_age: 0,
-        expose: :location
-      end
-    end
-
     # Set Time Zone to Local Time: Pacific Time (PT)
     config.time_zone = 'Eastern Time (US & Canada)'
     config.active_record.default_timezone = :local
