@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GetTextFromFromBill
   include Interactor
   # Called as part of the SaveCategoriesFromUclassify organizer chain
@@ -21,7 +23,7 @@ class GetTextFromFromBill
         end
         res = faraday.get
         doc = Nokogiri::HTML(res.body)
-        bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")["href"]
+        bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")['href']
 
         # Need to join the page URL to get the base url
         absolute_bill_xml_link = URI.join(bill.full_text_url, bill_xml_link).to_s
@@ -34,17 +36,18 @@ class GetTextFromFromBill
         doc = Nokogiri::XML(res.body)
 
         # Assigns full_text and bill_code to be passed to ClassifyAndSaveCategories organizer chain.
-        full_text = doc.search("//text()").map(&:text)
+        full_text = doc.search('//text()').map(&:text)
         if full_text.empty?
-          raise StandardError.new "No text Found for page: #{full_text_url}"
+          raise StandardError, "No text Found for page: #{full_text_url}"
         end
+
         bill_code = bill.code
-      rescue NoMethodError => exception
-        puts exception.full_message()
+      rescue NoMethodError => e
+        puts e.full_message
         puts "Failed on page: #{full_text_url}"
         next
-      rescue StandardError => exception
-        puts exception.full_message()
+      rescue StandardError => e
+        puts e.full_message
         next
       else
         # Calls ClassifyAndSaveCategories organizer chain on the text from each bill
