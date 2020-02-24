@@ -17,6 +17,7 @@ class EventsController < ApplicationController
   end
 
   private
+  
     def bill_params
       params.require(:id)
     end

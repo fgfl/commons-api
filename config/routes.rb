@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post "/email_exists", to: "users#email_exists"
 
   # User Watchlists
-  resources :bill_users, only: %i[create]
+  resources :bill_users, only: %i[create index]
   # User Categories
   resources :category_users, only: %i[create update]
 end
