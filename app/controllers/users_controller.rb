@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 class UsersController < ApplicationController
   def index
     @users = User.all
