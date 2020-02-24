@@ -4,7 +4,13 @@ class BillUsersController < ApplicationController
   def show; end
 
   def create
-    SaveBillUser.call(bill_user_params)
+    updated = SaveBillUser.call(bill_user_params)
+
+    if updated.sucess?
+      head :ok
+    else
+      head :not_implemented
+    end
   end
 
   private
