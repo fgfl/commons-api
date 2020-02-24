@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   # Bill related routes
   resources :bills, only: [:index]
+  # Get events for a bill
+  resources :events, only: [:show]
 
   # User related routes
   resources :users, only: %i[create show index update]
