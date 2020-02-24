@@ -28,7 +28,7 @@ class GetTextFromFromBill
       absolute_bill_xml_link = URI.join(bill.full_text_url, bill_xml_link).to_s
       faraday = Faraday.new(url: absolute_bill_xml_link) do |f|
         f.use FaradayMiddleware::FollowRedirects
-        f.adapter :net_http
+        f.adapter :net_http 
       end
 
       res = faraday.get

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Bill < ApplicationRecord
-  belongs_to :session
+  belongs_to :parliamentary_session
 
   has_many :events
 

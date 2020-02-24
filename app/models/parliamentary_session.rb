@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Session < ApplicationRecord
+class ParliamentarySession < ApplicationRecord
   has_many :bills
 
   validates :number, presence: true

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateSessions < ActiveRecord::Migration[6.0]
+class CreateParliamentarySessions < ActiveRecord::Migration[6.0]
   def change
-    create_table :sessions do |t|
+    create_table :parliamentary_sessions do |t|
       t.integer :number
       t.date :start_date
       t.date :end_date

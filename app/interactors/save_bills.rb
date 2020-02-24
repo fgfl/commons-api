@@ -4,17 +4,17 @@ class SaveBills
   include Interactor
   # Called by write_to_db organizer
   # This interactor saves the Bills to the database
-  # Bills are associated to the current (most recent) Session of Parliament
+  # Bills are associated to the current (most recent) Parliamentary Session
 
   def call
     bills = context.bills
 
-    session = Session.find_by_id Session.maximum(:id)
+    parliamentary_session = ParliamentarySession.find_by_id ParliamentarySession.maximum(:id)
     bills.each do |bill|
       p "Writing Bill #{bill['code']} to database ... "
       date = Date.parse(bill['introduced_date']) if bill['introduced_date']
       Bill.find_or_create_by(
-        session: session,
+        parliamentary_session: parliamentary_session,
         code: bill['code'],
         title: bill['title'],
         page_url: bill['page_url'],

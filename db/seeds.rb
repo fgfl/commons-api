@@ -15,11 +15,11 @@ unless Rails.env.development?
   exit 0
 end
 
-puts 'Creating Sessions ...'
+puts 'Creating Parliamentary Sessions ...'
 
-Session.destroy_all
+ParliamentarySession.destroy_all
 
-Session.create!(
+ParliamentarySession.create!(
   number: 1,
   start_date: Date.new(2019, 12, 0o5),
   end_date: nil

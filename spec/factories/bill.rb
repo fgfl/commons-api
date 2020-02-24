@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :bill do
     sequence(:id) { |number| number }
-    association :session
+    association :parliamentary_session
     code { 'C-204' }
     title { 'Canadian Super Special Political Thingy' }
     description { 'An Act to Do a Thing for Stuff' }
@@ -14,7 +14,7 @@ FactoryBot.define do
 
   factory :random_bill, class: Bill do
     sequence(:id) { |number| number }
-    association :session
+    association :parliamentary_session
     code { "C-#{Faker::Number.number(digits: 2)}" }
     title { "#{Faker::Games::ElderScrolls.region} #{Faker::Relationship.parent} #{Faker::Verb.base} #{Faker::Games::Witcher.quote} Act" }
     description { Faker::Quotes::Shakespeare.king_richard_iii_quote }
