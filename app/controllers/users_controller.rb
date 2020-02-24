@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'pry'
+
 class UsersController < ApplicationController
   def index
     @users = User.all
@@ -45,6 +47,24 @@ class UsersController < ApplicationController
         status: 500,
         errors: result.message
       }
+    end
+  end
+
+  def username_exists
+    username = User.exists?(username: user_params[:username])
+    if username
+      head :conflict
+    else
+      head :ok
+    end
+  end
+
+  def email_exists
+    email = User.exists?(email: user_params[:email])
+    if email
+      head :conflict
+    else
+      head :ok
     end
   end
 

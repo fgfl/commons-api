@@ -16,6 +16,4 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, on: :create
   validates :password, confirmation: true, length: { minimum: 5 }, if: :password, on: :update
   validates :password_confirmation, presence: true, if: :password, on: :update
-
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 end
