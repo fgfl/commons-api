@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 class EventsController < ApplicationController
   def show
     @events = Bill.find_by_id(bill_params.to_i).events.all
