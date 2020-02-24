@@ -1,15 +1,17 @@
 # frozen_string_literal: true
+# require "pry"
 
 class BillUsersController < ApplicationController
   def show; end
 
   def create
     updated = SaveBillUser.call(bill_user_params)
+    # binding.pry
 
-    if updated.sucess?
-      head :ok
-    else
+    if updated.fail?
       head :not_implemented
+    else
+      head :ok
     end
   end
 
