@@ -81,3 +81,6 @@ yarn-debug.log*
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# VS code workspace file
+*code-workspace
