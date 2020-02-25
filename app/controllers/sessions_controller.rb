@@ -6,10 +6,11 @@ class SessionsController < ApplicationController
 
     if user
       user_with_bills = LoginUser.call(user: user, password: session_params[:password])
+      user_result = user_with_bills.user
       session[:user_id] = user.id
       render json: {
         status: :created,
-        user: user_with_bills.user
+        user: user_result
       }
     else
       render json: {
@@ -21,9 +22,11 @@ class SessionsController < ApplicationController
 
   def is_logged_in?
     if logged_in? && current_user
+      user_with_bills = ReturnUserWithBills.call(user: current_user)
+      user_result = user_with_bills.user
       render json: {
         logged_in: true,
-        user: current_user
+        user: user_result
       }
     else
       render json: {
