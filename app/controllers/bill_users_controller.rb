@@ -2,7 +2,7 @@
 
 class BillUsersController < ApplicationController
   def create
-    updated = SaveBillUser.call(bill_user_params)
+    updated = UpdateBillUser.call(bill_user_params)
 
     if updated.fail?
       head :not_implemented

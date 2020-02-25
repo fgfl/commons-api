@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class SaveBillUser
+class UpdateBillUser
   include Interactor
 
   def call
@@ -17,7 +17,7 @@ class SaveBillUser
         puts "Successfully removed Bill ID: #{bill_id} from user ID: #{user_id} watchlist"
       end
     else
-      context.fail!(message: "Updated watchlist failure!")
+      context.fail!(message: 'Updated watchlist failure!')
     end
   end
 end
