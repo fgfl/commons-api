@@ -3,20 +3,17 @@
 class SessionsController < ApplicationController
   def create
     user = User.find_by(email: session_params[:email])
+    result = LoginUser.call(user: user, password: session_params[:password])
 
-    if user
-      user_with_bills = LoginUser.call(user: user, password: session_params[:password])
-      user_result = user_with_bills.user
+    if result.success?
+      user_result = result.user
       session[:user_id] = user.id
       render json: {
         status: :created,
         user: user_result
       }
     else
-      render json: {
-        status: 401,
-        errors: ['Invalid username or password.']
-      }
+      head :unauthorized
     end
   end
 

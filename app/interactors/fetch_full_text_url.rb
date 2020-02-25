@@ -18,7 +18,7 @@ class FetchFullTextUrl
         full_text_url_a = bill_link_div.css('a[href]')
         full_text_url = full_text_url_a.first['href']
       rescue NoMethodError => e
-        puts "Rescued: #{e.inspect} on page: #{page_url} running method #{__method__}"
+        puts "No full text available for bill #{bill['code']}. Skipping ..."
       else
         full_text_url = 'https:' + full_text_url
       end

@@ -32,12 +32,13 @@ class UsersController < ApplicationController
 
   def create
     result = SaveUserAndCategories.call(user_params)
-    user = result.user
+    @user = result.user
 
     if @user
-      user_with_bills = LoginUser.call(user: user, password: user_params[:password])
+      user_with_bills = LoginUser.call(user: @user, password: user_params[:password])
       user_result = user_with_bills.user
       session[:user_id] = @user.id
+      NotificationMailer.send_signup_email(@user).deliver
       render json: {
         status: :created,
         user: user_result
