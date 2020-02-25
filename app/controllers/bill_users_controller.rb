@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
 class BillUsersController < ApplicationController
   def create
     updated = UpdateBillUser.call(bill_user_params)
