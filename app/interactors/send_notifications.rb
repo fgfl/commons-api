@@ -46,7 +46,8 @@ class SendNotifications
         body = "There are new events for your subscribed bills.\n\n"
 
         subscriber[:events].each do |e|
-          body += "Bill #{e.code}: #{e.title}\nPublished: #{e.publication_date}\n\n"
+          bill = Bill.find_by(id: e[:bill_id])
+          body += "Bill #{e.code}: #{bill.title}\n#{e.title}\nPublished: #{e.publication_date}\n#{bill.page_url}\n\n"
         end
 
         SendSmsNotifications.call(phone_number: subscriber[:phone_number], body: body)
