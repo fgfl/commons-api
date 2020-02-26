@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
 class SendNotifications
   include Interactor
 
@@ -53,8 +52,8 @@ class SendNotifications
         SendSmsNotifications.call(phone_number: subscriber[:phone_number], body: body)
       end
 
-      if subscriber['email']
-        # cal email send
+      if subscriber[:email] && !subscriber[:email].nil? && !subscriber[:email].empty?
+        NotificationMailer.send_notification_emails(subscriber).deliver_now
       end
     end
   end

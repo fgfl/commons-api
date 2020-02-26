@@ -4,8 +4,22 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Thanks for signing up, <%= @user.name %>!</h1>
-    <p>Thanks for joining and have a great day! Now sign in and do
-awesome things!</p>
+    <h1>Hello from Commons App, <%= @user.name %> </h1>
+    <p>You have new notifications for the following bills:</p>
+    <table> 
+      <% @user.events.each do |event| %>
+        <tr> 
+          <td>Bill </td> 
+          <td>Latest Event</td> 
+          <td>Date</td> 
+        </tr> 
+      <% end %>
+        <tr> 
+          <td><%= event.code %></td> 
+          <td><%= event.title %></td> 
+          <td><%= event.publication_date %></td> 
+        </tr> 
+      <% end %>
+    </table>
   </body>
 </html>

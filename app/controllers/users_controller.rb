@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     @user = result.user
 
     if result.success?
+      NotificationMailer.send_signup_email(@user).deliver
       user_with_bills = LoginUser.call(user: user, password: user_params[:password])
       user_result = user_with_bills.user
       session[:user_id] = user.id
@@ -77,10 +78,10 @@ class UsersController < ApplicationController
     end
 
     if @user == current_user
-      @user.update!(user_params)
+      result = UpdateUserAndCategories.call(user_params)
       render json: {
         status: 200,
-        user: @user
+        user: result.user
       }
     else
       render json: {
