@@ -34,18 +34,17 @@ class UsersController < ApplicationController
     result = SaveUserAndCategories.call(user_params)
     @user = result.user
 
-    if @user
-      user_with_bills = LoginUser.call(user: @user, password: user_params[:password])
+    if result.success?
+      user_with_bills = LoginUser.call(user: user, password: user_params[:password])
       user_result = user_with_bills.user
-      session[:user_id] = @user.id
-      NotificationMailer.send_signup_email(@user).deliver
+      session[:user_id] = user.id
       render json: {
         status: :created,
         user: user_result
       }
     else
       render json: {
-        status: 500,
+        status: 401,
         errors: result.message
       }
     end

@@ -19,11 +19,20 @@ Metrics/ClassLength:
 Layout/SpaceAroundEqualsInParameterDefault:
   EnforcedStyle: no_space
 
+<<<<<<< HEAD
 Layout/AccessModifierIndentation:
   EnforcedStyle: indent
 
 Layout/ArgumentAlignment:
   EnforcedStyle: with_first_argument
+=======
+# Single quotes being faster is hardly measurable and only affects parse time.
+# Enforcing double quotes reduces the times where you need to change them
+# when introducing an interpolation. Use single quotes only if their semantics
+# are needed.
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+>>>>>>> sendgrid-mailer
 
 # We do not need to support Ruby 1.9, so this is good to use.
 Style/SymbolArray:
