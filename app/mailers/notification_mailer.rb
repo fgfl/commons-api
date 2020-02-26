@@ -8,9 +8,9 @@ class NotificationMailer < ActionMailer::Base
     mail(to: @user.email, subject: 'Thank you for signing up to Commons.')
   end
 
-  def send_notification_emails(subscriber)
+  def send_notification_email(subscriber)
     @subscriber = subscriber
-    mail(to: @subscriber.email, subject: 'Commons App: You have new notifications for your watched bills.')
+    mail(to: @subscriber[:email], subject: 'Commons App: You have new notifications for your watched bills.')
   end
 
   def send_test_email(user)

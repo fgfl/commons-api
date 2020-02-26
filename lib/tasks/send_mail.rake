@@ -6,7 +6,7 @@ namespace :notification do
     OrganizeSendNotifications.call
   end
 
-  desc 'TODO'
+  desc 'Test email sender.'
   task send_test_email: :environment do
     NotificationMailer.send_test_email('pascalvanleeuwen604@gmail.com').deliver_now
   end

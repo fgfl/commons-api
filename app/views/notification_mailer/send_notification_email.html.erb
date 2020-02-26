@@ -4,16 +4,15 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hello from Commons App, <%= @user.name %> </h1>
+    <h1>Hello from Commons App, <%= @subscriber[:name] %> </h1>
     <p>You have new notifications for the following bills:</p>
     <table> 
-      <% @user.events.each do |event| %>
+      <% @subscriber[:events].each do |event| %>
         <tr> 
-          <td>Bill </td> 
-          <td>Latest Event</td> 
-          <td>Date</td> 
+          <th>Bill code</th> 
+          <th>Latest Event</th> 
+          <th>Date</th> 
         </tr> 
-      <% end %>
         <tr> 
           <td><%= event.code %></td> 
           <td><%= event.title %></td> 

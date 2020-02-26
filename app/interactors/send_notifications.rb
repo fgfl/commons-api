@@ -53,7 +53,7 @@ class SendNotifications
       end
 
       if subscriber[:email] && !subscriber[:email].nil? && !subscriber[:email].empty?
-        NotificationMailer.send_notification_emails(subscriber).deliver_now
+        NotificationMailer.send_notification_email(subscriber).deliver_now
       end
     end
   end
