@@ -36,9 +36,9 @@ class UsersController < ApplicationController
 
     if result.success?
       NotificationMailer.send_signup_email(@user).deliver
-      user_with_bills = LoginUser.call(user: user, password: user_params[:password])
+      user_with_bills = LoginUser.call(user: @user, password: user_params[:password])
       user_result = user_with_bills.user
-      session[:user_id] = user.id
+      session[:user_id] = @user.id
       render json: {
         status: :created,
         user: user_result
