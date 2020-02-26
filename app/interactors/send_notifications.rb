@@ -4,7 +4,7 @@ require 'pry'
 class SendNotifications
   include Interactor
 
-  # exampl subscriber hash
+  # example subscriber hash
   #   {"1"=>
   #   {:name=>"ffff",
   #    :phone_number=>"1234567890",
@@ -41,11 +41,18 @@ class SendNotifications
 
   def call
     subscribers = context.subscribers
-    binding.pry
-    subscribers.each do |subscriber|
-      if subscriber['sms_notification']
-        # call twilio send
+
+    subscribers.each do |_subscriber_id, subscriber|
+      if subscriber[:sms_notification] && !subscriber[:phone_number].nil? && !subscriber[:phone_number].empty?
+        body = "There are new events for your subscribed bills.\n\n"
+
+        subscriber[:events].each do |e|
+          body += "Bill #{e.code}: #{e.title}\nPublished: #{e.publication_date}\n\n"
+        end
+
+        SendSmsNotifications.call(phone_number: subscriber[:phone_number], body: body)
       end
+
       if subscriber['email']
         # cal email send
       end
