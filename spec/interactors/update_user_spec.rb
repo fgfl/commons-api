@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe MailToUsers, type: :interactor do
+RSpec.describe UpdateUser, type: :interactor do
   describe '.call' do
     pending "add some examples to (or delete) #{__FILE__}"
   end
