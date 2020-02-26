@@ -4,18 +4,13 @@ class UpdateUser
   include Interactor
 
   def call
-    user = User.find_by_id(context.id)
+    user = context.user_to_update
+    user_params = context.user_params
+    categories = user_params.delete(:categories)
 
-    user.update(
-      name: context.name,
-      username: context.username,
-      email: context.email,
-      password: context.password,
-      password_confirmation: context.password_confirmation,
-      sms_notification: context.sms_notification,
-      email_notification: context.email_notification,
-      phone_number: context.phone_number
-    )
+    user.update!(user_params)
+
     context.user = user
+    context.categories = categories
   end
 end
