@@ -11,7 +11,7 @@ class UpdateUserCategories
       user.category_users.create(user_id: user.id, category_id: category)
     end
     user_copy = user.clone.attributes
-    user_copy['user_categories'] = categories
+    user_copy["user_categories"] = CategoryUser.where(user_id: user.id).pluck(:category_id)
     context.user = user_copy
   end
 end

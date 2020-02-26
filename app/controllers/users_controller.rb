@@ -5,12 +5,12 @@ class UsersController < ApplicationController
     @users = User.all
     if @users
       render json: {
-        users: @users
+        users: @users,
       }
     else
       render json: {
         status: 500,
-        errors: ['no users found']
+        errors: ["no users found"],
       }
     end
   end
@@ -20,12 +20,12 @@ class UsersController < ApplicationController
 
     if @user
       render json: {
-        user: @user
+        user: @user,
       }
     else
       render json: {
         status: 500,
-        errors: ['user not found']
+        errors: ["user not found"],
       }
     end
   end
@@ -41,12 +41,12 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       render json: {
         status: :created,
-        user: user_result
+        user: user_result,
       }
     else
       render json: {
         status: 401,
-        errors: result.message
+        errors: result.message,
       }
     end
   end
@@ -78,15 +78,16 @@ class UsersController < ApplicationController
     end
 
     if @user == current_user
-      result = UpdateUserAndCategories.call(user_params)
+      result = UpdateUserAndCategories.call(user_params: user_params, user_to_update: @user)
+
       render json: {
         status: 200,
-        user: result.user
+        user: result.user,
       }
     else
       render json: {
         status: 500,
-        errors: ['Error updating user.']
+        errors: ["Error updating user."],
       }
     end
   end
