@@ -8,7 +8,7 @@ class UpdateUser
     user_params = context.user_params
     categories = user_params.delete(:categories)
 
-    user.update!(user_params)
+    user.update(user_params)
 
     context.user = user
     context.categories = categories
