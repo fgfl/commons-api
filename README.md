@@ -14,24 +14,6 @@ Bills are updated daily and sorted by category on the server. Users can select b
 
 The application also provides an easy way to look up Members of Parliament and retrieve their contact information.
 
-Things you may want to cover:
-
-- System dependencies
-
-- Configuration
-
-- Database creation
-
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
-
-- ...
-
 # Stack
 
 - [Ruby: 2.7.0](https://www.ruby-lang.org/en/)
