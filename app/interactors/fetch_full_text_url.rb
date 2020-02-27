@@ -17,8 +17,8 @@ class FetchFullTextUrl
         bill_link_div = div.at_css('div.BillPublicationMenu')
         full_text_url_a = bill_link_div.css('a[href]')
         full_text_url = full_text_url_a.first['href']
-      rescue NoMethodError => e
-        puts "No full text available for bill #{bill['code']}. Skipping ..."
+      rescue NoMethodError
+        puts "No full text available for Bill #{bill['code']}. Skipping ..."
       else
         full_text_url = 'https:' + full_text_url
       end

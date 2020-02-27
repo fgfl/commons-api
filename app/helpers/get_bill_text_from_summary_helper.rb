@@ -34,7 +34,7 @@ module GetBillTextFromSummaryHelper
       legisInfo_link = doc.at_css("a:contains('Status of the bill')")['href']
     rescue NoMethodError => e
       puts e.full_message
-      puts "Failed on page #{bill['description']}"
+      puts "No full text available for bill: #{bill['description']}"
       return []
     end
 
@@ -49,7 +49,7 @@ module GetBillTextFromSummaryHelper
       publication_link = doc.at_css("a:contains('Latest Publication')")['href']
     rescue NoMethodError => e
       puts e.full_message
-      puts "Failed on page #{legisInfo_link}"
+      puts "No latest publication available from link: #{legisInfo_link}"
       return []
     end
 
@@ -68,7 +68,7 @@ module GetBillTextFromSummaryHelper
       bill_xml_link = doc.at_css("a.btn-export-xml:contains('XML')")['href']
     rescue NoMethodError => e
       puts e.full_message
-      puts "Failed on page #{absolute_publication_link}"
+      puts "No XML document available from page: #{absolute_publication_link}"
       return []
     end
 

@@ -8,7 +8,6 @@ class BillUsersController < ApplicationController
     if updated.fail?
       head :not_implemented
     else
-      puts watchlist
       render json: {
         status: 200,
         watchlist: watchlist

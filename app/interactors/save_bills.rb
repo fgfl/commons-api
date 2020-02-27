@@ -11,7 +11,7 @@ class SaveBills
 
     parliamentary_session = ParliamentarySession.find_by_id ParliamentarySession.maximum(:id)
     bills.each do |bill|
-      p "Writing Bill #{bill["code"]} to database ... "
+      p "Writing Bill #{bill["code"]} to database ..."
       date = Date.parse(bill["introduced_date"]) if bill["introduced_date"]
       Bill.find_or_create_by(
         parliamentary_session: parliamentary_session,

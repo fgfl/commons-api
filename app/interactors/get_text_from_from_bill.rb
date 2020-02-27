@@ -12,7 +12,7 @@ class GetTextFromFromBill
     # Get the XML document from the bill page
     bills.each do |bill|
       if bill.full_text_url.nil?
-        raise StandardError, "No url Found for bill: #{bill}"
+        raise StandardError
       end
 
       # Creates Faraday connection to bill
@@ -37,16 +37,16 @@ class GetTextFromFromBill
       # Assigns full_text and bill_code to be passed to ClassifyAndSaveCategories organizer chain.
       full_text = doc.search('//text()').map(&:text)
       if full_text.empty?
-        raise StandardError, "No text Found for page: #{full_text_url}"
+        raise StandardError, "No full text found for Bill #{bill['code']}. Skipping ..."
       end
 
       bill_code = bill.code
     rescue NoMethodError => e
       puts e.full_message
-      puts "Failed on page: #{full_text_url}"
+      puts "Failed on page: #{full_text_url} attempting to fetch Bill #{bill['code']}. Skipping ..."
       next
     rescue StandardError => e
-      puts e.full_message
+      puts "No full text Found for Bill #{bill["code"]}. Skipping ..."
       next
     else
       # Calls ClassifyAndSaveCategories organizer chain on the text from each bill
