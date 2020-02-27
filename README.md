@@ -1,6 +1,6 @@
 # Commons API
 
-#### Information and notifications about Canada's parliament.
+#### Up-to-date information and notifications about bills in progress in Canada's parliament.
 
 ![Commons App](./docs/commons-readme.png)
 
