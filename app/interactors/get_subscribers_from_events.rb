@@ -9,8 +9,8 @@ class GetSubscribersFromEvents
     subscribers = {}
 
     events.each do |event|
-      sms_subscribers = Bill.find_by(id: event.bill_id).users.where('sms_notification = ? OR email_notification = ?', true, true)
-      sms_subscribers.each do |s|
+      subscribers = Bill.find_by(id: event.bill_id).users.where('sms_notification = ? OR email_notification = ?', true, true)
+      subscribers.each do |s|
         if subscribers[(s['id']).to_s].nil?
           subscribers[(s['id']).to_s] = {
             name: s['name'],

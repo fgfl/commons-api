@@ -15,4 +15,12 @@ namespace :notify do
     SendSmsNotifications.call(phone_number: 7789600255, body: 'Testing testing testing.')
     puts 'Finished sending out test notifications'
   end
+
+  desc 'Test email sender.'
+  task send_test_heroku: :environment do
+    puts 'SENDING OUT HEROKU NOTIFICATION TEST'
+    TestGetEventsForTheDay.call
+    puts 'FINISHED SENDING OUT HEROKU NOTIFICATION TEST'
+  end
+
 end
