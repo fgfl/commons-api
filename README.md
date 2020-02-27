@@ -15,7 +15,7 @@ Bills are updated daily and sorted by category on the server. Users can select b
 The application also provides an easy way to look up Members of Parliament and retrieve their contact information.
 
 ## Behaviour 
-The server updates once every 24 hours from a variety of government data sources and pulls the latest bill and event data from them, then updates the data via a web based machine learned classification service. It then send notifications on those bilsl to all subscribed users.
+The server updates once every 24 hours from a variety of government data sources and pulls the latest bill and event data from them, then updates the data via a web based machine learned classification service. It then send notifications on those bills to all subscribed users.
 
 # Stack
 
