@@ -3,5 +3,5 @@
 class OrganizeSendNotifications
   include Interactor::Organizer
 
-  organize GetEventsForTheDay, GetSubscribersFromEvents, SendNotifications
+  organize GetEventsForDay, GetSubscribersFromEvents, SendNotifications
 end

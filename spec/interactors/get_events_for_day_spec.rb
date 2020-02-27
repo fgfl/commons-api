@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe GetEventsForTheDay, type: :interactor do
+RSpec.describe GetEventsForDay, type: :interactor do
   describe '.call' do
     pending "add some examples to (or delete) #{__FILE__}"
   end

@@ -10,5 +10,5 @@ class SaveCategoriesFromUclassify
   # Gets the text from every bill daved to the database that day
   # then calls the ClassifyAndSaveCategories organizer on each text
 
-  organize GetBillsForTheDay, GetTextFromFromBill
+  organize GetBillsForDay, GetTextFromFromBill
 end

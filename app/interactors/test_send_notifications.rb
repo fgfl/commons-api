@@ -1,5 +1,5 @@
-class GetSubscribersForDay
+class TestSendNotifications
   include Interactor::Organizer
 
-  organize TestGetEventsForTheDay, GetSubscribersFromEvents, SendNotifications
+  organize TestGetEventsForDay, GetSubscribersFromEvents, SendNotifications
 end

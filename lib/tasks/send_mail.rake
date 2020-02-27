@@ -19,7 +19,7 @@ namespace :notify do
   desc 'Test email sender.'
   task send_test_heroku: :environment do
     puts 'SENDING OUT HEROKU NOTIFICATION TEST'
-    TestGetEventsForTheDay.call
+    TestGetEventsForDay.call
     puts 'FINISHED SENDING OUT HEROKU NOTIFICATION TEST'
   end
 

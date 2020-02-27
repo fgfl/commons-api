@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GetBillsForTheDay
+class GetBillsForDay
   include Interactor
   # Called as part of the SaveCategoriesFromUclassify organizer chain
   # Fetches all bills that were added to the database today
