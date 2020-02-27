@@ -43,17 +43,12 @@ class SendNotifications
 
     subscribers.each do |_subscriber_id, subscriber|
       if subscriber[:sms_notification] && !subscriber[:phone_number].nil? && !subscriber[:phone_number].empty?
-        body = "There are new events for your subscribed bills.\n\n"
-
-        subscriber[:events].each do |e|
-          bill = Bill.find_by(id: e[:bill_id])
-          body += "Bill #{e.code}: #{bill.title}\n#{e.title}\nPublished: #{e.publication_date}\n#{bill.page_url}\n\n"
-        end
-
-        SendSmsNotifications.call(phone_number: subscriber[:phone_number], body: body)
+        puts "Sending SMS notifications to #{subscriber[:name]} at #{DateTime.now} ..."        
+        SendSmsNotifications.call(subscriber: subscriber)
       end
 
       if subscriber[:email] && !subscriber[:email].nil? && !subscriber[:email].empty?
+        puts "Sending email notifications to #{subscriber[:name]} at #{DateTime.now} ..."
         NotificationMailer.send_notification_email(subscriber).deliver_now
       end
     end
