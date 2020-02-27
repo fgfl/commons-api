@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'pry'
 class GetSubscribersFromEvents
   include Interactor
 
@@ -9,11 +8,9 @@ class GetSubscribersFromEvents
     subscribers = {}
 
     events.each do |event|
-      subscribers = Bill.find_by(id: event.bill_id).users.where('sms_notification = ? OR email_notification = ?', true, true)
-      binding.pry
-      subscribers.each do |subscriber|
-        subscriber.to_h
-        if subscribers[(subscriber[:id]).to_s].nil?
+      subscribers_for_bill = Bill.find_by(id: event.bill_id).users.where('sms_notification = ? OR email_notification = ?', true, true).as_json
+      subscribers_for_bill.each do |subscriber|
+        if subscribers[(subscriber[:id])].nil?
           subscribers[(subscriber[:id]).to_s] = {
             name: subscriber["name"],
             phone_number: subscriber["phone_number"],
