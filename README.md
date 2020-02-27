@@ -19,7 +19,7 @@ The server updates once every 24 hours from a variety of government data sources
 
 # Stack
 
-- [Ruby: 2.7.0](https://www.ruby-lang.org/en/)
+- [Ruby 2.7.0](https://www.ruby-lang.org/en/)
 - [Ruby on Rails 6.0.2.1](https://rubyonrails.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 
